@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+		<bean class="com.fp.util.FileSaver" id="fileSaver"></bean>
 		
+	
+	
+	<context:component-scan base-package="com.fp.member" />
+	<context:component-scan base-package="com.fp.util" />
+	<context:component-scan base-package="com.fp.notice"/>
+	<context:component-scan base-package="com.fp.qna"/>
+	<context:component-scan base-package="com.fp.calendar"/>
+	<context:component-scan base-package="com.fp.chatroom"/>
+	<context:component-scan base-package="com.fp.messenger"/>
+	<context:component-scan base-package="com.fp.reply"/>
+	<context:component-scan base-package="com.fp.review"/>
+	<context:component-scan base-package="com.fp.student"/>
+	<context:component-scan base-package="com.fp.teacher"/>
+	<context:component-scan base-package="com.fp.upload"/>
+	
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<property name="defaultEncoding" value ="UTF-8" />
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
+	
 </beans>
