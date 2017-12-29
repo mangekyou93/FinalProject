@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/resources/css/memberJoin.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 <style type="text/css">
 *{
 	margin: 0;
@@ -177,5 +179,6 @@
 			</div>
 		</div>
 	</section>
+<c:import url="${pageScope.pageContext.request.ContextPath}/WEB-INF/views/temp/footer.jsp"></c:import>
 </body>
 </html>
