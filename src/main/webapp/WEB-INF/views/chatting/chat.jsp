@@ -10,7 +10,7 @@
  var wsocket;
  
  function connect() {
-  wsocket = new SockJS("/ctrl/chat.sockjs1");
+  wsocket = new SockJS("/ctrl/chat.sockjs");
   wsocket.onopen = onOpen;
   wsocket.onmessage = onMessage;
   wsocket.onclose = onClose;
@@ -19,7 +19,7 @@
   wsocket.close();
  }
  function onOpen(evt) {
-  appendMessage("연결되었습니다.");
+  appendMessage($("#nickname").val()+" JOIN");
  }
  function onMessage(evt) {
   var data = evt.data;

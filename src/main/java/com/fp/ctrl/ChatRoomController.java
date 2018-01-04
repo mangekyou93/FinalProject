@@ -20,9 +20,4 @@ public class ChatRoomController {
 		return "chatting/chat2";
 	}
 	
-	@RequestMapping("/chat3")
-	public String viewChattingPage3(){
-		return "chatting/chat3";
-	}
-	
 }

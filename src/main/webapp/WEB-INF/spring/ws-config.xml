@@ -12,6 +12,8 @@
   <websocket:mapping handler="echoHandler" path="/echo-ws" />
 
   <websocket:mapping handler="chatHandler" path="/chat-ws" />
+  
+  <websocket:mapping handler="chatHandler2" path="/chat-ws2" />
 
  </websocket:handlers>
 
@@ -20,6 +22,8 @@
  <bean id="echoHandler" class="com.fp.chatroom.EchoHandler" />
 
  <bean id="chatHandler" class="com.fp.chatroom.ChatWebSocketHandler" />
+ 
+ <bean id="chatHandler2" class="com.fp.chatroom.ChatWebSocketHandler2" />
 
 
 
@@ -27,10 +31,10 @@
 
   <websocket:mapping handler="echoHandler" path="/echo.sockjs" />
 
-  <websocket:mapping handler="chatHandler" path="/chat.sockjs1" />
-  <websocket:mapping handler="chatHandler" path="/chat.sockjs2" />
-  <websocket:mapping handler="chatHandler" path="/chat.sockjs3" />
-  <websocket:mapping handler="chatHandler" path="/chat.sockjs4" />
+  <websocket:mapping handler="chatHandler" path="/chat.sockjs" />
+  
+  <websocket:mapping handler="chatHandler2" path="/chat.sockjs2" />
+
 
   <websocket:sockjs />
 

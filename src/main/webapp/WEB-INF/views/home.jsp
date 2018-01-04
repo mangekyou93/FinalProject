@@ -96,7 +96,6 @@
    <div>
    <a href="./chat">1반채팅방 이동</a>
    <a href="./chat2">2반채팅방 이동</a>
-   <a href="./chat3">3반채팅방 이동</a>
    </div>
 <script>
 $(function(){
