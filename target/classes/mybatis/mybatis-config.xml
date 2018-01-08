@@ -6,5 +6,8 @@
  <configuration>
  	<typeAliases>
  		<typeAlias type="com.fp.member.MemberDTO" alias="MemberDTO"/>
+ 		<typeAlias type="com.fp.student.StudentDTO" alias="StudentDTO"/>
+ 		<typeAlias type="com.fp.upload.UploadDTO" alias="UploadDTO"/>
+ 		<typeAlias type="com.fp.teacher.TeacherDTO" alias="TeacherDTO"/>
  	</typeAliases>
  </configuration>

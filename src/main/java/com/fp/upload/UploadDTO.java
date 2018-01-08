@@ -1,5 +1,7 @@
 package com.fp.upload;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UploadDTO {
 
 	private int file_seq;
@@ -7,6 +9,7 @@ public class UploadDTO {
 	private int member_seq;
 	private String file_name;
 	private String ori_name;
+	
 	public int getFile_seq() {
 		return file_seq;
 	}

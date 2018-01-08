@@ -4,15 +4,21 @@ import com.fp.member.MemberDTO;
 
 public class StudentDTO extends MemberDTO {
 
-
-	private String className;
+	private int member_seq;
+	private String classname;
 	
-
-	public String getClassName() {
-		return className;
+	
+	public int getMember_seq() {
+		return member_seq;
 	}
-	public void setClassName(String className) {
-		this.className = className;
+	public void setMember_seq(int member_seq) {
+		this.member_seq = member_seq;
+	}
+	public String getClassname() {
+		return classname;
+	}
+	public void setClassname(String classname) {
+		this.classname = classname;
 	}
 	
 }

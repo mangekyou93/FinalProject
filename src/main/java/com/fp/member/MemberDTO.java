@@ -1,6 +1,10 @@
 package com.fp.member;
 
-public class MemberDTO {
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fp.upload.UploadDTO;
+
+public class MemberDTO extends UploadDTO {
 
 	private int member_seq;
 	private String id;
@@ -11,7 +15,8 @@ public class MemberDTO {
 	private String age;
 	private String address;
 	private String kind;
-	
+	private int state;
+	private MultipartFile files;
 	
 	public int getMember_seq() {
 		return member_seq;
@@ -67,4 +72,17 @@ public class MemberDTO {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
+	public MultipartFile getFiles() {
+		return files;
+	}
+	public void setFiles(MultipartFile files) {
+		this.files = files;
+	}
+	
 }
