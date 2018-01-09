@@ -96,6 +96,9 @@
    <div>
    <a href="./chat?one=protocolone">1반채팅방 이동</a>
    <a href="./chat?one=protocoltwo">2반채팅방 이동</a>
+      <a href="./room">room</a>
+      <a href="./chatting">chatting</a>
+      <a href="./test">test</a>
    </div>
 <script>
 $(function(){

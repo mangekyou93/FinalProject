@@ -23,4 +23,21 @@ public class ChatRoomController {
 		return "chatting/chat2";
 	}
 	
+	
+	@RequestMapping("/room")
+	public String room(){
+		return "chatting/room";
+	}
+	
+
+	@RequestMapping("/chatting")
+	public String chatting(){
+		return "chatting/chatting";
+	}
+	
+	@RequestMapping("/test")
+	public String test(){
+		return "chatting/test";
+	}
+	
 }
