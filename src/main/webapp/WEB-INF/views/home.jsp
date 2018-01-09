@@ -94,8 +94,8 @@
   
    <a href="./">home</a>
    <div>
-   <a href="./chat">1반채팅방 이동</a>
-   <a href="./chat2">2반채팅방 이동</a>
+   <a href="./chat?one=protocolone">1반채팅방 이동</a>
+   <a href="./chat?one=protocoltwo">2반채팅방 이동</a>
    </div>
 <script>
 $(function(){

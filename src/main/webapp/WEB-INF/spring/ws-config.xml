@@ -26,7 +26,6 @@
  <bean id="chatHandler2" class="com.fp.chatroom.ChatWebSocketHandler2" />
 
 
-
  <websocket:handlers>
 
   <websocket:mapping handler="echoHandler" path="/echo.sockjs" />

@@ -22,6 +22,7 @@ public class ChatWebSocketHandler2 extends TextWebSocketHandler {
 			WebSocketSession session) throws Exception {
 		log(session.getId() + " 연결 됨!!");
 		users.put(session.getId(), session);
+		System.out.println(session.getLocalAddress());
 
 	}
 

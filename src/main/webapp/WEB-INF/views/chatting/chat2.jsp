@@ -10,7 +10,7 @@
  var wsocket;
  
  function connect() {
-  wsocket = new SockJS("/ctrl/chat.sockjs2");
+  wsocket = new SockJS("/ctrl/chat.sockjs");
   wsocket.onopen = onOpen;
   wsocket.onmessage = onMessage;
   wsocket.onclose = onClose;
