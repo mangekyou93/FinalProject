@@ -103,10 +103,10 @@
 					<div class="leftMenu_wrapper">
 						<ul>
 							<li style="background-color: RGB(18, 165, 244);">
-								<a href="memberAgree" style="color: white;">이용약관 및 개인정보취급방침</a>
+								<a href="${pageContext.request.contextPath}/member/memberAgree" style="color: white;">이용약관 및 개인정보취급방침</a>
 							</li>
 							<li>
-								<a href="memberAgree">회원가입</a>
+								<a href="${pageContext.request.contextPath}/member/memberAgree">회원가입</a>
 							</li>
 							<li>
 								<a href="#">ID/PW 찾기</a>
@@ -207,7 +207,7 @@
 					</div>
 				<div class="wrapper_foot">
 					<div class="foot_btn">
-						<a href="memberJoin" id="agreeBtn" style="background-color: darkgrey">
+						<a href="${pageContext.request.contextPath}/member/memberJoin" id="agreeBtn" style="background-color: darkgrey">
 							동의
 						</a>
 						<a href="/ctrl/">

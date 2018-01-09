@@ -2,7 +2,7 @@
 
 section {
 	width: 100%;
-	height: 1000px;
+	height: 1200px;
 }
 .allContents {
 	width: 1000px;
@@ -68,54 +68,79 @@ section {
 .contents_wrapper {
 	margin-top: 20px;
 }
-.InfoTable {
+.check_header {
+	border-bottom: 2px solid darkgray;
+	color: RGB(18, 165, 244);
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.pwUpdate_box {
 	width: 720px;
-	border: 1px solid darkgray;
-	border-collapse: collapse;
 }
-.InfoTable ul {
-	
+.pwUpdate_box table tr {
+	height: 50px;
 }
-.InfoTable ul li {
-	
+.pwUpdate_box table tr td {
+	padding: 10px;
 }
-.myInfo_titles {
-	width: 150px;
-    height: 60px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: mistyrose;
-    border-bottom: 1px solid darkgray;
-	padding: 15px;
+
+/* 회원정보 수정 */
+.infoUpdate_box {
+	width: 720px;
+	margin-top: 40px;
 }
-.myInfo_contents {
-	font-size: 16px;
-    padding: 15px;
-    border-bottom: 1px solid darkgray;
+.infoUpdate_box table tr {
+	height: 70px;
 }
-.profileImage {
+
+.check_title2 {
+	width: 120px;
+}
+.checkResult {
+	position: absolute;
+}
+#emailSelect {
+	width: 130px;
+	height: 35px;
+	font-size: 15px;
+}
+#drop {
 	width: 100px;
 	height: 100px;
+	border-radius: 50%;
+	margin-left: 20px;
 }
-.profileImage img {
+#drop img {
 	width: 100%;
 	height: 100%;
 	border-radius: 50%;
 }
-.imgName {
-	margin-left: 10px;
-}
-.btn_area {
-	float: right;
-    margin-top: 30px;
-}
-.btn_area a {
-	padding: 15px;
-    border-radius: 0.3em;
-    color: white;
-    font-size: 15px;
+.dropDiv {
+	display: inline-block;
+	margin-left: 50px;
+    font-size: 17px;
     font-weight: bold;
 }
-.btn_area a:hover {
-	text-decoration: none;
+#delBtn {
+	top: -38px;
+    right: 365px;
+    font-size: 20px;
+    color: gray;
+    cursor: pointer;
+}
+
+/* 버튼 */
+.btn_box {
+	text-align: center;
+}
+.btn_box input {
+	color: white;
+    width: 200px;
+    height: 50px;
+    border: none;
+    font-size: 20px;
+    border-radius: 0.3em;
+    font-weight: bold;
+    background-color: RGB(18, 165, 244);
 }

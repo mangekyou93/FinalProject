@@ -9,9 +9,14 @@
 	<insert id="memberImageInsert" parameterType="UploadDTO">
 		INSERT INTO upload VALUES(file_seq.nextval, 0, member_seq.currval, #{file_name}, #{ori_name})
 	</insert>
-	
-<!-- 회원 프로필 사진 select -->
+<!-- 회원 프로필 사진 selectOne -->
 	<select id="memberImageOne" parameterType="MemberDTO" resultType="UploadDTO">
 		SELECT * FROM upload WHERE member_seq=#{member_seq}
 	</select>
+<!-- 회원 프로필 사진 delete(회원삭제) -->	
+	<delete id="memberImageDelete" parameterType="int">
+		DELETE upload WHERE member_seq=#{member_seq}
+	</delete>
+
+
 </mapper>

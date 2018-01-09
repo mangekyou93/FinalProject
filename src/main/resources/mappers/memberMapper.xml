@@ -5,18 +5,40 @@
   
 <mapper namespace="memberMapper">
 
-	<!-- 일반 아이디 체크 -->
+	<!-- 일반회원 아이디 체크 -->
 		<select id="memberIdCheck" parameterType="String" resultType="String">
 			SELECT id FROM member where id=#{checkId}
 		</select>
-	<!-- 일반 회원가입 -->  	
+	<!-- 일반회원 회원가입 -->  	
 	  	<insert id="memberJoin" parameterType="MemberDTO">
 	  		INSERT INTO member VALUES(MEMBER_SEQ.nextval, #{id}, #{pw}, #{name}, #{phone}, #{email}, #{age}, #{address}, 'normal', 0)
 	  	</insert>
-	<!-- 일반 로그인 -->
+	<!-- 일반회원 로그인 -->
 		<select id="memberLogin" parameterType="MemberDTO" resultType="MemberDTO">
 			SELECT * FROM member WHERE id=#{id} AND pw=#{pw}
 		</select>
+	<!-- 일반회원 삭제-->
+		<delete id="memberDelete" parameterType="int">
+			DELETE member WHERE member_seq=#{member_seq}
+		</delete>
+ 	
+	<!-- 일반회원 비밀번호 수정 -->
+		<update id="memberPwUpdate" parameterType="MemberDTO">
+			UPDATE member SET pw=#{pw} WHERE member_seq=#{member_seq}
+		</update>
+	
+	<!-- 일반회원 정보 수정 -->
+		<update id="memberInfoUpdate" parameterType="MemberDTO">
+			UPDATE member SET 
+			name=#{name}, 
+			phone=#{phone}, 
+			email=#{email}, 
+			age=#{age}, 
+			address=#{address} 
+			WHERE member_seq=#{member_seq}
+		</update>
+ 		
+		
 	<!-- state Update -->
 	  	<update id="stateUpdate" parameterType="MemberDTO">
 	  		UPDATE member SET 

@@ -185,14 +185,14 @@
         });
         
 		$("#delBtn").click(function(){
-			$('#dropped').attr('src','./resources/images/defaultProfile.PNG');
+			$('#dropped').attr('src','../resources/images/defaultProfile.PNG');
 			$("#fileInput").val("");
 		});
 	
 		$("#subBtn").click(function(){
 			var age = $("#year").val()+"-"+$("#month").val()+"-"+$("#day").val();
 			var email = $("#emailWrite").val()+"@"+$("#emailSelected").val();
-			var address = $("#sample6_address").val()+$("#sample6_address2").val();
+			var address = $("#sample6_address").val()+"/"+$("#sample6_address2").val();
 			$("#age").val(age);
 			$("#email").val(email);
 			$("#address").val(address);
@@ -214,10 +214,10 @@
 					<div class="leftMenu_wrapper">
 						<ul>
 							<li>
-								<a href="memberAgree">이용약관 및 개인정보취급방침</a>
+								<a href="${pageContext.request.contextPath}/member/memberAgree">이용약관 및 개인정보취급방침</a>
 							</li>
 							<li style="background-color: RGB(18, 165, 244);">
-								<a href="memberAgree" style="color: white;">회원가입</a>
+								<a href="${pageContext.request.contextPath}/member/memberAgree" style="color: white;">회원가입</a>
 							</li>
 							<li>
 								<a href="#">ID/PW 찾기</a>
@@ -231,7 +231,7 @@
 					${menuTitle}			
 				</div>
 				<div class="contents_wrapper">
-					<form id="frm" action="./memberJoin" method="post" enctype="multipart/form-data">
+					<form id="frm" action="${pageContext.request.contextPath}/member/memberJoin" method="post" enctype="multipart/form-data">
 						<table class="joinForm">
 							<tr>
 								<td class="joinTitles"><h4>아이디</h4></td>
@@ -353,10 +353,10 @@
 							</tr>
 							<tr style="height: 30px;"></tr>
 							<tr>
-								<td class="joinTitles"><h4>프로필 사진</h4></td>
+								<td class="joinTitles"><h4>프로필 이미지</h4></td>
 								<td style="height: 150px; border: 2px dashed black; padding-left: 15px;" colspan="4" id='dropContainer' class="drop">
 									<div id="drop" class="dropDiv">
-									    <img id="dropped" src="./resources/images/defaultProfile.PNG"/>
+									    <img id="dropped" src="${pageContext.request.contextPath}/resources/images/defaultProfile.PNG"/>
 									</div>
 									<div class="dropDiv">
 										여기에 이미지를 드래그하여 넣어주세요.

@@ -24,9 +24,13 @@
 	</resultMap> 
 -->
 
-	<!-- 학생 로그인 -->
+<!-- 학생 로그인 -->
 	<select id="memberLogin" resultType="StudentDTO"  parameterType="MemberDTO">
 		SELECT member.*, student.* FROM member, student WHERE member.member_seq=#{member_seq} AND member.member_seq=student.member_seq
 	</select>
+<!-- 학생 탈퇴 -->
+	<delete id="memberDelete" parameterType="int">
+		DELETE student WHERE member_seq=#{member_seq}
+	</delete>
 
 </mapper>

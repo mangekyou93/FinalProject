@@ -31,13 +31,13 @@
 					<div class="leftMenu_wrapper">
 						<ul>
 							<li style="background-color: RGB(18, 165, 244);">
-								<a href="memberMypage"  style="color: white;">회원정보</a>
+								<a href="${pageContext.request.contextPath}/member/memberMypage" style="color: white;">회원정보</a>
 							</li>
 							<li>
-								<a href="#">정보수정</a>
+								<a href="${pageContext.request.contextPath}/member/memberCheck?select=update">정보수정</a>
 							</li>
 							<li>
-								<a href="#">회원탈퇴</a>
+								<a href="${pageContext.request.contextPath}/member/memberCheck?select=delete">회원탈퇴</a>
 							</li>
 						</ul>
 					</div>
@@ -48,7 +48,77 @@
 					${menuTitle}			
 				</div>
 				<div class="contents_wrapper">
-					
+					<table class="InfoTable">
+						<tr>
+							<td class="myInfo_titles">회원등급</td>
+							<td class="myInfo_contents">
+								<c:choose>
+									<c:when test="${member.kind eq 'teacher'}">
+										강사
+									</c:when>
+									<c:when test="${member.kind eq 'student'}">
+										학생
+									</c:when>
+									<c:when test="${member.kind eq 'normal'}">
+										일반회원
+									</c:when>
+									<c:otherwise>
+										관리자
+									</c:otherwise>
+								</c:choose>
+							</td>
+						</tr>
+						<c:if test="${member.kind eq 'student' or member.kind eq 'teacher'}">
+							<tr>
+								<td class="myInfo_titles">반 이름</td>
+								<td class="myInfo_contents">${member.classname}</td>
+							</tr>
+						</c:if>
+						<tr>
+							<td class="myInfo_titles">이름</td>
+							<td class="myInfo_contents">${sessionScope.member.name}</td>
+						</tr>
+						<tr>
+							<td class="myInfo_titles">휴대전화</td>
+							<td class="myInfo_contents">${sessionScope.member.phone}</td>
+						</tr>
+						<tr>
+							<td class="myInfo_titles">이메일 주소</td>
+							<td class="myInfo_contents">${sessionScope.member.email}</td>
+						</tr>
+						<tr>
+							<td class="myInfo_titles">생년월일</td>
+							<td class="myInfo_contents">${sessionScope.member.age}</td>
+						</tr>
+						<tr>
+							<td class="myInfo_titles">주소</td>
+							<td class="myInfo_contents">
+								<c:forTokens items="${sessionScope.member.address}" delims="/" var="addr">
+									${addr}
+								</c:forTokens>
+							</td>
+						</tr>
+						<tr>
+							<td class="myInfo_titles">프로필 이미지</td>
+							<td class="myInfo_contents">
+								<c:choose>
+									<c:when test="${!empty profileImage}">
+										<div class="profileImage">
+											<img src="${pageContext.request.contextPath}/resources/upload/${profileImage.file_name}">
+										</div>
+										<span class="imgName">${profileImage.ori_name}</span>
+									</c:when>
+									<c:otherwise>
+										이미지를 등록하여 주세요.
+									</c:otherwise>
+								</c:choose>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="btn_area">
+					<a href="${pageContext.request.contextPath}/member/memberCheck?select=update" style="background-color: RGB(18, 165, 244); margin-right: 10px;">정보수정</a>
+					<a href="${pageContext.request.contextPath}/member/memberCheck?select=delete" style="background-color: red;">회원탈퇴</a>
 				</div>
 			</div>
 		</div>

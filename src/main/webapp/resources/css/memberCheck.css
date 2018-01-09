@@ -68,54 +68,46 @@ section {
 .contents_wrapper {
 	margin-top: 20px;
 }
-.InfoTable {
-	width: 720px;
+.wrapper_warning {
+	padding: 20px;
 	border: 1px solid darkgray;
-	border-collapse: collapse;
 }
-.InfoTable ul {
-	
+.wrapper_check {
+	margin-top: 20px;
 }
-.InfoTable ul li {
-	
-}
-.myInfo_titles {
-	width: 150px;
-    height: 60px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: mistyrose;
-    border-bottom: 1px solid darkgray;
-	padding: 15px;
-}
-.myInfo_contents {
-	font-size: 16px;
-    padding: 15px;
-    border-bottom: 1px solid darkgray;
-}
-.profileImage {
-	width: 100px;
-	height: 100px;
-}
-.profileImage img {
+.wrapper_check table {
 	width: 100%;
-	height: 100%;
-	border-radius: 50%;
 }
-.imgName {
-	margin-left: 10px;
+.wrapper_check table tr {
+	height: 50px;
+}
+.check_header {
+	border-bottom: 2px solid darkgray;
+	color: RGB(18, 165, 244);
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.check_title {
+	width: 300px;
+    height: 30px;
+    text-align: end;
+    padding-right: 20px;
+}
+.check_contents {
+	width: 250px;
 }
 .btn_area {
-	float: right;
-    margin-top: 30px;
+	text-align: end;
+	margin-top: 30px;
 }
-.btn_area a {
-	padding: 15px;
-    border-radius: 0.3em;
+.btn_area input {
     color: white;
+    width: 85px;
+    height: 46px;
+    border: none;
     font-size: 15px;
+    border-radius: 0.3em;
     font-weight: bold;
-}
-.btn_area a:hover {
-	text-decoration: none;
+    background-color: RGB(18, 165, 244);
 }

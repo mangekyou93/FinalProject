@@ -33,7 +33,7 @@
 	                     <li><a href="/ctrl/">HOME</a></li>
 	                     <c:if test="${empty member}">
 		                     <li><a href="javascript:void(0)" id="myBtn">로그인</a></li>
-		                     <li><a href="memberAgree">회원가입</a></li>
+		                     <li><a href="${pageContext.request.contextPath}/member/memberAgree">회원가입</a></li>
 	                     </c:if>
 	                     <c:if test="${!empty member}">
 	                     	<li><a href="javascript:void(0)" id="memberInfo">${member.name}</a></li>
@@ -75,8 +75,8 @@
 							</div>
 						</div>
 						<div class="member_info_button">
-							<a href="memberMypage" class="mypage">마이페이지</a>
-							<a href="memberLogout" class="logout">로그아웃</a>
+							<a href="${pageContext.request.contextPath}/member/memberMypage" class="mypage">마이페이지</a>
+							<a href="${pageContext.request.contextPath}/member/memberLogout" class="logout">로그아웃</a>
 						</div>
 					</div>
 					<div class="header_nav_menu">
@@ -137,7 +137,7 @@
           <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body">
-          <form action="memberLogin">
+          <form action="${pageContext.request.contextPath}/member/memberLogin">
             <div class="form-group">
               <label for="logId"><span class="glyphicon glyphicon-user"></span> Username</label>
               <input type="text" class="form-control" id="logId" placeholder="Enter email" name="logId">
