@@ -1144,6 +1144,7 @@ SockJS.prototype._try_next_protocol = function(close_event) {
             });
 
             var connid = utils.random_string(8);
+            that.sessionId = connid;
             var trans_url = that._base_url + '/' + that._server + '/' + connid;
             that._debug('Opening transport:', protocol, ' url:'+trans_url,
                         ' RTO:'+that._options.rto);

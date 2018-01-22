@@ -12,15 +12,24 @@ import com.fp.chatroom.ChatRoomService;
 @Controller
 public class ChatRoomController {
 
-	@RequestMapping("/chat")
-	public String viewChattingPage1(String one, Model model){
-		model.addAttribute("one", one);
-		return "chatting/chat";
+	@RequestMapping("/chatA")
+	public String viewChattingPage1(){
+		return "chatting/chatA";
 	}
 	
-	@RequestMapping("/chat2")
+	@RequestMapping("/chatB")
 	public String viewChattingPage2(){
-		return "chatting/chat2";
+		return "chatting/chatB";
+	}
+	
+	@RequestMapping("/chatC")
+	public String viewChattingPage3(){
+		return "chatting/chatC";
+	}
+	
+	@RequestMapping("/chatD")
+	public String viewChattingPage4(){
+		return "chatting/chatD";
 	}
 	
 	

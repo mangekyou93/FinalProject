@@ -11,9 +11,13 @@
 
   <websocket:mapping handler="echoHandler" path="/echo-ws" />
 
-  <websocket:mapping handler="chatHandler" path="/chat-ws" />
+  <websocket:mapping handler="chatHandlerA" path="/chat-ws" />
   
-  <websocket:mapping handler="chatHandler2" path="/chat-ws2" />
+  <websocket:mapping handler="chatHandlerB" path="/chat-ws2" />
+  
+  <websocket:mapping handler="chatHandlerC" path="/chat-ws3" />
+  
+  <websocket:mapping handler="chatHandlerD" path="/chat-ws4" />
 
  </websocket:handlers>
 
@@ -21,18 +25,30 @@
 
  <bean id="echoHandler" class="com.fp.chatroom.EchoHandler" />
 
- <bean id="chatHandler" class="com.fp.chatroom.ChatWebSocketHandler" />
+ <bean id="chatHandlerA" class="com.fp.chatroom.ChatWebSocketHandlerA" />
  
- <bean id="chatHandler2" class="com.fp.chatroom.ChatWebSocketHandler2" />
+ <bean id="chatHandlerB" class="com.fp.chatroom.ChatWebSocketHandlerB" />
+ 
+ <bean id="chatHandlerC" class="com.fp.chatroom.ChatWebSocketHandlerC" />
+ 
+ <bean id="chatHandlerD" class="com.fp.chatroom.ChatWebSocketHandlerD" />
 
 
  <websocket:handlers>
 
   <websocket:mapping handler="echoHandler" path="/echo.sockjs" />
 
-  <websocket:mapping handler="chatHandler" path="/chat.sockjs" />
+
+  <websocket:mapping handler="chatHandlerA" path="/chat.sockjsA" />
   
-  <websocket:mapping handler="chatHandler2" path="/chat.sockjs2" />
+  
+  <websocket:mapping handler="chatHandlerB" path="/chat.sockjsB" />
+  
+
+  <websocket:mapping handler="chatHandlerC" path="/chat.sockjsC" />
+  
+
+  <websocket:mapping handler="chatHandlerD" path="/chat.sockjsD" />
 
 
   <websocket:sockjs />

@@ -94,8 +94,10 @@
   
    <a href="./">home</a>
    <div>
-   <a href="./chat?one=protocolone">1반채팅방 이동</a>
-   <a href="./chat?one=protocoltwo">2반채팅방 이동</a>
+   <a href="./chatA">A반채팅방 이동</a>
+   <a href="./chatB">B반채팅방 이동</a>
+   <a href="./chatC">C반채팅방 이동</a>
+   <a href="./chatD">D반채팅방 이동</a>
       <a href="./room">room</a>
       <a href="./chatting">chatting</a>
       <a href="./test">test</a>

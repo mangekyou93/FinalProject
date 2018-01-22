@@ -13,6 +13,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/room.css"
 	rel="stylesheet">
 	 <script src='resources/js/adapter.js'></script>
+	 <script src="js/sockjs-0.3.4.js"></script>
 	 
 	 <!-- webrtc script -->
 
@@ -239,7 +240,7 @@ function handleError(){}
 	window.onload = pageLoad;
 
 	function pageLoad() {
-		wsocket = new WebSocket("ws://localhost:80/ctrl/chat-ws");
+		wsocket = new SockJS("/ctrl/chat.sockjsD");
 		wsocket.onopen = onOpen;
 		wsocket.onmessage = onMessage;
 		wsocket.onclose = onClose;
