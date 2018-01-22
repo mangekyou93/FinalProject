@@ -57,7 +57,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		data = "접속자:";
 		data = data + guestlist.get(0);
 		for(int i=1; i< guestlist.size();i++){
-			data = data +  "," + guestlist.get(i);
+			data = data +  ", " + guestlist.get(i);
 			/*addguestlist(session);*/
 
 		}
@@ -75,6 +75,12 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		data = "접속자:";
 		log(session.getId() + " 연결 종료됨");
+		for(int i=0; i< guestlist.size();i++){
+			if((guestlist.get(i)).equals(session.getId())){
+				guestlist.remove(i);
+				break;
+			}
+		}
 		users.remove(session.getId());
 
 
@@ -83,7 +89,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		}
 		data = data + guestlist.get(0);
 		for(int i=1; i< guestlist.size();i++){
-			data = data +  "," + guestlist.get(i);
+			data = data +  ", " + guestlist.get(i);
 			/*addguestlist(session);*/
 
 		}

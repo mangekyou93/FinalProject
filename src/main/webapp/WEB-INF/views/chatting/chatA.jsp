@@ -15,30 +15,13 @@
 <script src="js/ListUtil.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/room.css"
 	rel="stylesheet">
-	 <script src='resources/js/adapter.js'></script>
-	 
-	 <!-- webrtc script -->
 
 
 </head>
 <body>
-	sada: ${list}
-	safssdf: ${asd}
-
-
 	<section class="wrap">
 
-
-		<div class="chat_left">
-
-			<div class="video1"></div>
-			<div class="video1"></div>
-			<div class="video2"></div>
-
-		</div>
-
 		<div class="chat_center">
-			<div class="share"></div>
 
 			<div class="exit">
 				<!-- 이름: <input type="text" id="nickname"> <input type="button"
@@ -59,21 +42,12 @@
 		</div>
 
 		<div class="chat_right">
-			<div class="user"></div>
 			<div class="menu">
-				<div class="menu_top">
-					<div class="top_frd"></div>
-
-					<div class="top_list"></div>
-					<div class="top_video"></div>
-				</div>
 				<div class="menu_contents">
 				<div id=guest></div>
 				</div>
 			</div>
-			<div class="mycam">
-
-			</div>
+	
 		</div>
 
 	</section>
