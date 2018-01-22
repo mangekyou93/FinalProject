@@ -26,7 +26,7 @@
 	<div class="header_wrap">
 		<div class="header_menu_wrap">
 			<div class="logo_wrap">
-				<a href="${pageContext.request.contextPath }"><img alt="logo" src="${pageContext.request.contextPath }/resources/image/SEMZT.png"></a>
+				<a href="${pageContext.request.contextPath }"><img alt="logo" src="${pageContext.request.contextPath }/resources/images/SEMZT.png"></a>
 			</div>
 				<div class="header_nav_wrap">
 	               <div class="header_nav_info">
@@ -108,7 +108,7 @@
 	                     <li>
 	                        <a href="#">커뮤니티</a>
 	                        <ul class="header_nav_menu_ul_dropdown ul">
-	                           <li><a href="${pageContext.request.contextPath}/community/freeboard?curPage=1">자유 게시판</a></li>
+	                           <li><a href="${pageContext.request.contextPath}/notice/freeboard?curPage=1">자유 게시판</a></li>
 	                           <li><a href="#">수강 후기</a></li>
 	                        </ul>   
 	                     </li>

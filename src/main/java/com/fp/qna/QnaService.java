@@ -17,7 +17,7 @@ public class QnaService implements BoardService{
 	QnaDAO qnaDAO;
 
 	@Override
-	public ModelAndView selectList(ListData listData) throws Exception {
+	public ModelAndView selectList(ListData listData, ModelAndView mv) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

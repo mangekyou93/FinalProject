@@ -9,8 +9,8 @@ import com.fp.util.ListData;
 
 public interface BoardService {
 
-	//selectList
-		public ModelAndView selectList(ListData listData) throws Exception;
+		//selectList
+		public ModelAndView selectList(ListData listData, ModelAndView mv) throws Exception;
 		
 		//selectOne
 		public BoardDTO selectOne(int num) throws Exception;

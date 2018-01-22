@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="noticeMapper">
+ 	
+ 	<select id="selectList" parameterType="com.fp.util.RowNum" resultType="NoticeDTO">
+ 		SELECT * FROM (SELECT rownum R, N.* FROM (SELECT * FROM notice 
+ 		<where>
+ 			<if test="kind == '제목'">
+ 				title LIKE '%'||#{search}||'%'
+ 			</if>
+ 			<if test="kind == '작성자'">
+ 				writer LIKE '%'||#{search}||'%'
+ 			</if>
+ 			<if test="kind == '내용'">
+ 				contents LIKE '%'||#{search}||'%'
+ 			</if>
+ 		</where>
+ 		ORDER BY board_seq desc) N) WHERE R BETWEEN #{startRow} and #{lastRow}
+ 	</select>
+ 	
+ 	<select id="totalCount" parameterType="com.fp.util.RowNum" resultType="int">
+ 		SELECT count(*) FROM notice 
+ 		<where>
+ 			<if test="kind == '제목'">
+ 				title LIKE '%'||#{search}||'%'
+ 			</if>
+ 			<if test="kind == '작성자'">
+ 				writer LIKE '%'||#{search}||'%'
+ 			</if>
+ 			<if test="kind == '내용'">
+ 				contents LIKE '%'||#{search}||'%'
+ 			</if>
+ 		</where>
+ 	</select>
+</mapper>
