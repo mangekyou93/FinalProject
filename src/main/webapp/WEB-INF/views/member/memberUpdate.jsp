@@ -28,13 +28,70 @@
 		{
 			alert(message);
 		}
-	//pw체크
+		//pw체크
 		function passwordCheck(str) {
-			var check = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,15}$/;
-		}
-	
-		$("#pw").change(function(){
+			var check2 = false;
 			
+			if(str.match(/\W/g) != null && str.match(/\d/g) != null && str.match(/^[a-z]/g) != null && str.length > 8)
+			{
+				check2 = true;
+			}
+			
+			return check2;
+		}
+		
+		$("#newPw").change(function(){
+			
+			if($(this).val().length > 15)
+			{
+				alert("비밀번호는 15자리까지만 가능합니다.");
+				$(this).val("");
+			}
+			
+			if(passwordCheck($(this).val()))
+			{
+				$("#pwCheckResult1").css("color", "#29d336");
+				$("#pwCheckResult1").html("사용 가능한 비밀번호 입니다.");
+			}
+			else
+			{
+				$("#pwCheckResult1").css("color", "red");
+				$("#pwCheckResult1").html("사용이 불가능한 비밀번호 입니다.");
+			}
+			
+			if($("#newPwCheck").val() == "")
+			{
+				$("#pwCheckResult2").css("color", "black");
+				$("#pwCheckResult2").html("8~20 자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용");
+			}
+			else if($(this).val() != $("#newPwCheck").val())
+			{
+				$("#pwCheckResult2").css("color", "red");
+				$("#pwCheckResult2").html("비밀번호가 다릅니다. 다시한번 입력해주세요.");
+			}
+			else
+			{
+				$("#pwCheckResult2").css("color", "#29d336");
+				$("#pwCheckResult2").html("비밀번호가 일치합니다.");
+			}
+		});
+		$("#newPwCheck").change(function(){
+			
+			if($(this).val() === $("#newPw").val())
+			{
+				$("#pwCheckResult2").css("color", "#29d336");
+				$("#pwCheckResult2").html("비밀번호가 일치합니다.");
+			}
+			else if($(this).val() == "")
+			{
+				$("#pwCheckResult2").css("color", "black");
+				$("#pwCheckResult2").html("8~20 자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용");
+			}
+			else
+			{
+				$("#pwCheckResult2").css("color", "red");
+				$("#pwCheckResult2").html("비밀번호가 다릅니다. 다시한번 입력해주세요.");
+			}
 		});
 		
 	//생년월일
@@ -158,7 +215,8 @@
                 
             }
         });
-        
+      
+	//이미지 삭제 버튼
 		$("#delBtn").click(function(){
 			$('#dropped').attr('src','../resources/images/defaultProfile.PNG');
 			$("#fileInput").val("");
@@ -175,7 +233,9 @@
 		});
 		
 		$("#pwUpdateBtn").click(function(){
-			$("#pwUpdate_frm").submit();			
+			
+			$("#pwUpdate_frm").submit();				
+			
 		});
 		
 	});
@@ -224,12 +284,12 @@
 								<tr>
 									<td class="check_title">새 비밀번호</td>
 									<td><input type="password" id="newPw" name="newPw" class="form-control"></td>
-									<td colspan="2">8~20 자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용</td>
+									<td colspan="2" id="pwCheckResult1">8~20 자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용</td>
 								</tr>
 								<tr>
 									<td class="check_title">새 비밀번호 확인</td>
 									<td><input type="password" id="newPwCheck" name="newPwCheck" class="form-control"></td>
-									<td colspan="2">8~20 자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용</td>
+									<td colspan="2" id="pwCheckResult2">8~20 자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용</td>
 								</tr>
 							</table>
 							<div class="btn_box" style="margin-top: 20px;">

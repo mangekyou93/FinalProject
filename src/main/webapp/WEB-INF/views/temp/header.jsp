@@ -4,6 +4,7 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
+		
 		$("#myBtn").click(function(){
 			$("#logModal").modal();
 		});
@@ -75,8 +76,16 @@
 							</div>
 						</div>
 						<div class="member_info_button">
-							<a href="${pageContext.request.contextPath}/member/memberMypage" class="mypage">마이페이지</a>
-							<a href="${pageContext.request.contextPath}/member/memberLogout" class="logout">로그아웃</a>
+							<c:choose>
+								<c:when test="${member.kind eq 'admin'}">
+									<a href="${pageContext.request.contextPath}/member/memberManagement" class="mypage">관리자 페이지</a>
+									<a href="${pageContext.request.contextPath}/member/memberLogout" class="logout">로그아웃</a>
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/member/memberMypage" class="mypage">마이페이지</a>
+									<a href="${pageContext.request.contextPath}/member/memberLogout" class="logout">로그아웃</a>	
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<div class="header_nav_menu">
@@ -134,33 +143,36 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Login</h4>
+          <h4 style="font-size: 25px; font-weight: bold;">회원 로그인</h4>
         </div>
-        <div class="modal-body">
-          <form action="${pageContext.request.contextPath}/member/memberLogin">
+        <div class="modal-body" style="height: 260px;">
+          <form class="modal_frm" action="${pageContext.request.contextPath}/member/memberLogin">
             <div class="form-group">
-              <label for="logId"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="logId" placeholder="Enter email" name="logId">
+              <label for="logId" style="display: block;"><span class="glyphicon glyphicon-user" style="top: 3px;"></span> ID</label>
+              <input type="text" class="form-control" id="logId" placeholder="Enter ID" name="logId">
             </div>
             <div class="form-group">
-              <label for="logPw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="password" class="form-control" id="logPw" placeholder="Enter password" name="logPw">
+              <label for="logPw" style="display: block;"><span class="glyphicon glyphicon-lock" style="top: 3px;"></span> PASSWORD</label>
+              <input type="password" class="form-control" id="logPw" placeholder="Enter PASSWORD" name="logPw">
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
+            <div class="btn_group">
+            	<p>
+					<a href="${pageContext.request.contextPath}/member/memberAgree">새 계정 만들기</a>
+					<span>&nbsp; | &nbsp;</span>
+					<a href="${pageContext.request.contextPath}/member/memberFind">ID/PW 찾기</a>
+				</p>
+	            <button type="submit" class="btn btn-default btn-success btn-block">
+	            	<span class="glyphicon glyphicon-off" style="top: 3px;"></span> 로그인
+	           	</button>
+		        <button type="submit" class="btn btn-default btn-default" data-dismiss="modal" style="width: 90px; height: 40px;">
+		        	<span class="glyphicon glyphicon-remove" style="top: 3px;"></span> 취소
+		        </button>
             </div>
-            <button type="submit" class="btn btn-default btn-success btn-block">
-            	<span class="glyphicon glyphicon-off"></span> 로그인
-           	</button>
-           	  <!-- 네이버아이디로로그인 버튼 노출 영역 -->
-			  <div id="naver_id_login"></div>
-			   
           </form>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <p>Not a member? <a href="memberJoin">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
+			<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+			  <div id="naver_id_login"></div>
         </div>
       </div>
     </div>
@@ -187,17 +199,20 @@
 	  function naverSignInCallback() {
 		  var name = naver_id_login.getProfileData('name');
 		  var email = naver_id_login.getProfileData('email');
+		  var age = naver_id_login.getProfileData('birthday');
 	  	 
 		$.ajax({
 	    	type:'POST',
-	    	url:'member/memberCheck',
+	    	url:'../../ctrl/member/naverMemberCheck',
 	    	data:
 	    	{
 	    		name:name,
-	    		email:email
+	    		email:email,
+	    		age:age
 	    	},
-	    	success:function(){
+	    	success:function(e){
 	    		
+	    		location.href=e;
 	    	}
 	    });
 	  

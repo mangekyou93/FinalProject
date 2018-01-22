@@ -22,15 +22,14 @@ public class UploadService {
 		
 		return uploadDAO.memberImageOne(memberDTO);
 	}
-//일반회원 프로필 사진 삭제(회원탈퇴)
+//회원 프로필 사진 삭제(회원탈퇴)
 	public int memberImageDelete(int member_seq) throws Exception {
 		
 		return uploadDAO.memberImageDelete(member_seq);
 	}
-//회원 프로필 사진 수정(제거)
-	
-
-//회원 프로필 사진 수정(제거 후 추가)
-	
-	
+//회원 프로필 사진 수정
+	public int memberImageUpdate(UploadDTO uploadDTO) throws Exception {
+		
+		return uploadDAO.memberImageUpdate(uploadDTO);
+	}
 }

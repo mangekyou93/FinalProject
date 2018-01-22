@@ -109,7 +109,7 @@
 								<a href="${pageContext.request.contextPath}/member/memberAgree">회원가입</a>
 							</li>
 							<li>
-								<a href="#">ID/PW 찾기</a>
+								<a href="${pageContext.request.contextPath}/member/memberFind">ID/PW 찾기</a>
 							</li>
 						</ul>
 					</div>

@@ -2,6 +2,7 @@
 
 section {
 	width: 100%;
+	height: 1000px;
 }
 .allContents {
 	width: 1000px;
@@ -66,47 +67,4 @@ section {
 }
 .contents_wrapper {
 	margin-top: 20px;
-}
-.wrapper_warning {
-	padding: 20px;
-	border: 1px solid darkgray;
-}
-.wrapper_check {
-	margin-top: 20px;
-}
-.wrapper_check table {
-	width: 100%;
-}
-.wrapper_check table tr {
-	height: 50px;
-}
-.check_header {
-	border-bottom: 2px solid darkgray;
-	color: RGB(18, 165, 244);
-	font-size: 18px;
-	font-weight: bold;
-	margin-bottom: 20px;
-}
-.check_title {
-	width: 300px;
-    height: 30px;
-    text-align: end;
-    padding-right: 20px;
-}
-.check_contents {
-	width: 250px;
-}
-.btn_area {
-	text-align: end;
-	margin-top: 30px;
-}
-.btn_area input {
-    color: white;
-    width: 85px;
-    height: 46px;
-    border: none;
-    font-size: 15px;
-    border-radius: 0.3em;
-    font-weight: bold;
-    background-color: RGB(18, 165, 244);
 }

@@ -17,6 +17,9 @@
 	<delete id="memberImageDelete" parameterType="int">
 		DELETE upload WHERE member_seq=#{member_seq}
 	</delete>
-
+<!-- 회원 프로필 사진 update -->
+	<insert id="memberImageUpdate" parameterType="UploadDTO">
+		INSERT INTO upload VALUES(file_seq.nextval, 0, #{member_seq}, #{file_name}, #{ori_name})
+	</insert>
 
 </mapper>

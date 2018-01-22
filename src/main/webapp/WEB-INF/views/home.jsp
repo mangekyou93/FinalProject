@@ -20,7 +20,18 @@
 <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 <script type="text/javascript">
 	var message = '${message}';
-	
+	/* 
+	function logout() {
+		alert("hihi");
+		$.ajax({
+			type:"post",
+			url:"member/memberLogout",
+			success:function(){
+				
+			}
+		});
+	}
+	 */
 	$(function(){
 		
 		if(message != '')
@@ -59,7 +70,7 @@
 	<c:import url="${pageScope.pageContext.request.ContextPath}/WEB-INF/views/temp/header.jsp"></c:import>
 	
 	<section>
-	
+		
 	</section>
 	
 	<c:import url="${pageScope.pageContext.request.ContextPath}/WEB-INF/views/temp/footer.jsp"></c:import>

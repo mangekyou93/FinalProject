@@ -65,8 +65,18 @@ section {
 	font-size: 25px;
 	font-weight: bolder;
 }
+.contents_header span {
+	font-size: 15px;
+	color: red;
+}
 .contents_wrapper {
 	margin-top: 20px;
+}
+.required_mark {
+	color: red;
+    font-weight: bold;
+    font-size: 15px;
+    position: relative;
 }
 .joinForm {
 	width: 100%;
@@ -123,7 +133,9 @@ section {
     height: 41px;
     margin: 10px;
     font-size: 20px;
+    color: white;
     border: none;
+    background-color: darkgrey;
 }
 .contents_btn a {
     margin: 10px;

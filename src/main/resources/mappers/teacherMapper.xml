@@ -9,6 +9,20 @@
 	<select id="memberLogin" resultType="TeacherDTO" parameterType="MemberDTO">
 		SELECT member.*, teacher.* FROM member,teacher WHERE member.member_seq=#{member_seq} AND member.member_seq=teacher.member_seq
 	</select>
+<!-- 선생님 전체 조회 -->	
+	<select id="teacherSelectList" resultType="TeacherDTO">
+		SELECT * FROM teacher
+	</select>
+
+<!-- 선생님 추가 -->
+	<insert id="teacherInsert" parameterType="TeacherDTO">
+		INSERT INTO teacher(member_seq, classname) VALUES(#{member_seq}, #{classname})
+	</insert>
+	
+<!-- 선생님 경력 추가 및 수정 -->
+	<update id="teacherCareer" parameterType="TeacherDTO">
+		UPDATE teacher SET career=#{career} WHERE member_seq=#{member_seq}
+	</update>
 	
 <!-- 선생님 탈퇴 -->
 	<delete id="memberDelete" parameterType="int">

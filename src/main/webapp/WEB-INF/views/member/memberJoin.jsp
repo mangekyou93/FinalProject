@@ -21,88 +21,293 @@
 <script type="text/javascript">
 	$(function(){
 		
+		var message = "${message}";
+		
+		if(message != "")
+		{
+			alert(message);
+		}
+		
+		var naverCheck = "${sessionScope.naverId}";
+		var agree1 = 0;
+		var agree2 = 0;
+		var agree3 = 0;
+		var agree4 = 0;
+		var agree5 = 0;
+		var agree6 = 0;
+		var agree7 = 0;
+		
+		if(naverCheck != "")
+		{
+			agree1 = 1;
+		}
+		
 	//id체크
 		$("#id").change(function(){
-			$.ajax({
-				type:"post",
-				url:"memberIdCheck",
-				
-				data: {"checkId":$(this).val()},
-				success:function(data){
-					var result = data;
+			if($(this).val().match(/\W/g))
+			{
+				alert("특수문자는 입력이 불가능합니다.");
+				$(this).val("");
+				agree1 = 0;
+			}
+			else if($(this).val().length < 8)
+			{
+				alert("8자리 이상의 아이디를 입력하세요.");
+				$(this).val("");
+				agree1 = 0;
+			}
+			else
+			{
+				$.ajax({
+					type:"post",
+					url:"./memberIdCheck",
 					
-					if(result.trim() == "사용 가능한 아이디입니다.")
-					{
-						$("#idCheckResult").css("color", "#29d336");
+					data: {"checkId":$(this).val()},
+					success:function(data){
+						var result = data;
+						
+						if(result.trim() == "사용 가능한 아이디입니다.")
+						{
+							$("#idCheckResult").css("color", "#29d336");
+							agree1 = 1;
+							console.log(agree1);
+						}
+						else
+						{
+							$("#idCheckResult").css("color", "red");
+							agree1 = 0;
+						}
+						
+						if(agree1+agree2+agree3+agree4+agree5+agree6+agree7 == 7)
+						{
+							$("#subBtn").css("background-color", "RGB(18, 165, 244)");
+						}
+						else
+						{
+							$("#subBtn").css("background-color", "darkgrey");
+						}
+						
+						$("#idCheckResult").html(data);
 					}
-					else
-					{
-						$("#idCheckResult").css("color", "red");
-					}
-					
-					$("#idCheckResult").html(data);
-				}
-			});
-			
+				});
+			}
 			
 		});
 	//pw체크
 		function passwordCheck(str) {
-			var check = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,15}$/;
+			var check2 = false;
+			
+			if(str.match(/\W/g) != null && str.match(/\d/g) != null && str.match(/^[a-z]/g) != null && str.length > 8)
+			{
+				check2 = true;
+			}
+			
+			return check2;
 		}
-	
 		$("#pw").change(function(){
 			
-		});
-		
-	//전화번호
-		$("#phone").change(function(){
-			if($(this).val().length == 11)
+			if($(this).val().length > 15)
 			{
-				$(this).val($(this).val().substring(0,3)+"-"+$(this).val().substring(3,7)+"-"+$(this).val().substring(7,11));
+				alert("비밀번호는 15자리까지만 가능합니다.");
 			}
-			else if($(this).val().length == 10)
+			
+			if(passwordCheck($(this).val()))
 			{
-				$(this).val($(this).val().substring(0,3)+"-"+$(this).val().substring(3,6)+"-"+$(this).val().substring(6,10));
-			}
-			else if($(this).val().length == 9)
-			{
-				$(this).val($(this).val().substring(0,2)+"-"+$(this).val().substring(2,5)+"-"+$(this).val().substring(5,9));
-			}
-			else if($(this).val() == "")
-			{
-				
+				$("#pwCheckResult1").css("color", "#29d336");
+				$("#pwCheckResult1").html("사용 가능한 비밀번호 입니다.");
+				agree2 = 1;
 			}
 			else
 			{
-				alert("9~11자리 번호를 입력해주세요.");
+				$("#pwCheckResult1").css("color", "red");
+				$("#pwCheckResult1").html("사용이 불가능한 비밀번호 입니다.");
+				agree2 = 0;
+			}
+			
+			if($("#pwCheck").val() == "")
+			{
+				$("#pwCheckResult2").html("");
+			}
+			else if($(this).val() != $("#pwCheck").val())
+			{
+				$("#pwCheckResult2").css("color", "red");
+				$("#pwCheckResult2").html("비밀번호가 다릅니다. 다시한번 입력해주세요.");
+				agree2 = 0;
+			}
+			else
+			{
+				$("#pwCheckResult2").css("color", "#29d336");
+				$("#pwCheckResult2").html("비밀번호가 일치합니다.");
+				agree2 = 1;
+			}
+			
+			if(agree1+agree2+agree3+agree4+agree5+agree6+agree7 == 7)
+			{
+				$("#subBtn").css("background-color", "RGB(18, 165, 244)");
+			}
+			else
+			{
+				$("#subBtn").css("background-color", "darkgrey");
+			}
+		});
+		$("#pwCheck").change(function(){
+			
+			if($(this).val() === $("#pw").val())
+			{
+				$("#pwCheckResult2").css("color", "#29d336");
+				$("#pwCheckResult2").html("비밀번호가 일치합니다.");
+				agree3 = 1;
+			}
+			else if($(this).val() == "")
+			{
+				$("#pwCheckResult2").html("");
+				agree3 = 0;
+			}
+			else
+			{
+				$("#pwCheckResult2").css("color", "red");
+				$("#pwCheckResult2").html("비밀번호가 다릅니다. 다시한번 입력해주세요.");
+				agree3 = 0;
+			}
+			
+			if(agree1+agree2+agree3+agree4+agree5+agree6+agree7 == 7)
+			{
+				$("#subBtn").css("background-color", "RGB(18, 165, 244)");
+			}
+			else
+			{
+				$("#subBtn").css("background-color", "darkgrey");
+			}
+		});
+		
+		
+	//전화번호
+		$("#phone").change(function(){
+			
+			if($(this).val().match(/^[0-9]/g) != null && $(this).val().match(/\W/g) == null)
+			{
+				if($(this).val().length == 11)
+				{
+					$(this).val($(this).val().substring(0,3)+"-"+$(this).val().substring(3,7)+"-"+$(this).val().substring(7,11));
+					agree4 = 1;
+				}
+				else if($(this).val().length == 10)
+				{
+					$(this).val($(this).val().substring(0,3)+"-"+$(this).val().substring(3,6)+"-"+$(this).val().substring(6,10));
+					agree4 = 1;
+				}
+				else if($(this).val().length == 9)
+				{
+					$(this).val($(this).val().substring(0,2)+"-"+$(this).val().substring(2,5)+"-"+$(this).val().substring(5,9));
+					agree4 = 1;
+				}
+				else
+				{
+					alert("9~11자리 번호를 입력해주세요.");
+					$(this).val("");
+					agree4 = 0;
+				}
+			}
+			else
+			{
+				alert("숫자만 입력 가능합니다.");
 				$(this).val("");
+				agree4 = 0;
+			}
+			
+			if(agree1+agree2+agree3+agree4+agree5+agree6+agree7 == 7)
+			{
+				$("#subBtn").css("background-color", "RGB(18, 165, 244)");
+			}
+			else
+			{
+				$("#subBtn").css("background-color", "darkgrey");
 			}
 		});
 		
 	//생년월일
 		$("#year").change(function(){
-			var check = numberCheck($(this).val());
 			
-			if(check == false)
+			if($(this).val().match(/^[a-z]/g) != null || $(this).val().match(/\W/g) != null || $(this).val().match(/^[A-Z]/g) != null)
 			{
 				alert("숫자만 입력해주세요.");
 				$(this).val("");
+				agree5 = 0;
+			}
+			else if($(this).val() == "")
+			{
+				agree5 = 0;
+			}
+			else
+			{
+				agree5 = 1;
+			}
+			
+			if(agree1+agree2+agree3+agree4+agree5+agree6+agree7 == 7)
+			{
+				$("#subBtn").css("background-color", "RGB(18, 165, 244)");
+			}
+			else
+			{
+				$("#subBtn").css("background-color", "darkgrey");
 			}
 		});
-	//생년월일 체크
-		function numberCheck(str) {
-			var res;
-			var check = false;
-			res = str.replace(/^[a-zA-Z\W]*$/,"");
+		$("#month").change(function(){
 			
-			if(res != "")
+			if($(this).val()>12)
 			{
-				check = true;
+				alert("1 ~ 12의 숫자를 입력해 주세요.");
+				$(this).val("");
 			}
 			
-			return check;
-		}
+			if($(this).val().match(/^[a-z]/g) != null || $(this).val().match(/\W/g) != null || $(this).val().match(/^[A-Z]/g) != null)
+			{
+				alert("숫자만 입력해주세요.");
+				$(this).val("");
+				agree6 = 0;
+			}
+			else if($(this).val() == "")
+			{
+				agree6 = 0;
+			}
+			else
+			{
+				agree6 = 1;
+			}
+			if(agree1+agree2+agree3+agree4+agree5+agree6+agree7 == 7)
+			{
+				$("#subBtn").css("background-color", "RGB(18, 165, 244)");
+			}
+			else
+			{
+				$("#subBtn").css("background-color", "darkgrey");
+			}
+		});
+		$("#day").change(function(){
+			
+			if($(this).val().match(/^[a-z]/g) != null || $(this).val().match(/\W/g) != null || $(this).val().match(/^[A-Z]/g) != null)
+			{
+				alert("숫자만 입력해주세요.");
+				$(this).val("");
+				agree7 = 0;
+			}
+			else if($(this).val() == "")
+			{
+				agree7 = 0;
+			}
+			else
+			{
+				agree7 = 1;
+			}
+			if(agree1+agree2+agree3+agree4+agree5+agree6+agree7 == 7)
+			{
+				$("#subBtn").css("background-color", "RGB(18, 165, 244)");
+			}
+			else
+			{
+				$("#subBtn").css("background-color", "darkgrey");
+			}
+		});
 	
 	//이메일 readonly
 		$("#emailSelect").change(function(){
@@ -196,7 +401,16 @@
 			$("#age").val(age);
 			$("#email").val(email);
 			$("#address").val(address);
-			$("#frm").submit();
+			
+			if(agree1+agree2+agree3+agree4+agree5+agree6+agree7 == 7)
+			{
+				$("#frm").submit();				
+			}
+			else
+			{
+				alert("필수 입력란을 모두 입력해주세요.");
+			}
+
 		});
 		
 	});
@@ -220,7 +434,7 @@
 								<a href="${pageContext.request.contextPath}/member/memberAgree" style="color: white;">회원가입</a>
 							</li>
 							<li>
-								<a href="#">ID/PW 찾기</a>
+								<a href="${pageContext.request.contextPath}/member/memberFind">ID/PW 찾기</a>
 							</li>
 						</ul>
 					</div>
@@ -228,46 +442,56 @@
 			</div>
 			<div class="rightContents">
 				<div class="contents_header">
-					${menuTitle}			
+					${menuTitle}<span>&nbsp;("*" 는 필수 입력 사항입니다.)</span>	
 				</div>
 				<div class="contents_wrapper">
 					<form id="frm" action="${pageContext.request.contextPath}/member/memberJoin" method="post" enctype="multipart/form-data">
 						<table class="joinForm">
 							<tr>
-								<td class="joinTitles"><h4>아이디</h4></td>
+								<td class="joinTitles"><h4>아이디<span class="required_mark">*</span></h4></td>
 								<td colspan="4">
-									<input type="text" class="form-control" placeholder="아이디를 입력하세요." name="id" id="id">
+									<c:if test="${!empty sessionScope.naverId}">
+										<input type="text" class="form-control" placeholder="아이디를 입력하세요." name="id" id="id" value="${sessionScope.naverId}" readonly="readonly">
+									</c:if>
+									<c:if test="${empty sessionScope.naverId}">
+										<input type="text" class="form-control" placeholder="8~15자리의 아이디를 입력하세요." name="id" id="id" maxlength="15">	
+									</c:if>
 									<div id="idCheckResult" class="checkResult"></div>
 								</td>
 							</tr>
 							<tr>
-								<td class="joinTitles"><h4>패스워드</h4></td>
+								<td class="joinTitles"><h4>패스워드<span class="required_mark">*</span></h4></td>
 								<td colspan="4">
-									<input type="password" class="form-control" placeholder="패스워드를 입력하세요." name="pw" id="pw" maxlength="15">
-									<span id="pwCheckResult1" class="checkResult">8~15자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용</span>
+									<input type="password" class="form-control" placeholder="8~15자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용" name="pw" id="pw" maxlength="15">
+									<span id="pwCheckResult1" class="checkResult"></span>
 								</td>
 							</tr>
 							<tr>
-								<td class="joinTitles"><h4>패스워드 확인</h4></td>
+								<td class="joinTitles"><h4>패스워드 확인<span class="required_mark">*</span></h4></td>
 								<td colspan="4">
-									<input type="password" class="form-control" placeholder="패스워드 확인" id="pwCheck" maxlength="15">
-									<span id="pwCheckResult2" class="checkResult">8~15자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용</span>
+									<input type="password" class="form-control" placeholder="8~15자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용" id="pwCheck" maxlength="15">
+									<span id="pwCheckResult2" class="checkResult"></span>
 								</td>
 							</tr>
 							<tr>
-								<td class="joinTitles"><h4>이름</h4></td>
+								<td class="joinTitles"><h4>이름<span class="required_mark">*</span></h4></td>
 								<td colspan="4">
-									<input type="text" class="form-control" placeholder="이름을 입력하세요." name="name" id="name">
+									<c:if test="${!empty sessionScope.naverName}">
+										<input type="text" class="form-control" placeholder="이름을 입력하세요." name="name" id="name" value="${sessionScope.naverName}">									
+									</c:if>
+									<c:if test="${empty sessionScope.naverName}">
+										<input type="text" class="form-control" placeholder="이름을 입력하세요." name="name" id="name">
+									</c:if>
 								</td>
 							</tr>
 							<tr>
-								<td class="joinTitles"><h4>휴대폰 번호</h4></td>
+								<td class="joinTitles"><h4>휴대폰 번호<span class="required_mark">*</span></h4></td>
 								<td colspan="4">
 									<input type="text" class="form-control" placeholder="'-'을 제거하고 입력하세요" name="phone" id="phone" maxlength="13">
 								</td>
 							</tr>
 							<tr>
-								<td class="joinTitles"><h4>이메일 주소</h4></td>
+								<td class="joinTitles"><h4>이메일 주소<span class="required_mark">*</span></h4></td>
 								<td>
 									<input type="text" class="form-control" placeholder="이메일" id="emailWrite">
 								</td>
@@ -286,7 +510,7 @@
 								</td>
 							</tr>
 							<tr id="birth">
-								<td class="joinTitles"><h4>생년월일</h4></td>
+								<td class="joinTitles"><h4>생년월일<span class="required_mark">*</span></h4></td>
 								<td>
 									<input type="text" class="form-control" id="year" placeholder="XXXX" name="year" maxlength="4" style="text-align: center; display: inline-block; width: 80%;"> 년
 								</td>
@@ -302,7 +526,7 @@
 								<td colspan="4">
 									<input type="hidden" id="sample6_postcode" placeholder="우편번호">
 									<input type="text" onclick="sample6_execDaumPostcode()" id="sample6_address" class="form-control" readonly="readonly" style=" display: inline-block; width: 80%;">
-									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br><br>
+									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="height: 32px;"><br><br>
 									<input type="text" id="sample6_address2" class="form-control" placeholder="상세주소를 입력해주세요." style=" display: inline-block; width: 100%;">
 									
 									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

@@ -18,6 +18,16 @@
 <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/memberMypage.css" rel="stylesheet">
+<script type="text/javascript">
+	$(function(){
+		var message = "${message}";
+		
+		if(message = '')
+		{
+			alert(message);
+		}
+	});
+</script>
 </head>
 <body>
 <c:import url="${pageScope.pageContext.request.ContextPath}/WEB-INF/views/temp/header.jsp"></c:import>
@@ -118,6 +128,9 @@
 				</div>
 				<div class="btn_area">
 					<a href="${pageContext.request.contextPath}/member/memberCheck?select=update" style="background-color: RGB(18, 165, 244); margin-right: 10px;">정보수정</a>
+					<c:if test="">
+						<a href="${pageContext.request.contextPath}/member/memberCareer" style="background-color: grey; margin-right: 10px;">경력 수정</a>					
+					</c:if>
 					<a href="${pageContext.request.contextPath}/member/memberCheck?select=delete" style="background-color: red;">회원탈퇴</a>
 				</div>
 			</div>

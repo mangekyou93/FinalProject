@@ -24,9 +24,14 @@ public class UploadDAO {
 		
 		return sqlSession.selectOne(NAMESPACE+"memberImageOne", memberDTO);
 	}
-//일반회원 프로필 사진 삭제(회원탈퇴)	
+//회원 프로필 사진 삭제(회원탈퇴)	
 	public int memberImageDelete(int member_seq) throws Exception {
 		
 		return sqlSession.delete(NAMESPACE+"memberImageDelete", member_seq);
+	}
+//회원 프로필 사진 수정
+	public int memberImageUpdate(UploadDTO uploadDTO) throws Exception {
+		
+		return sqlSession.insert(NAMESPACE+"memberImageUpdate", uploadDTO);
 	}
 }

@@ -1,194 +1,237 @@
 @CHARSET "UTF-8";
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-	body {
-	 padding: 0;
-     margin: 0;
-     list-style: none;
-     font-family: "Nanum Gothic", sans-serif;
-   }
-   a {
-      text-decoration: none;
-      color: #393939;
-   }
-   .main_wrap {
-      width: 100%;
-   }
-   .header_wrap {
-      width: 100%;
-      height:120px;
-      background-color: blue;
-      border-bottom: 2px solid
-   }
-   .header_menu_wrap {
-      width : 70%; 
-      height: 100%;
-      margin: 0 auto;
-      background-color: orange;
-   }
-   .logo_wrap {
-      width:20%;
-      height: 100%;
-      background-color: aqua;
-      text-align: center;
-      line-height: 140px;
-      float: left;
-   }
-   .header_nav_wrap {
-      width: 80%;
-      height:100%;
-      float:left;
-      background-color: silver;
-   }
-   .header_nav_info {
-      width: 100%;
-      height: 50%;
-      background-color: maroon;
-   }
-   .member_info {
-		width: 20%;
-		height: 200px;
-		background-color: white;
-		position: absolute;
-		top: 60px;
-		right: 100px;
-		display: none;
-		z-index: 15;
-   }
-   .member_info_wrapper {
-   		width: 100%;
-   		height: 120px;
-   }
-   .info_wrapper_img {
-   		width: 35%;
-   		height: 120px;
-   		float: left;
-   		padding: 10px 5px;
-   }
-   .info_wrapper_img div {
-   		width: 100px;
-    	height: 100px;
-   }
-   .info_wrapper_img div img {
-   		width: 100%;
-   		height: 100%;
-   		border-radius: 50%;
-   }
-   .info_wrapper_contents {
-   		width: 65%;
-   		height: 120px;
-   		font-weight: 700;
-   		float: right;
-   		padding: 10px;
-   }
-   .info_wrapper_contents span {
-   		font-weight: normal;
-   }
-   .info_wrapper_contents h4 {
-   		font-weight: bold;
-   		color: RGB(18, 165, 244);
-   		display: inline-block;
-   }
-   .member_info_button {
-   		width: 100%;
-   		height: 50px;
-   		background-color: #f8f8f8;
-   }
-   .mypage {
-   		width: 50%;
-   		height: 50px;
-   		font-size: 15px;
-   		font-weight: bold;
-   		display: inline-block;
-   		border-right: 1px solid white;
-    	float: left;
-    	text-align: center;
-    	line-height: 50px;
-   }
-   .mypage:hover {
-		color: RGB(18, 165, 244);
-   		text-decoration: none;
-   }
-   .logout {
-   		width: 50%;
-   		height: 50px;
-   		font-size: 15px;
-   		font-weight: bold;
-   		display: inline-block;
-   		float: right;
-   		text-align: center;
-    	line-height: 50px;
-   }
-   .logout:hover {
-		color: RGB(18, 165, 244);
-		text-decoration: none;
-   }
-   .header_nav_menu {
-      width: 100%;
-      height: 50%;
-      background-color: gray;
-      padding-top: 18px;
-   }
-   .header_nav_menu_ul {
-      display: inline-block;
-      font-weight: bold;
-      font-size: 20px;
-      float: right;
-   }
-   .header_nav_menu_ul li {
-      display: inline-block;
-      font-size: 20px;
-   } 
-    .header_nav_info_ul {
-      display: inline-block;
-       list-style: none;
-       font-size: 12px;
-       float: right;
-       margin-top: 30px;
-   } 
-    .header_nav_info_ul li {
-      display: inline-block;
-      margin: 0 3px;
-   } 
-   
-   .header_nav_menu_ul {
-      min-height: 300px;
-      text-align: center;
-      color:black;
-   }
-   .header_nav_info_ul a {
-      color : #333333;
-   }
-   /* dropdown start*/
-   .header_nav_menu ul ul {
-      position: absolute;
-      display: none;
-      z-index: 10;
-   }
-   
-   .header_nav_menu ul ul li {
-      display: block;
-       background-color: coral;
-       color: #333333;
-       /* margin: 0 -40px; */
-   }
-   
-   .header_nav_menu ul li {
-      display: inline-block;
-   }
-   .header_nav_menu ul li a{
-      display: block;
-       width: 150px;
-       text-decoration: none;
-       line-height: 43px;
-       text-align: center;
-   }
-   .header_nav_menu ul li a:hover {
-      color:aqua;
-      background-color: navy;
-      width: 150px;
-   }
-   /* dropdown end */
-	#spacebar {
-		width: 100%;
-		height: 150px;
-	}
+
+body {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	font-family: "Nanum Gothic", sans-serif;
+}
+a {
+	text-decoration: none;
+	color: #393939;
+}
+.main_wrap {
+	width: 100%;
+}
+.header_wrap {
+	width: 100%;
+	height: 120px;
+	background-color: blue;
+	border-bottom: 2px solid
+}
+.header_menu_wrap {
+	width: 70%;
+	height: 100%;
+	margin: 0 auto;
+	background-color: orange;
+}
+.logo_wrap {
+	width: 20%;
+	height: 100%;
+	background-color: aqua;
+	text-align: center;
+	line-height: 140px;
+	float: left;
+}
+.header_nav_wrap {
+	width: 80%;
+	height: 100%;
+	float: left;
+	background-color: silver;
+}
+.header_nav_info {
+	width: 100%;
+	height: 50%;
+	background-color: maroon;
+}
+.member_info {
+	width: 20%;
+	height: 200px;
+	background-color: white;
+	position: absolute;
+	top: 60px;
+	right: 100px;
+	display: none;
+	z-index: 15;
+}
+.member_info_wrapper {
+	width: 100%;
+	height: 120px;
+}
+.info_wrapper_img {
+	width: 35%;
+	height: 120px;
+	float: left;
+	padding: 10px 5px;
+}
+.info_wrapper_img div {
+	width: 100px;
+	height: 100px;
+}
+
+.info_wrapper_img div img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.info_wrapper_contents {
+	width: 65%;
+	height: 120px;
+	font-weight: 700;
+	float: right;
+	padding: 10px;
+}
+.info_wrapper_contents span {
+	font-weight: normal;
+}
+.info_wrapper_contents h4 {
+	font-weight: bold;
+	color: RGB(18, 165, 244);
+	display: inline-block;
+}
+.member_info_button {
+	width: 100%;
+	height: 50px;
+	background-color: #f8f8f8;
+}
+.mypage {
+	width: 50%;
+	height: 50px;
+	font-size: 15px;
+	font-weight: bold;
+	display: inline-block;
+	border-right: 1px solid white;
+	float: left;
+	text-align: center;
+	line-height: 50px;
+}
+.mypage:hover {
+	color: RGB(18, 165, 244);
+	text-decoration: none;
+}
+.logout {
+	width: 50%;
+	height: 50px;
+	font-size: 15px;
+	font-weight: bold;
+	display: inline-block;
+	float: right;
+	text-align: center;
+	line-height: 50px;
+}
+.logout:hover {
+	color: RGB(18, 165, 244);
+	text-decoration: none;
+}
+.header_nav_menu {
+	width: 100%;
+	height: 50%;
+	background-color: gray;
+	padding-top: 18px;
+}
+.header_nav_menu_ul {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 20px;
+	float: right;
+}
+.header_nav_menu_ul li {
+	display: inline-block;
+	font-size: 20px;
+}
+.header_nav_info_ul {
+	display: inline-block;
+	list-style: none;
+	font-size: 12px;
+	float: right;
+	margin-top: 30px;
+}
+.header_nav_info_ul li {
+	display: inline-block;
+	margin: 0 3px;
+}
+.header_nav_menu_ul {
+	min-height: 300px;
+	text-align: center;
+	color: black;
+}
+.header_nav_info_ul a {
+	color: #333333;
+}
+
+
+/* dropdown start*/
+.header_nav_menu ul ul {
+	position: absolute;
+	display: none;
+	z-index: 10;
+}
+
+.header_nav_menu ul ul li {
+	display: block;
+	background-color: coral;
+	color: #333333;
+	/* margin: 0 -40px; */
+}
+
+.header_nav_menu ul li {
+	display: inline-block;
+}
+
+.header_nav_menu ul li a {
+	display: block;
+	width: 150px;
+	text-decoration: none;
+	line-height: 43px;
+	text-align: center;
+}
+
+.header_nav_menu ul li a:hover {
+	color: aqua;
+	background-color: navy;
+	width: 150px;
+}
+/* dropdown end */
+
+/* login_modal */
+.modal-header {
+	text-align: center;
+}
+
+.form-control {
+	
+}
+.btn_group {
+	margin-top: 20px;
+}
+.btn_group p {
+	font-size: 15px;
+}
+.btn_group p a:hover {
+	color: RGB(18, 165, 244);
+	text-decoration: none;
+}
+.btn_group button {
+	display: inline-block;
+}
+.btn-block {
+	width: 90px;
+	height: 40px;
+	font-size: 14px;
+	font-weight: 400;
+	margin-left: 370px;
+    margin-right: 10px;
+	background-color: RGB(18, 165, 244)!important;
+	border: none;
+}
+.modal-footer {
+	clear: both;
+	text-align: left;
+	/* border-top: none; */
+}
+
+#spacebar {
+	width: 100%;
+	height: 150px;
+}
