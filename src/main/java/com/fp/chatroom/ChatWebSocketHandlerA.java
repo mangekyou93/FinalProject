@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.ui.Model;
@@ -16,11 +17,17 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.fp.member.MemberDTO;
+
 public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
-
+	
+	private MemberDTO memberDTO = new MemberDTO();
+	
 	List<String> guestlist = new ArrayList<String>();
+	
+	HttpSession httpsession;
 
 	String data = "접속자:";
 	/*	public ModelAndView addguestlist(WebSocketSession session) throws Exception{
@@ -39,12 +46,13 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 
 	}*/
 
-
+	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log(session.getId() + " 연결 됨!!");
 		users.put(session.getId(), session);
 		guestlist.add(session.getId());
+		System.out.println(session.getAttributes());
 		/*for(int i=0; i< guestlist.size();i++){
 			if(i<guestlist.size()){
 			data = data + guestlist.get(i) + ",";
@@ -57,7 +65,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		data = "접속자:";
 		data = data + guestlist.get(0);
 		for(int i=1; i< guestlist.size();i++){
-			data = data +  ", " + guestlist.get(i);
+			data = data +  " " + guestlist.get(i);
 			/*addguestlist(session);*/
 
 		}
