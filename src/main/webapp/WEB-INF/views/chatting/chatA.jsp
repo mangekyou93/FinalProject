@@ -11,8 +11,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/sockjs-0.3.4.js"></script>
-<script src="js/ListUtil.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/ListUtil.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/room.css"
 	rel="stylesheet">
 
@@ -20,6 +20,7 @@
 </head>
 <body>
 	<section class="wrap">
+	<input type="hidden" id="username" value="${member.name}">
 
 		<div class="chat_center">
 
@@ -56,9 +57,9 @@
 
 
 <script type="text/javascript">
-	var wsocket;
-	var guestlist = new ArrayList();
-	
+	var wsocket;	
+	var geustlist = new ArrayList();
+	var head = "usr:";
 	window.onload = pageLoad;
 	
 	function pageLoad() {
@@ -79,8 +80,8 @@
 		var data = evt.data;
 		if (data.substring(0, 4) == "msg:") {
 			appendMessage(data.substring(4));
-		}else{
-			appendMessage(data);
+		}else if (data.substring(0, 4) == "접속자:"){
+			appendMessage2(data.substring(4));
 		}
 	}
 	
@@ -92,21 +93,17 @@
 	function send() {
 		var nickname = $("#nickname").val();
 		var msg = $("#message").val();
-		wsocket.send("msg:" + wsocket.sessionId + ":" + msg);
+		wsocket.send("msg:" + $("#username").val() + ":" + msg);
 		
 		$("#message").val("");
 	}
 	
 	function join() {
-		wsocket.send("msg:" + wsocket.sessionId+"님 입장!");
-		
-		$("#guest").append(wsocket.sessionId+"<br/>");
-		
-	
+		wsocket.send("msg:" + "▶" + $("#username").val() +"님 입장!");
 	}
 	
 	function out() {
-		wsocket.send("msg:" +wsocket.sessionId+"님이 나갔습니다.");
+		wsocket.send("msg:" + "◀" +$("#username").val()+"님이 나갔습니다.");
 	}
 
 	function appendMessage(msg) {
@@ -117,8 +114,13 @@
 		$("#chatArea").scrollTop(maxScroll);
 
 	}
+	
+function appendMessage2(msg) {
+		$("#guest").html(msg + "<br>");
+	}
 
 	$(document).ready(function() {
+			
 		$('#message').keypress(function(event) {
 			var keycode = (event.keyCode ? event.keyCode : event.which);
 			if (keycode == '13') {
@@ -136,6 +138,8 @@
 			disconnect();
 		});
 	});
+	
+	
 </script>
 
 </body>
