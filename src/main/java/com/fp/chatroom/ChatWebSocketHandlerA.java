@@ -2,6 +2,7 @@ package com.fp.chatroom;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -50,9 +51,13 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		log(session.getId() + " 연결 됨!!");
 		users.put(session.getId(), session);
 		
-		guestlist.add(session.getId());
-		System.out.println(session.getAttributes());
-		System.out.println(session.getAttributes());
+		Map<String, Object> map = session.getAttributes();
+		Iterator<String> iter = session.getAttributes().keySet().iterator();
+		
+		MemberDTO memberDTO = (MemberDTO)map.get(iter.next());
+
+		guestlist.add(memberDTO.getName());
+		
 		/*for(int i=0; i< guestlist.size();i++){
 			if(i<guestlist.size()){
 			data = data + guestlist.get(i) + ",";
