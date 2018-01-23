@@ -106,8 +106,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 
 	@Override
 
-	protected void handleTextMessage(
-			WebSocketSession session, TextMessage message) throws Exception {
+	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		log(session.getId() + "로부터 메시지 수신: " + message.getPayload());
 
 		//System.out.println("session:" + session + "txtmessage: " + message);
@@ -126,9 +125,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 
 	@Override
 
-	public void handleTransportError(
-
-			WebSocketSession session, Throwable exception) throws Exception {
+	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
 		log(session.getId() + " 익셉션 발생: " + exception.getMessage());
 
 	}

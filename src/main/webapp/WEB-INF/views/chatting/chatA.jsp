@@ -82,11 +82,8 @@
 		}else{
 			appendMessage(data);
 		}
-		wsocket.onmessage=onmessage2;
 	}
-	function onMessage2(evt) {
-		
-	}
+	
 	function onClose(evt) {
 		$("#message").on("keydown",null);
 		appendMessage("연결을 끊었습니다.");
