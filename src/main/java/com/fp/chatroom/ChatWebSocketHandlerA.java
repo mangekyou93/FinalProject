@@ -44,6 +44,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log(session.getId() + " 연결 됨!!");
 		users.put(session.getId(), session);
+		
 		guestlist.add(session.getId());
 		/*for(int i=0; i< guestlist.size();i++){
 			if(i<guestlist.size()){

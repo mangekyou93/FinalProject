@@ -26,7 +26,7 @@
 	<div class="header_wrap">
 		<div class="header_menu_wrap">
 			<div class="logo_wrap">
-				<a href="${pageContext.request.contextPath }"><img alt="logo" src="${pageContext.request.contextPath }/resources/image/SEMZT.png"></a>
+				<a href="${pageContext.request.contextPath }"><img alt="logo" src="${pageContext.request.contextPath }/resources/images/SEMZT.png"></a>
 			</div>
 				<div class="header_nav_wrap">
 	               <div class="header_nav_info">
@@ -117,7 +117,7 @@
 	                        <ul class="header_nav_menu_ul_dropdown ul">
 	                           <li><a href="#">반 게시판</a></li>
 	                           <li><a href="${pageContext.request.contextPath}/chatA">반 메신저</a></li>
-	                           <li><a href="#">과제 게시판</a></li>
+	                           <li><a href="${pageContext.request.contextPath}/quiz/quizList">과제 게시판</a></li>
 	                           <li><a href="#">팀 프로젝트</a></li>
 	                        </ul>   
 	                     </li>

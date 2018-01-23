@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="execMapper">
+	
+	<!-- 강사이름 세션으로 바꿀것 -->
+	<insert id="insert" parameterType="com.fp.exec.ExecDTO" >
+		insert into exec values(seq_exec.nextval,'김대기',#{title},#{contents},#{result},#{classKind},#{quizLevel},#{basiccode},#{basicClass})
+	</insert>
+	
+	<!-- selectList -->
+	<select id="selectList" parameterType="com.fp.util.RowNum" resultType="com.fp.exec.ExecDTO">
+		select * from 
+		(select rownum r, N.* from  
+		(select * from exec 
+		order by num desc ) N) 
+		where r between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="com.fp.exec.ExecDTO">
+			select * from exec where num=#{num}
+	</select>
+	
+	<select id="totalCount" parameterType="com.fp.util.RowNum" resultType="int">
+		select count(*) from exec
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete exec where num =#{num}
+	</delete>
+	
+	<update id="update">
+		update exec set 
+		title=#{title}, 
+		 contents=#{contents} , quizLevel=#{quizLevel},
+		  result=#{result} , classKind=#{classKind} , 
+		  basicClass=#{basicClass}, 
+		  basiccode=#{basiccode} where num=#{num}
+	</update>
+	
+	<select id="selectResult"  parameterType="int"  resultType="java.lang.String">
+		select result from exec where num=#{num}
+	</select>
+	
+	
+	
+	
+</mapper>
