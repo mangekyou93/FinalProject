@@ -101,8 +101,8 @@
 	                     <li>
 	                        <a href="#">교육 과정</a>
 	                        <ul class="header_nav_menu_ul_dropdown ul">
-	                           <li><a href="#">커리큘럼</a></li>
-	                           <li><a href="#">수강 신청</a></li>
+	                           <li><a href="${pageContext.request.contextPath}/calendar/test">커리큘럼</a></li>
+	                           <li><a href="${pageContext.request.contextPath}/sign/sign_apply">수강신청</a></li>
 	                        </ul>
 	                     </li>
 	                     <li>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="signMapper">
+  
+  <insert id="insert" parameterType="SignDTO">
+		insert into sign values(#{major},#{type},#{name},#{birth},#{phone},#{F_edu},#{purpose},#{resolution},#{location},#{sid})
+  	</insert>
+  	
+  	<select id="selectList">
+  	<!-- select a.id,a.classname,a.date_start,a.date_end,a.title,a.contents, b.sid,b.major,b.F_edu,b.phone 
+  	from calender a, sign b where #{a.id} = #{b.sid} -->
+  	
+  	select * from sign
+  	</select>
+  
+  <resultMap type="SignDTO" id="signResult">
+  		<id property="sid" column="sid"/>
+  </resultMap>
+  
+  <select id="selectOne" parameterType="int" resultMap="signResult">
+  	 select * from sign where sid=#{sid}
+  	 <!-- select * from calender a, sign b where a.id = b.sid -->
+  </select>
+  </mapper>

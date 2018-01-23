@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="calendarMapper">
+	
+
+	<select id="selectList" resultType="CalendarDTO">
+		select * from Calendar where date_start like '%'||2018||'%'
+	</select>
+	
+	<resultMap type="CalendarDTO" id="CalendarResult">
+		<id property="id" column="id"/>
+	</resultMap>
+	
+	<select id="selectOne" parameterType="int" resultMap="CalendarResult">
+		select * from Calendar where id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="CalendarDTO">
+	
+		insert into Calendar values(#{num},#{title},#{contents},#{date_start},#{date_end},#{classname},#{id})
+	</insert>
+	
+	<update id="update" parameterType="CalendarDTO">
+		update Calendar set
+		title=#{title}, contents=#{contents}, date_start=#{date_start},
+		date_end=#{date_end}, classname=#{classname}
+		where date_start=#{date_start}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete Calendar where id=#{id}
+	</delete>
+	
+</mapper>

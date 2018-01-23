@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+.modal-body{ 
+	height: auto;
+}
+
+.modal-header{
+	text-align: center;
+}
+
+#calender_s {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#calender_s td, #calender_s th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#calender_s tr:nth-child(even){background-color: #f2f2f2;}
+
+#calender_s tr:hover {background-color: #ddd;}
+
+#write{
+	background-color: #12A5F4;
+	color: white;
+	text-align: center;
+	font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

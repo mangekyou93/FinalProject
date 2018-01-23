@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
-
+<link href="${pageContext.request.contextPath}/resources/css/memberCareer.css" rel="stylesheet">
 </head>
 <body>
 <c:import url="${pageScope.pageContext.request.ContextPath}/WEB-INF/views/temp/header.jsp"></c:import>

@@ -1,0 +1,127 @@
+@CHARSET "UTF-8";
+section {
+	width: 100%;
+	height: 1000px;
+}
+.allContents {
+	width: 1000px;
+	height: auto;
+	margin: 0 auto;
+}
+.leftContents {
+	width: 250px;
+	height: auto;
+	float: left;
+}
+.leftMenu {
+	width: 100%;
+	height: auto;
+}
+.leftMenu_header {
+	width: 100%;
+    height: 40px;
+    background-color: #3f4b5e;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    line-height: 40px;
+    padding-left: 10px;
+}
+.leftMenu_wrapper {
+	width: 100%;
+	height: auto;
+	margin-top: 20px;
+}
+.leftMenu_wrapper ul {
+	list-style: none;
+}
+.leftMenu_wrapper ul li {
+	width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #E0E0E0;
+    padding-left: 10px;
+}
+.leftMenu_wrapper ul li a {
+	width: 100%;
+	height: 100%;
+	color: black;
+	font-size: 15px;
+	font-weight: bold;
+	display: block;
+}
+.leftMenu_wrapper ul li a:hover {
+	color: RGB(18, 165, 244);
+	text-decoration: none;
+}
+.rightContents {
+	width: 720px;
+	height: auto;
+	margin: 0 auto;
+	float: right;
+}
+.contents_header {
+	font-size: 25px;
+	font-weight: bolder;
+}
+.contents_wrapper {
+	margin-top: 20px;
+}
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+.fc-sat{ 
+	color:#0000FF; 
+	backgroundColor:#c4e1ff;
+}     /* 토요일 */
+
+.fc-sat .fc-day-number{
+color:#0000FF;
+}
+
+.fc-sun{ 
+	color:#FF0000; 
+	backgroundColor:#c4e1ff
+}    /* 일요일 */
+
+.fc-sun .fc-day-number{
+color:#FF0000;
+}
+
+.1 {
+   background-color: green;
+   color: #ffffff;
+   border-radius: 20px;
+}
+
+.2 {
+   background-color: red;
+   color: #ffffff;
+   border-radius: 20px;
+}
+
+#table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 900px;
+    margin: 0 auto;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
