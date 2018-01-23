@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<websocket:handlers>
+
+  <websocket:mapping handler="echoHandler" path="/echo-ws" />
+
+  <websocket:mapping handler="chatHandlerA" path="/chat-ws" />
+  
+  <websocket:mapping handler="chatHandlerB" path="/chat-ws2" />
+  
+  <websocket:mapping handler="chatHandlerC" path="/chat-ws3" />
+  
+  <websocket:mapping handler="chatHandlerD" path="/chat-ws4" />
+
+ </websocket:handlers>
+
+
+
+ <bean id="echoHandler" class="com.fp.chatroom.EchoHandler" />
+
+ <bean id="chatHandlerA" class="com.fp.chatroom.ChatWebSocketHandlerA" />
+ 
+ <bean id="chatHandlerB" class="com.fp.chatroom.ChatWebSocketHandlerB" />
+ 
+ <bean id="chatHandlerC" class="com.fp.chatroom.ChatWebSocketHandlerC" />
+ 
+ <bean id="chatHandlerD" class="com.fp.chatroom.ChatWebSocketHandlerD" />
+
+
+ <websocket:handlers>
+
+  <websocket:mapping handler="echoHandler" path="/echo.sockjs" />
+
+
+  <websocket:mapping handler="chatHandlerA" path="/chat.sockjsA" />
+  
+  
+  <websocket:mapping handler="chatHandlerB" path="/chat.sockjsB" />
+  
+
+  <websocket:mapping handler="chatHandlerC" path="/chat.sockjsC" />
+  
+
+  <websocket:mapping handler="chatHandlerD" path="/chat.sockjsD" />
+
+
+  <websocket:sockjs />
+
+ </websocket:handlers>
+
+
+
+ <mvc:default-servlet-handler />
+
+</beans>
