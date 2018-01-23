@@ -22,9 +22,7 @@ import com.fp.member.MemberDTO;
 public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
-	
-	private MemberDTO memberDTO = new MemberDTO();
-	
+		
 	List<String> guestlist = new ArrayList<String>();
 	
 	HttpSession httpsession;
@@ -45,7 +43,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		return mv;
 
 	}*/
-
+	
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -53,6 +51,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		users.put(session.getId(), session);
 		
 		guestlist.add(session.getId());
+		System.out.println(session.getAttributes());
 		System.out.println(session.getAttributes());
 		/*for(int i=0; i< guestlist.size();i++){
 			if(i<guestlist.size()){
@@ -76,6 +75,9 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 				s.sendMessage(new TextMessage(data));
 			}
 		}
+		
+
+
 	}
 
 

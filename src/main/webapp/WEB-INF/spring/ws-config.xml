@@ -18,6 +18,7 @@
   <websocket:mapping handler="chatHandlerC" path="/chat-ws3" />
   
   <websocket:mapping handler="chatHandlerD" path="/chat-ws4" />
+  
 
  </websocket:handlers>
 
@@ -49,9 +50,13 @@
   
 
   <websocket:mapping handler="chatHandlerD" path="/chat.sockjsD" />
-
+  
+  <websocket:handshake-interceptors>
+   <bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+    </websocket:handshake-interceptors>
 
   <websocket:sockjs />
+  
 
  </websocket:handlers>
 
