@@ -13,8 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/ListUtil.js"></script>
-<link href="${pageContext.request.contextPath}/resources/css/room.css"
-	rel="stylesheet">
+
 
 
 </head>
@@ -137,6 +136,11 @@ function appendMessage2(msg) {
 		$('#exitBtn').click(function() {
 			disconnect();
 		});
+		window.onbeforeunload = function() {
+
+			disconnect();
+
+		}
 	});
 	
 	
