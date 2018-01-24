@@ -50,7 +50,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log(session.getId() + " 연결 됨!!");
 		users.put(session.getId(), session);
-		
+	
 		Map<String, Object> map = session.getAttributes();
 		Iterator<String> iter = session.getAttributes().keySet().iterator();
 		
@@ -89,6 +89,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		
 		Map<String, Object> map = session.getAttributes();
 		Iterator<String> iter = session.getAttributes().keySet().iterator();
 		
