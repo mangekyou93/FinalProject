@@ -127,10 +127,10 @@
 					</table>
 				</div>
 				<div class="btn_area">
-					<a href="${pageContext.request.contextPath}/member/memberCheck?select=update" style="background-color: RGB(18, 165, 244); margin-right: 10px;">정보수정</a>
-					<c:if test="">
+					<c:if test="${member.kind eq 'teacher'}">
 						<a href="${pageContext.request.contextPath}/member/memberCareer" style="background-color: grey; margin-right: 10px;">경력 수정</a>					
 					</c:if>
+					<a href="${pageContext.request.contextPath}/member/memberCheck?select=update" style="background-color: RGB(18, 165, 244); margin-right: 10px;">정보수정</a>
 					<a href="${pageContext.request.contextPath}/member/memberCheck?select=delete" style="background-color: red;">회원탈퇴</a>
 				</div>
 			</div>

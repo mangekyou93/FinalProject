@@ -94,8 +94,8 @@
 	                        <a href="#">학원 소개</a>
 	                        <ul class="header_nav_menu_ul_dropdown ul">
 	                           <li><a href="#">교육 이념</a></li>
-	                           <li><a href="#">강사 소개</a></li>
-	                           <li><a href="#">찾아오시는 길</a></li>
+	                           <li><a href="${pageContext.request.contextPath}/intro/teacherIntro">강사 소개</a></li>
+	                           <li><a href="${pageContext.request.contextPath}/intro/roadIntro">찾아오시는 길</a></li>
 	                        </ul>
 	                     </li>
 	                     <li>

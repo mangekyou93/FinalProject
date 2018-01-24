@@ -55,7 +55,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		Iterator<String> iter = session.getAttributes().keySet().iterator();
 		
 		MemberDTO memberDTO = (MemberDTO)map.get(iter.next());
-
+	
 		guestlist.add(memberDTO.getName());
 		
 		/*for(int i=0; i< guestlist.size();i++){

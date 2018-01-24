@@ -270,10 +270,10 @@ public class MemberController {
 	}
 //일반회원 정보 수정 POST
 	@RequestMapping(value="memberInfoUpdate", method=RequestMethod.POST)
-	public String memberUpdate(HttpSession session, MemberDTO memberDTO, RedirectAttributes rd) throws Exception {
+	public String memberUpdate(HttpSession session, MemberDTO memberDTO, int counting, RedirectAttributes rd) throws Exception {
 
 		
-		String message = memberService.memberInfoUpdate(session, memberDTO);
+		String message = memberService.memberInfoUpdate(session, memberDTO, counting);
 		
 		rd.addFlashAttribute("message", message);
 		
