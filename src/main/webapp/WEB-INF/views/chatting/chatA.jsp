@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>A반 메신져</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -75,12 +75,10 @@
 			</div>
 	        <div class="row">
         		<div class="col-xs-4">
-        			<h4>Participants [0]</h4>
+        			<h4>대화상대 []</h4>
         			<div class="share">
 	        			<ul ng-repeat="participant in participants">
 	        				<li>
-	        					<span class="input-icon fui-new" ng-show="participant.typing"></span>
-	        					<span class="input-icon fui-user" ng-show="!participant.typing"></span>
 	        					<div id=guest></div>
 	        					
 	        				</li>
