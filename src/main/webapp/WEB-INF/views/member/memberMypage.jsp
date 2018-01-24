@@ -112,11 +112,11 @@
 							<td class="myInfo_titles">프로필 이미지</td>
 							<td class="myInfo_contents">
 								<c:choose>
-									<c:when test="${!empty profileImage}">
+									<c:when test="${!empty member.file_name}">
 										<div class="profileImage">
-											<img src="${pageContext.request.contextPath}/resources/upload/${profileImage.file_name}">
+											<img src="${pageContext.request.contextPath}/resources/upload/${member.file_name}">
 										</div>
-										<span class="imgName">${profileImage.ori_name}</span>
+										<span class="imgName">${member.ori_name}</span>
 									</c:when>
 									<c:otherwise>
 										이미지를 등록하여 주세요.

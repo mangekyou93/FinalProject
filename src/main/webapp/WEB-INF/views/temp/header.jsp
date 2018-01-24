@@ -46,8 +46,8 @@
 							<div class="info_wrapper_img">
 								<div>
 									<c:choose>
-										<c:when test="${!empty profileImage}">
-											<img src="${pageContext.request.contextPath}/resources/upload/${profileImage.file_name}">
+										<c:when test="${!empty member.file_name}">
+											<img src="${pageContext.request.contextPath}/resources/upload/${member.file_name}">
 										</c:when>
 										<c:otherwise>
 											<img src="${pageContext.request.contextPath}/resources/images/defaultProfile.PNG">

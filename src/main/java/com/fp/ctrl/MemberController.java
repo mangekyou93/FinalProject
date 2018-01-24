@@ -108,13 +108,17 @@ public class MemberController {
 		
 		if(memberDTO != null)
 		{
-			session.setAttribute("member", memberDTO);
 			message = "로그인 성공";
 			
 			if(uploadDTO != null)
 			{
-				session.setAttribute("profileImage", uploadDTO);
+				memberDTO.setFile_seq(uploadDTO.getFile_seq());
+				memberDTO.setBoard_seq(uploadDTO.getBoard_seq());
+				memberDTO.setMember_seq(uploadDTO.getMember_seq());
+				memberDTO.setFile_name(uploadDTO.getFile_name());
+				memberDTO.setOri_name(uploadDTO.getOri_name());
 			}
+			session.setAttribute("member", memberDTO);
 		}
 		
 		rd.addFlashAttribute("message", message);

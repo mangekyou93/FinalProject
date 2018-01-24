@@ -415,8 +415,8 @@
 									<td style="height: 150px; border: 2px dashed black; padding-left: 15px;" colspan="4" id='dropContainer' class="drop">
 										<div id="drop" class="dropDiv">
 											<c:choose>
-												<c:when test="${!empty profileImage}">
-												    <img id="dropped" src="${pageContext.request.contextPath}/resources/upload/${profileImage.file_name}"/>												
+												<c:when test="${!empty member.file_name}">
+												    <img id="dropped" src="${pageContext.request.contextPath}/resources/upload/${member.file_name}"/>												
 												</c:when>
 												<c:otherwise>
 													<img id="dropped" src="${pageContext.request.contextPath}/resources/images/defaultProfile.PNG"/>
