@@ -218,6 +218,8 @@
       
 	//이미지 삭제 버튼
 		$("#delBtn").click(function(){
+			var counting = 1;
+			$("#counting").val(counting);
 			$('#dropped').attr('src','../resources/images/defaultProfile.PNG');
 			$("#fileInput").val("");
 		});
@@ -413,8 +415,8 @@
 									<td style="height: 150px; border: 2px dashed black; padding-left: 15px;" colspan="4" id='dropContainer' class="drop">
 										<div id="drop" class="dropDiv">
 											<c:choose>
-												<c:when test="${!empty profileImage}">
-												    <img id="dropped" src="${pageContext.request.contextPath}/resources/upload/${profileImage.file_name}"/>												
+												<c:when test="${!empty member.file_name}">
+												    <img id="dropped" src="${pageContext.request.contextPath}/resources/upload/${member.file_name}"/>												
 												</c:when>
 												<c:otherwise>
 													<img id="dropped" src="${pageContext.request.contextPath}/resources/images/defaultProfile.PNG"/>
@@ -451,6 +453,7 @@
 							<input type="hidden" id="email" name="email" value="${member.email}">
 							<input type="hidden" id="address" name="address" value="${member.address}">
 							<input type="hidden" id="member_seq" name="member_seq" value="${member.member_seq}">
+							<input type="hidden" id="counting" name="counting" value="0">
 							<div class="btn_box">
 								<input id="infoUpdateBtn" type="button" value="회원정보 변경" class="infoUpdateBtn">
 							</div>

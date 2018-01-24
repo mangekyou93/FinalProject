@@ -112,11 +112,11 @@
 							<td class="myInfo_titles">프로필 이미지</td>
 							<td class="myInfo_contents">
 								<c:choose>
-									<c:when test="${!empty profileImage}">
+									<c:when test="${!empty member.file_name}">
 										<div class="profileImage">
-											<img src="${pageContext.request.contextPath}/resources/upload/${profileImage.file_name}">
+											<img src="${pageContext.request.contextPath}/resources/upload/${member.file_name}">
 										</div>
-										<span class="imgName">${profileImage.ori_name}</span>
+										<span class="imgName">${member.ori_name}</span>
 									</c:when>
 									<c:otherwise>
 										이미지를 등록하여 주세요.
@@ -127,10 +127,10 @@
 					</table>
 				</div>
 				<div class="btn_area">
-					<a href="${pageContext.request.contextPath}/member/memberCheck?select=update" style="background-color: RGB(18, 165, 244); margin-right: 10px;">정보수정</a>
-					<c:if test="">
+					<c:if test="${member.kind eq 'teacher'}">
 						<a href="${pageContext.request.contextPath}/member/memberCareer" style="background-color: grey; margin-right: 10px;">경력 수정</a>					
 					</c:if>
+					<a href="${pageContext.request.contextPath}/member/memberCheck?select=update" style="background-color: RGB(18, 165, 244); margin-right: 10px;">정보수정</a>
 					<a href="${pageContext.request.contextPath}/member/memberCheck?select=delete" style="background-color: red;">회원탈퇴</a>
 				</div>
 			</div>

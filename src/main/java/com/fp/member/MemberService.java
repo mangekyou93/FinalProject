@@ -43,7 +43,15 @@ public class MemberService {
 //일반회원 아이디 체크
 	public String memberIdCheck(String checkId) throws Exception {
 		
-		String id = memberDAO.memberIdCheck(checkId);
+		String id = "";
+		
+		try{
+			id = memberDAO.memberIdCheck(checkId);			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			id = "";
+		}
 		String result = "사용 가능한 아이디입니다.";
 		
 		if(checkId.equals(id))
@@ -152,14 +160,14 @@ public class MemberService {
 	}
 	
 //일반회원 정보 수정 POST
-public String memberInfoUpdate(HttpSession session, MemberDTO memberDTO) throws Exception {
+public String memberInfoUpdate(HttpSession session, MemberDTO memberDTO, int counting) throws Exception {
 		
 		int result = memberDAO.memberInfoUpdate(memberDTO);
 		String message = "오류 : 변경되지 않았습니다.";
 		UploadDTO uploadDTO = null;
 		
 		//추가 및 변경
-		if(memberDTO.getFiles().getOriginalFilename() != "")
+		if(memberDTO.getFiles().getOriginalFilename() != "")//이미 있는데 수정하는 방법 & 없는데 추가
 		{
 			try {
 				uploadDTO = uploadService.memberImageOne(memberDTO);			
@@ -167,7 +175,7 @@ public String memberInfoUpdate(HttpSession session, MemberDTO memberDTO) throws 
 				uploadDTO = null;
 			}
 			
-			if(uploadDTO != null)//존재 하는거지
+			if(uploadDTO != null)
 			{
 				uploadService.memberImageDelete(memberDTO.getMember_seq());
 			}
@@ -178,7 +186,7 @@ public String memberInfoUpdate(HttpSession session, MemberDTO memberDTO) throws 
 			uploadDTO.setOri_name(memberDTO.getFiles().getOriginalFilename());
 			result = uploadService.memberImageUpdate(uploadDTO);
 		}
-		else
+		else//이미 있는 것을 유지 & 이미 있는데 삭제
 		{
 			try {
 				uploadDTO = uploadService.memberImageOne(memberDTO);			
@@ -186,7 +194,7 @@ public String memberInfoUpdate(HttpSession session, MemberDTO memberDTO) throws 
 				uploadDTO = null;
 			}
 			
-			if(uploadDTO != null)
+			if(uploadDTO != null && counting == 1)
 			{
 				uploadService.memberImageDelete(memberDTO.getMember_seq());
 			}

@@ -108,13 +108,17 @@ public class MemberController {
 		
 		if(memberDTO != null)
 		{
-			session.setAttribute("member", memberDTO);
 			message = "로그인 성공";
 			
 			if(uploadDTO != null)
 			{
-				session.setAttribute("profileImage", uploadDTO);
+				memberDTO.setFile_seq(uploadDTO.getFile_seq());
+				memberDTO.setBoard_seq(uploadDTO.getBoard_seq());
+				memberDTO.setMember_seq(uploadDTO.getMember_seq());
+				memberDTO.setFile_name(uploadDTO.getFile_name());
+				memberDTO.setOri_name(uploadDTO.getOri_name());
 			}
+			session.setAttribute("member", memberDTO);
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -270,10 +274,10 @@ public class MemberController {
 	}
 //일반회원 정보 수정 POST
 	@RequestMapping(value="memberInfoUpdate", method=RequestMethod.POST)
-	public String memberUpdate(HttpSession session, MemberDTO memberDTO, RedirectAttributes rd) throws Exception {
+	public String memberUpdate(HttpSession session, MemberDTO memberDTO, int counting, RedirectAttributes rd) throws Exception {
 
 		
-		String message = memberService.memberInfoUpdate(session, memberDTO);
+		String message = memberService.memberInfoUpdate(session, memberDTO, counting);
 		
 		rd.addFlashAttribute("message", message);
 		
