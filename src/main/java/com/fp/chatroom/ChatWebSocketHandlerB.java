@@ -21,18 +21,21 @@ public class ChatWebSocketHandlerB extends TextWebSocketHandler {
 	List<String> guestlist = new ArrayList<String>();
 	
 	String data = "접속자:";
+	String usercount ="유저수:";
 
 	@Override
 
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log(session.getId() + " 연결 됨!!");
 		users.put(session.getId(), session);
-		
+	
 		Map<String, Object> map = session.getAttributes();
 		Iterator<String> iter = session.getAttributes().keySet().iterator();
 		MemberDTO memberDTO = (MemberDTO)map.get(iter.next());
-
+	
 		guestlist.add(memberDTO.getName());
+		
+		usercount= "유저수:" + guestlist.size();
 		
 		data = "접속자:";
 		data = data +" ●" + guestlist.get(0);
@@ -42,9 +45,12 @@ public class ChatWebSocketHandlerB extends TextWebSocketHandler {
 
 		}
 		System.out.println(data);
+		System.out.println(usercount);
 		for (WebSocketSession s : users.values()) {
 			if(!session.getId().equals(s)){
+				s.sendMessage(new TextMessage(usercount));
 				s.sendMessage(new TextMessage(data));
+				
 			}
 		}
 		
@@ -56,6 +62,7 @@ public class ChatWebSocketHandlerB extends TextWebSocketHandler {
 	@Override
 
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		
 		Map<String, Object> map = session.getAttributes();
 		Iterator<String> iter = session.getAttributes().keySet().iterator();
 		
@@ -70,6 +77,12 @@ public class ChatWebSocketHandlerB extends TextWebSocketHandler {
 			}
 		}
 		users.remove(session.getId());
+		
+		usercount= "유저수:" + guestlist.size();
+		
+		System.out.println(usercount);
+		
+	
 
 
 		for (WebSocketSession s : users.values()){
@@ -84,7 +97,9 @@ public class ChatWebSocketHandlerB extends TextWebSocketHandler {
 		System.out.println(data);
 		for (WebSocketSession s : users.values()) {
 			if(!session.getId().equals(s)){
+				s.sendMessage(new TextMessage(usercount));
 				s.sendMessage(new TextMessage(data));
+				
 			}
 		}
 
@@ -129,5 +144,7 @@ public class ChatWebSocketHandlerB extends TextWebSocketHandler {
 		System.out.println(new Date() + " : " + logmsg);
 
 	}
+	
+	
 
 }

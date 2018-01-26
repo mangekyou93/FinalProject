@@ -116,7 +116,7 @@
 	                        <a href="#">나의 메뉴</a>
 	                        <ul class="header_nav_menu_ul_dropdown ul">
 	                           <li><a href="#">반 게시판</a></li>
-	                           <li><a href="${pageContext.request.contextPath}/chatA">반 메신저</a></li>
+	                           <li><a href="${pageContext.request.contextPath}/chat${member.classname}">반 메신저</a></li>
 	                           <li><a href="${pageContext.request.contextPath}/quiz/quizList">과제 게시판</a></li>
 	                        </ul>   
 	                     </li>
