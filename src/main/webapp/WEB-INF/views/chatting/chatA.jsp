@@ -97,7 +97,7 @@
 				</div>
 			</div>
 			<div style="text-align: center"><h4>대화 내용</h4></div>
-			<div class="col-xs-8 chat-box">
+			<div class="col-xs-8 chat-box" id="scroll">
 
 				<div id="chatMessageArea"></div>
 			</div>
@@ -106,8 +106,8 @@
 			<div class="form-group">
 				<input id="message" type="text" class="form-control"
 					placeholder="메세지를  입력하세요..." ng-model="newMessage"
-					ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()" />
-				<input type="button" id="sendBtn" value="전송">
+					ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()" style="width: 90%; display: inline-block;" />
+				<input type="button" id="sendBtn" value="전송" style="width: 9%;">
 			</div>
 		</div>
 	</div>
@@ -168,11 +168,10 @@
 	}
 
 	function appendMessage(msg) {
-		
-		$("#chatMessageArea").append(msg + "<br>");
+		var maxScroll = $("#chatMessageArea").height();
+		$("#chatMessageArea").append('<div style="color : red;">'+msg+'</div>');
 		/* var chatAreaHeight = $("#chatArea").height(); */
-		var maxScroll = $("#chatMessageArea").height()/*  - chatAreaHeight */;
-		$("#chatMessageArea").scrollTop(maxScroll);
+		$("#scroll").scrollTop(maxScroll);
 
 	}
 	

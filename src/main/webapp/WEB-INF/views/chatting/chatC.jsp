@@ -1,244 +1,126 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>C반 메신져</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/sockjs-0.3.4.js"></script>
-<link href="${pageContext.request.contextPath}/resources/css/room.css"
+<script
+	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/ListUtil.js"></script>
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrapchat.min.css"
 	rel="stylesheet">
-	 <script src='resources/js/adapter.js'></script>
-	 
-	 <!-- webrtc script -->
+<link
+	href="${pageContext.request.contextPath}/resources/css/flat-ui.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/toaster.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/chat.css"
+	rel="stylesheet">
+
 
 
 </head>
 <body>
-
-
-	<section class="wrap">
-
-
-		<div class="chat_left">
-
-			<div class="video1"></div>
-			<div class="video1"></div>
-			<div class="video2"></div>
-
-		</div>
+	<input type="hidden" id="username" value="${member.name}">
+	<%-- <section class="wrap">
+		<input type="hidden" id="username" value="${member.name}">
 
 		<div class="chat_center">
-			<div class="share"></div>
 
 			<div class="exit">
 				<!-- 이름: <input type="text" id="nickname"> <input type="button"
-					id="enterBtn" value="입장"> --> 
-					<input type="button" id="exitBtn" value="나가기">
+					id="enterBtn" value="입장"> -->
+				<input type="button" id="exitBtn" value="나가기">
 			</div>
-			
-			<div class="chat">
+
+			<!-- <div class="chat">
 				<div id="chatArea">
 					<div id="chatMessageArea"></div>
 				</div>
-			</div>
-			
+			</div> -->
+
 			<div class="chat_text">
-				<input type="text" id="message" placeholder="메시지를 입력하세요..">
-				<input type="button" id="sendBtn" value="전송">
+				<!-- <input type="text" id="message" placeholder="메시지를 입력하세요.."> -->
+				<!-- <input type="button" id="sendBtn" value="전송"> -->
 			</div>
 		</div>
 
 		<div class="chat_right">
-			<div class="user"></div>
 			<div class="menu">
-				<div class="menu_top">
-					<div class="top_frd"></div>
-
-					<div class="top_list"></div>
-					<div class="top_video"></div>
-				</div>
 				<div class="menu_contents">
-				<div id=guest></div>
+					<!-- <div id=guest></div> -->
 				</div>
 			</div>
-			<div class="mycam">
-				<video id="localVideo" autoplay muted></video>
-			    <button id="startButton">Start</button>
-			</div>
+
 		</div>
 
-	</section>
+	</section> --%>
+
+	<div class="container" ng-controller="ChatController">
+		<toaster-container></toaster-container>
+
+		<div class="row">
+			<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+				<div class="collapse navbar-collapse" id="navbar-collapse-01">
+					<h1>C반 메신져</h1>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a id="exitBtn" style="cursor: pointer;">대화방 나가기
+								(${member.name})</a></li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			<!-- /navbar -->
+		</div>
+		<div class="row">
+			<div class="col-xs-2">
+				<h4>
+					접속자 [<div id=usercount style="display: inline-block"></div>]
+				</h4>
+				<div class="share">
+					<ul ng-repeat="participant in participants">
+						<li>
+							<div id=guest style="margin-right: 56%"></div>
+
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div style="text-align: center"><h4>대화 내용</h4></div>
+			<div class="col-xs-8 chat-box" id="scroll">
+
+				<div id="chatMessageArea"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<input id="message" type="text" class="form-control"
+					placeholder="메세지를  입력하세요..." ng-model="newMessage"
+					ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()" style="width: 90%; display: inline-block;" />
+				<input type="button" id="sendBtn" value="전송" style="width: 9%;">
+			</div>
+		</div>
+	</div>
 
 
-<script>
-var localStream, localPeerConnection, remotePeerConnection;
-var turnStream;
-
-var localVideo = document.getElementById("localVideo");
-var remoteVideo = document.getElementById("remoteVideo");
-var anotherVideo = document.getElementById("anotherVideo");
-
-var startButton = document.getElementById("startButton");
-/* var callButton = document.getElementById("callButton");
-var hangupButton = document.getElementById("hangupButton"); */
-
-//startButton.disabled = false;
-/* callButton.disabled = true;
-hangupButton.disabled = true; */
-
-//startButton.onclick = start;
-/* callButton.onclick = call;
-hangupButton.onclick = hangup;
-anotherButton.onclick = another; */
-
-function trace(text) {
-  console.log((performance.now() / 1000).toFixed(3) + ": " + text);
-}
-
-function gotStream(stream){
-  trace("Received local stream");
-  turnStream = URL.createObjectURL(stream);
-  localVideo.src = turnStream;
-  localStream = stream;
-  trace("video : " + localVideo.src + " stream: " + localStream.id); 
-  
-  for(var key in localStream){
-	  console.log(" key : " + key +"  value :  " +localStream[key])
-  }
- 
-  //callButton.disabled = false;
-}
-
-$("#startButton").click(function(){
-	
-	trace("================== video Start ==================");
-	  trace("Requesting local stream");
-	  startButton.disabled = true;
-	  getUserMedia({audio:true, video:true}, gotStream,
-	    function(error) {
-	      trace("getUserMedia error: ", error);
-	    }); 
-	  trace("================== video end ==================");
-	
-});
-
-function start() {
-  trace("================== video Start ==================");
-  trace("Requesting local stream");
-  startButton.disabled = true;
-  getUserMedia({audio:true, video:true}, gotStream,
-    function(error) {
-      trace("getUserMedia error: ", error);
-    }); 
-  trace("================== video end ==================");
-}
-
-function another(){
-	trace("================== another start ==================");
-	anotherVideo.src = turnStream;
-	 trace("video : " + anotherVideo.src + " stream: " + localStream);
-	trace("================== another end ==================");
-}
 
 
-function call() {
-	
-	trace("================== call Start ==================");
-/*   callButton.disabled = true;
-  hangupButton.disabled = false; */
-  trace("Starting call");
-
-  if (localStream.getVideoTracks().length > 0) {
-    trace('Using video device: ' + localStream.getVideoTracks()[0].label);
-  }
-  if (localStream.getAudioTracks().length > 0) {
-    trace('Using audio device: ' + localStream.getAudioTracks()[0].label);
-  }
-
-  var servers = sock;
-
-  localPeerConnection = new RTCPeerConnection(servers);
-  trace("Created local peer connection object localPeerConnection");
-  localPeerConnection.onicecandidate = gotLocalIceCandidate;
-
-  remotePeerConnection = new RTCPeerConnection(servers);
-  trace("Created remote peer connection object remotePeerConnection");
-  remotePeerConnection.onicecandidate = gotRemoteIceCandidate;
-  remotePeerConnection.onaddstream = gotRemoteStream;
-
-  localPeerConnection.addStream(localStream);
-  trace("Added localStream to localPeerConnection");
-  localPeerConnection.createOffer(gotLocalDescription,handleError);
-  trace("================== call end ==================");
-  
-}
-
-function gotLocalDescription(description){
-  localPeerConnection.setLocalDescription(description);	
-  trace("Offer from localPeerConnection: \n" + description.sdp);
-  remotePeerConnection.setRemoteDescription(description);
-  remotePeerConnection.createAnswer(gotRemoteDescription,handleError);
-}
-
-function gotRemoteDescription(description){
-  remotePeerConnection.setLocalDescription(description);
-  trace("Answer from remotePeerConnection: \n" + description.sdp);
-  localPeerConnection.setRemoteDescription(description);
-}
-
-function hangup() {
-	
-	trace("================== hang Start ==================");
-	
-  trace("Ending call");
-  localPeerConnection.close();
-  remotePeerConnection.close();
-  localPeerConnection = null;
-  remotePeerConnection = null;
-  
-  /* hangupButton.disabled = true;
-  callButton.disabled = false;
-   */
-  trace("================== hang end ==================");
-}
-
-function gotRemoteStream(event){
-  remoteVideo.src = URL.createObjectURL(event.stream);
-  trace("Received remote stream");
-}
-
-function gotLocalIceCandidate(event){
-  if (event.candidate) {
-    remotePeerConnection.addIceCandidate(new RTCIceCandidate(event.candidate));
-    trace("Local ICE candidate: \n" + event.candidate.candidate);
-  }
-}
-
-function gotRemoteIceCandidate(event){
-  if (event.candidate) {
-    localPeerConnection.addIceCandidate(new RTCIceCandidate(event.candidate));
-    trace("Remote ICE candidate: \n " + event.candidate.candidate);
-  }
-}
-
-function handleError(){}
-
-/* ======================================================================= */
-
-
-</script>
-
-<script type="text/javascript">
-	var wsocket;
-	
+	<script type="text/javascript">
+	var wsocket;	
+	var geustlist = new ArrayList();
+	var head = "usr:";
 	window.onload = pageLoad;
-
+	
 	function pageLoad() {
 		wsocket = new SockJS("/ctrl/chat.sockjsC");
 		wsocket.onopen = onOpen;
@@ -251,46 +133,58 @@ function handleError(){}
 	}
 	function onOpen(evt) {
 		join();
-		$("#guest").val("");
-		$("#guest").append($("#nickname").val()+"<br/>");
+		
 	}
 	function onMessage(evt) {
 		var data = evt.data;
 		if (data.substring(0, 4) == "msg:") {
 			appendMessage(data.substring(4));
+		}else if (data.substring(0, 4) == "접속자:"){
+			appendMessage2(data.substring(4));
+		}else if (data.substring(0, 4) == "유저수:"){
+			appendMessage3(data.substring(4));
 		}
 	}
+	
 	function onClose(evt) {
+		$("#message").on("keydown",null);
 		appendMessage("연결을 끊었습니다.");
 	}
 
 	function send() {
 		var nickname = $("#nickname").val();
 		var msg = $("#message").val();
-		wsocket.send("msg:" + nickname + ":" + msg);
+		wsocket.send("msg:" + $("#username").val() + ":" + msg);
+		
 		$("#message").val("");
 	}
 	
 	function join() {
-		var nickname = $("#nickname").val();
-		wsocket.send("msg:" + nickname+"님 입장!");
+		wsocket.send("msg:" + "▶" + $("#username").val() +"님 입장!");
 	}
 	
 	function out() {
-		var nickname = $("#nickname").val();
-		wsocket.send("msg:" + nickname+"님이 나갔습니다.");
+		wsocket.send("msg:" + "◀" +$("#username").val()+"님이 나갔습니다.");
 	}
 
 	function appendMessage(msg) {
-		
-		$("#chatMessageArea").append(msg + "<br>");
-		var chatAreaHeight = $("#chatArea").height();
-		var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
-		$("#chatArea").scrollTop(maxScroll);
+		var maxScroll = $("#chatMessageArea").height();
+		$("#chatMessageArea").append('<div style="color : red;">'+msg+'</div>');
+		/* var chatAreaHeight = $("#chatArea").height(); */
+		$("#scroll").scrollTop(maxScroll);
 
 	}
+	
+function appendMessage2(msg) {
+		$("#guest").html(msg + "<br>");
+	}
+	
+function appendMessage3(msg) {
+	$("#usercount").html(msg + "<br>");
+}
 
 	$(document).ready(function() {
+			
 		$('#message').keypress(function(event) {
 			var keycode = (event.keyCode ? event.keyCode : event.which);
 			if (keycode == '13') {
@@ -307,7 +201,14 @@ function handleError(){}
 		$('#exitBtn').click(function() {
 			disconnect();
 		});
+		window.onbeforeunload = function() {
+
+			disconnect();
+
+		}
 	});
+	
+	
 </script>
 
 </body>

@@ -16,32 +16,22 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/ListUtil.js"></script>
 <link
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/resources/css/bootstrapchat.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/flat-ui.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/toaster.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/chat.css"
 	rel="stylesheet">
 
-<link
-	href="//cdn.jsdelivr.net/emojione/1.3.0/assets/css/emojione.min.css"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css">
-
-
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-	crossorigin="anonymous">
-
-<!-- Our styles import -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
 
 </head>
-<body class="container" id="body">
-<input type="hidden" id="username" value="${member.name}">
+<body>
+	<input type="hidden" id="username" value="${member.name}">
 	<%-- <section class="wrap">
 		<input type="hidden" id="username" value="${member.name}">
 
@@ -75,61 +65,52 @@
 		</div>
 
 	</section> --%>
-	<%-- 
+
 	<div class="container" ng-controller="ChatController">
-			<toaster-container></toaster-container>
-			
-			<div class="row">
-				<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-		            <div class="collapse navbar-collapse" id="navbar-collapse-01">
-		              <h1>A반 메신져</h1>
-		              <ul class="nav navbar-nav navbar-right">           
-		                <li><a id="exitBtn">Logout (${member.name})</a></li>
-		               </ul>
-		            </div><!-- /.navbar-collapse -->
-		          </nav><!-- /navbar -->
-			</div>
-	        <div class="row">
-        		<div class="col-xs-4">
-        			<h4>대화상대 []</h4>
-        			<div class="share">
-	        			<ul ng-repeat="participant in participants">
-	        				<li>
-	        					<div id=guest></div>
-	        					
-	        				</li>
-	        			</ul>
-        			</div>
-        		</div>
-        		<div class="col-xs-8 chat-box">
-        			<h4>대화 내용</h4>
-	        		<div id="chatMessageArea">
-	       	 			<small print-message></small>
-	      			</div>
-        		</div>
-        	</div>
-        	<div class="row">
-       			<div class="form-group">
-				  <input id="message" type="text" class="form-control" placeholder="메세지를  입력하세요..." ng-model="newMessage" ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()"/>
-				<input type="button" id="sendBtn" value="전송">
+		<toaster-container></toaster-container>
+
+		<div class="row">
+			<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+				<div class="collapse navbar-collapse" id="navbar-collapse-01">
+					<h1>B반 메신져</h1>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a id="exitBtn" style="cursor: pointer;">대화방 나가기
+								(${member.name})</a></li>
+					</ul>
 				</div>
-        	</div>
-	    </div> --%>
-	    
-	    <div class="header">
-        <h2>B반 메신져</h2>
-    </div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			<!-- /navbar -->
+		</div>
+		<div class="row">
+			<div class="col-xs-2">
+				<h4>
+					접속자 [<div id=usercount style="display: inline-block"></div>]
+				</h4>
+				<div class="share">
+					<ul ng-repeat="participant in participants">
+						<li>
+							<div id=guest style="margin-right: 56%"></div>
 
-    <!-- Display all messagess -->
-    <div>
-        <div id="chatMessageArea" class="col-12 all-messages"></div>
-    </div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div style="text-align: center"><h4>대화 내용</h4></div>
+			<div class="col-xs-8 chat-box" id="scroll">
 
-    <!-- Input and button send -->
-    <form class="row" id="form">
-        <input id="message" placeholder="메세지를 입력하세요...." type="text" class="form-control message-input col-7 col-sm-8 col-md-10">
-        <button id="sendBtn"  class="btn btn-primary submit-btn col-5 col-sm-4 col-md-2">보내기</button>
-    </form>
+				<div id="chatMessageArea"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<input id="message" type="text" class="form-control"
+					placeholder="메세지를  입력하세요..." ng-model="newMessage"
+					ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()" style="width: 90%; display: inline-block;" />
+				<input type="button" id="sendBtn" value="전송" style="width: 9%;">
+			</div>
+		</div>
+	</div>
 
 
 
@@ -141,7 +122,7 @@
 	window.onload = pageLoad;
 	
 	function pageLoad() {
-		wsocket = new SockJS("/ctrl/chat.sockjsA");
+		wsocket = new SockJS("/ctrl/chat.sockjsB");
 		wsocket.onopen = onOpen;
 		wsocket.onmessage = onMessage;
 		wsocket.onclose = onClose;
@@ -160,6 +141,8 @@
 			appendMessage(data.substring(4));
 		}else if (data.substring(0, 4) == "접속자:"){
 			appendMessage2(data.substring(4));
+		}else if (data.substring(0, 4) == "유저수:"){
+			appendMessage3(data.substring(4));
 		}
 	}
 	
@@ -185,17 +168,20 @@
 	}
 
 	function appendMessage(msg) {
-		
-		$("#chatMessageArea").append(msg + "<br>");
-		var chatAreaHeight = $("#chatArea").height();
-		var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
-		$("#chatArea").scrollTop(maxScroll);
+		var maxScroll = $("#chatMessageArea").height();
+		$("#chatMessageArea").append('<div style="color : red;">'+msg+'</div>');
+		/* var chatAreaHeight = $("#chatArea").height(); */
+		$("#scroll").scrollTop(maxScroll);
 
 	}
 	
 function appendMessage2(msg) {
 		$("#guest").html(msg + "<br>");
 	}
+	
+function appendMessage3(msg) {
+	$("#usercount").html(msg + "<br>");
+}
 
 	$(document).ready(function() {
 			

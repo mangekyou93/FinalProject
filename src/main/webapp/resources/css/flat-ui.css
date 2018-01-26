@@ -1303,7 +1303,7 @@ label {
 .form-control:focus,
 .form-group.focus .select2-search input[type="text"],
 .select2-search input[type="text"]:focus {
-  border-color: #1abc9c;
+  border-color: #ff8400;
   outline: 0;
   box-shadow: none;
 }
@@ -4520,7 +4520,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #cccccc;
 }
 .navbar-inverse {
-  background-color: #34495e;
+  background-color: #0063cc;
 }
 .navbar-inverse .navbar-brand {
   color: #ffffff;
@@ -4550,7 +4550,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #1abc9c;
+  color: #ff8400;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
