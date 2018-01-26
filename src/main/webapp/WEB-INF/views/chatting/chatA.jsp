@@ -15,17 +15,23 @@
 	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/ListUtil.js"></script>
-<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrapchat.min.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/flat-ui.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/toaster.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/resources/css/chat.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/flat-ui.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/toaster.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/chat.css"
+	rel="stylesheet">
 
 
 
 </head>
 <body>
-<input type="hidden" id="username" value="${member.name}">
+	<input type="hidden" id="username" value="${member.name}">
 	<%-- <section class="wrap">
 		<input type="hidden" id="username" value="${member.name}">
 
@@ -59,46 +65,52 @@
 		</div>
 
 	</section> --%>
-	
+
 	<div class="container" ng-controller="ChatController">
-			<toaster-container></toaster-container>
-			
-			<div class="row">
-				<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-		            <div class="collapse navbar-collapse" id="navbar-collapse-01">
-		              <h1>A반 메신져</h1>
-		              <ul class="nav navbar-nav navbar-right">           
-		                <li><a id="exitBtn">Logout (${member.name})</a></li>
-		               </ul>
-		            </div><!-- /.navbar-collapse -->
-		          </nav><!-- /navbar -->
-			</div>
-	        <div class="row">
-        		<div class="col-xs-4">
-        			<h4>대화상대 []</h4>
-        			<div class="share">
-	        			<ul ng-repeat="participant in participants">
-	        				<li>
-	        					<div id=guest></div>
-	        					
-	        				</li>
-	        			</ul>
-        			</div>
-        		</div>
-        		<div class="col-xs-8 chat-box">
-        			<h4>대화 내용</h4>
-	        		<div id="chatMessageArea">
-	       	 			<small print-message></small>
-	      			</div>
-        		</div>
-        	</div>
-        	<div class="row">
-       			<div class="form-group">
-				  <input id="message" type="text" class="form-control" placeholder="메세지를  입력하세요..." ng-model="newMessage" ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()"/>
-				<input type="button" id="sendBtn" value="전송">
+		<toaster-container></toaster-container>
+
+		<div class="row">
+			<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+				<div class="collapse navbar-collapse" id="navbar-collapse-01">
+					<h1>A반 메신져</h1>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a id="exitBtn" style="cursor: pointer;">대화방 나가기
+								(${member.name})</a></li>
+					</ul>
 				</div>
-        	</div>
-	    </div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			<!-- /navbar -->
+		</div>
+		<div class="row">
+			<div class="col-xs-2">
+				<h4>
+					접속자 [<div id=usercount style="display: inline-block"></div>]
+				</h4>
+				<div class="share">
+					<ul ng-repeat="participant in participants">
+						<li>
+							<div id=guest style="margin-right: 56%"></div>
+
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div style="text-align: center"><h4>대화 내용</h4></div>
+			<div class="col-xs-8 chat-box">
+
+				<div id="chatMessageArea"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<input id="message" type="text" class="form-control"
+					placeholder="메세지를  입력하세요..." ng-model="newMessage"
+					ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()" />
+				<input type="button" id="sendBtn" value="전송">
+			</div>
+		</div>
+	</div>
 
 
 
@@ -129,6 +141,8 @@
 			appendMessage(data.substring(4));
 		}else if (data.substring(0, 4) == "접속자:"){
 			appendMessage2(data.substring(4));
+		}else if (data.substring(0, 4) == "유저수:"){
+			appendMessage3(data.substring(4));
 		}
 	}
 	
@@ -156,15 +170,19 @@
 	function appendMessage(msg) {
 		
 		$("#chatMessageArea").append(msg + "<br>");
-		var chatAreaHeight = $("#chatArea").height();
-		var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
-		$("#chatArea").scrollTop(maxScroll);
+		/* var chatAreaHeight = $("#chatArea").height(); */
+		var maxScroll = $("#chatMessageArea").height()/*  - chatAreaHeight */;
+		$("#chatMessageArea").scrollTop(maxScroll);
 
 	}
 	
 function appendMessage2(msg) {
 		$("#guest").html(msg + "<br>");
 	}
+	
+function appendMessage3(msg) {
+	$("#usercount").html(msg + "<br>");
+}
 
 	$(document).ready(function() {
 			

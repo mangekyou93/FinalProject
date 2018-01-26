@@ -21,6 +21,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 	List<String> guestlist = new ArrayList<String>();
 	
 	String data = "접속자:";
+	String usercount ="유저수:";
 
 	@Override
 
@@ -34,6 +35,8 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 	
 		guestlist.add(memberDTO.getName());
 		
+		usercount= "유저수:" + guestlist.size();
+		
 		data = "접속자:";
 		data = data +" ●" + guestlist.get(0);
 		for(int i=1; i< guestlist.size();i++){
@@ -42,9 +45,12 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 
 		}
 		System.out.println(data);
+		System.out.println(usercount);
 		for (WebSocketSession s : users.values()) {
 			if(!session.getId().equals(s)){
+				s.sendMessage(new TextMessage(usercount));
 				s.sendMessage(new TextMessage(data));
+				
 			}
 		}
 		
@@ -71,6 +77,12 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 			}
 		}
 		users.remove(session.getId());
+		
+		usercount= "유저수:" + guestlist.size();
+		
+		System.out.println(usercount);
+		
+	
 
 
 		for (WebSocketSession s : users.values()){
@@ -85,7 +97,9 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		System.out.println(data);
 		for (WebSocketSession s : users.values()) {
 			if(!session.getId().equals(s)){
+				s.sendMessage(new TextMessage(usercount));
 				s.sendMessage(new TextMessage(data));
+				
 			}
 		}
 
@@ -130,5 +144,7 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		System.out.println(new Date() + " : " + logmsg);
 
 	}
+	
+	
 
 }

@@ -15,22 +15,32 @@
 	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/ListUtil.js"></script>
-<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet">
 
-  <link href="//cdn.jsdelivr.net/emojione/1.3.0/assets/css/emojione.min.css" rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="${pageContext.request.contextPath}/resources/css/chat2.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/ripples.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/material-wfont.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/jquery-ui.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/favicon.png" />
+<link
+	href="//cdn.jsdelivr.net/emojione/1.3.0/assets/css/emojione.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
 
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+
+<!-- Our styles import -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
 
 </head>
-<body>
+<body class="container" id="body">
 <input type="hidden" id="username" value="${member.name}">
 	<%-- <section class="wrap">
 		<input type="hidden" id="username" value="${member.name}">
@@ -65,7 +75,7 @@
 		</div>
 
 	</section> --%>
-	
+	<%-- 
 	<div class="container" ng-controller="ChatController">
 			<toaster-container></toaster-container>
 			
@@ -104,92 +114,22 @@
 				<input type="button" id="sendBtn" value="전송">
 				</div>
         	</div>
-	    </div>
+	    </div> --%>
 	    
-	    
-	    <div class="container-fluid main">
-        <a target="_blank" href="https://github.com/IgorAntun/node-chat"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-
-        <div class="row">
-            <div class="col-xs-12 col-lg-10 col-lg-offset-1"><br>
-                <div class="well page active">
-                    <nav class="navbar shadow-z-2">
-                        <div class="container-fluid">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapser">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand" href="#">Node.JS Chat <span id="version" style="font-size:7pt"></span></a>
-                            </div>
-
-                            <div class="collapse navbar-collapse" id="collapser">
-                                <ul class="nav navbar-nav">
-                                    <li class="active"><a href="#">Chat</a></li>
-                                    <li><a id="help" href="#">Help</a></li>
-                                    <li><a id="user" href="#">Users</a></li>
-                                    <li><a id="menu-admin" href="#" style="display:none">Admin</a></li>
-                                    <li><a id="menu-options" href="#">Options</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12 ">
-                            <div class="well">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <h2>Messenger</h2>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <button id="options" class="btn btn-fab btn-fab-mini btn-primary pull-right">
-                                            <i id="icon-settings" class="mdi mdi-action-settings"></i>
-                                        </button>
-                                        <button id="audio" class="btn btn-fab btn-fab-mini btn-primary pull-right" style="display:none">
-                                            <i id="icon-audio" class="mdi mdi-av-mic"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Messages</div>
-                                    <div id="panel" class="panel-body"></div>
-                                </div>
-
-                                <p id="typing"><br></p>
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-lg-8 col-lg-offset-2">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span id="icon" class="mdi mdi-social-person"></span></span>
-                                            <input id="message" type="text" class="form-control" placeholder="Choose an username" aria-describedby="basic-addon1" maxlength="768">
-                                            <span class="input-group-btn">
-                                                <button id="send" class="btn btn-primary btn-flat">Connect</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p class="text-left pull-left">Created by <a href="https://github.com/IgorAntun" target="_blank">Igor Antun</a></p>
-                            <p id="badges" class="text-right pull-right">
-                                <span><label id="users" class="label">0 USERS</label></span>
-                                <span><label id="admin" class="label label-warning" style="display:none">ADMIN</label></span>
-                                <span><label class="label label-info">BETA</label></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+	    <div class="header">
+        <h2>B반 메신져</h2>
     </div>
+
+    <!-- Display all messagess -->
+    <div>
+        <div id="chatMessageArea" class="col-12 all-messages"></div>
+    </div>
+
+    <!-- Input and button send -->
+    <form class="row" id="form">
+        <input id="message" placeholder="메세지를 입력하세요...." type="text" class="form-control message-input col-7 col-sm-8 col-md-10">
+        <button id="sendBtn"  class="btn btn-primary submit-btn col-5 col-sm-4 col-md-2">보내기</button>
+    </form>
 
 
 
@@ -201,7 +141,7 @@
 	window.onload = pageLoad;
 	
 	function pageLoad() {
-		wsocket = new SockJS("/ctrl/chat.sockjsB");
+		wsocket = new SockJS("/ctrl/chat.sockjsA");
 		wsocket.onopen = onOpen;
 		wsocket.onmessage = onMessage;
 		wsocket.onclose = onClose;
