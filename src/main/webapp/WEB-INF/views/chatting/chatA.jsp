@@ -107,7 +107,7 @@
 				<input id="message" type="text" class="form-control"
 					placeholder="메세지를  입력하세요..." ng-model="newMessage"
 					ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()" style="width: 90%; display: inline-block;" />
-				<input type="button" id="sendBtn" value="전송" style="width: 9%;">
+				<button class="btn btn-info" id="sendBtn" value="전송" style="width: 9%; margin-bottom: 0.2%">보내기</button>
 			</div>
 		</div>
 	</div>

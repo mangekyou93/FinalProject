@@ -1585,7 +1585,8 @@ fieldset[disabled] .select2-search input[type="text"] + .form-control-feedback,
 }
 .form-group {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 1.2%;
 }
 .form-horizontal .radio,
 .form-horizontal .checkbox,
@@ -5090,9 +5091,10 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   border-top-right-radius: 0;
 }
 .share {
-  background-color: #eff0f2;
+  background-color: #ffb366;
   position: relative;
   border-radius: 6px;
+  overflow:auto; 
 }
 .share ul {
   list-style-type: none;
