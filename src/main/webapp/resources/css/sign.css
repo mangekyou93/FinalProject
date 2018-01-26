@@ -60,6 +60,7 @@ section {
 	height: auto;
 	margin: 0 auto;
 	float: right;
+	background-color: #f9f9f9;
 }
 .contents_header {
 	font-size: 25px;
@@ -70,29 +71,25 @@ section {
 }
 
 #content_body{
-	width: 60%;
+	width: 100%;
 	height: auto;
 	display: inline-block;
-	border:3px;
+	/* border:3px;
 	border-style: solid;
-	border-color: blue;
+	border-color: blue; */
 }
 
 #content_body .register_body{
 	width: 100%;
 	height: auto;
 	display: inline-block;
-	border:2px;
-	border-style: solid;
-	border-color: red;
+	margin-top: 10px;
+	
 }
 
 #content_body .register_body .hope_major{
 	width: 100%;
-	height: 110px;
-	border:2px;
-	border-style: solid;
-	border-color: green;
+	height: 60px;
 }
 
 #content_body .register_body .hope_major .hope_left{
@@ -101,9 +98,8 @@ section {
 	border: 2px;
 	float: left;
 	display: inline-block;
-	margin-top: 10px;
-	border-style: solid;
-	border-color: aqua;
+	/* margin-top: 10px; */
+	border-bottom: 2px solid #6d6e72;
 }
 
 #content_body .register_body .hope_major .hope_left .hope_banner{
@@ -112,20 +108,24 @@ section {
 	margin-top: 10px;
 	border-top: 2px;
 	/* border-style: solid; */
-	border-top-color: gray;
+	border-top-color: #6d6e72;
 }
 
 #content_body .register_body .hope_major .major_choose{
 	width: 75%;
 	height: 44px;
-	margin-top: 10px;
-	margin-left:23%;
-	border: 2px;
-	border-style: solid;
-	border-color: black;
+	margin-top: 20px;
+	margin-left:15%;
+	padding-top: 2px;
 	font-size: 14px;
 	font-style: normal;
 }
+
+#content_body .register_body .hope_major .major_choose .m_p1{
+	margin-left: 15%;
+	margin-top: 10px;
+}
+
 .major_choose >p select{
 	border-color: rgb(169, 169, 169);
 }
@@ -133,65 +133,159 @@ section {
 #cs_info{
 	width: 100%;
 	height: auto;
-	border:2px;
+	/* border:2px;
 	border-style: solid;
-	border-color: red;
+	border-color: red; */
 }
 .register_body #cs_info{
-	/* margin-top: 40px; */
+	margin-top: 40px;
 }
-#content_body .register_body .cs_left{
+#content_body .register_body #cs_info .cs_left{
 	width: 22%;
-	height: 44px;
-	border:2px;
-	border-style: solid;
-	border-color: maroon;
+	height: 34px;
+	border-bottom: 2px solid #6d6e72;
 }
 #content_body .register_body #cs_info .visit_register{
 	width: 75%;
 	height: auto;
-
 	margin-left:23%;
-	border: 2px;
-	border-style: solid;
-	border-color: black;
 	font-size: 14px;
 	font-style: normal;
 }
+#content_body .register_body #cs_info .visit_register .visit_register_form{
+	width:75%;
+	height: auto;
+	margin-left:3%;
 
-#content_body .register_body .loca_info{
+}
+
+#content_body .register_body #cs_info .visit_register .visit_register_form .cs_p{
+	margin-top: 30px;
+	display: inline-block;
+}
+
+
+#content_body .register_body #cs_info .visit_register .visit_register_form .cs_p1{
+	/* margin-bottom: 30px; */
+	display: inline-block;
+}
+
+
+#content_body .register_body #cs_info .visit_register .visit_register_form .cs_a1{
+	margin-left:10%;
+	display: inline-block;
+	
+}
+#content_body .register_body #cs_info .visit_register .visit_register_form .cs_a2{
+	margin-left:5%;
+	display: inline-block;
+	
+}
+
+#content_body .register_body #cs_info .visit_register .visit_register_form .cs_a3{
+	margin-left:7.5%;
+	display: inline-block;
+	
+}
+
+#content_body .register_body #cs_info .visit_register .visit_register_form .cs_a4{
+	margin-left:5%;
+	display: inline-block;
+	
+}
+
+#content_body .register_body #cs_info .visit_register .visit_register_form .cs_a5{
+	margin-left:5%;
+	display: inline-block;
+	
+}
+
+#content_body .register_body #cs_info .visit_register .visit_register_form .cs_a6{
+	margin-left:5%;
+	display: inline-block;
+	
+}
+
+#content_body .register_body #loca_info{
 	width: 100%;
 	height: auto;
-	border:2px;
-	border-style: solid;
-	border-color: orange;
+	display: inline-block;
+
 }
 
 #content_body .register_body .loca_left{
 	width: 22%;
-	height: 44px;
-	border:2px;
-	border-style: solid;
-	border-color: lime;
+	height: 34px;
+	display: inline-block;
+
 }
 
-#content_body .register_body .loca_left .loca_banner{
+#content_body .register_body #loca_info .loca_left .loca_banner{
 	width: 90%;
 	height: 90%;
-	border:2px;
-	border-style: solid;
-	border-top-color: navy;
+	border-bottom: 2px solid #6d6e72;
+	float: left;
+	display: inline-block;
+
 }
 
-#content_body .register_body .loca_info .loca_register{
-	width: 75%;
+
+#content_body .register_body #loca_info .loca_register{
+	width: 70%;
 	height: 44px;
+	display:inline-block;
+	/* margin-bottom: 10px; */
+}
+
+#content_body .register_body #loca_info .loca_register .lo_a{
+	width: 50%;
+	height:40px;
+	margin-left:5%;
 	display: inline-block;
-	/* margin-top: 10px;
-	margin-left:23%; */
-	border: 2px;
-	border-style: solid;
-	border-color: silver;
-	/* font-size: 14px;
-	font-style: normal; */
+	/* float: left; */
+}
+
+.hope_banner, .cs_banner, .loca_banner{
+	font-family: 'NanumBarunGothic', 'Nanum Gothic', Dotum, sans-serif;
+    font-size: 16px;
+    color: #6d6e72;
+}
+.reg{
+	font-family: 'NanumBarunGothic', 'Nanum Gothic', Dotum, sans-serif;
+    font-size: 15px;
+    color: black;
+}
+
+.subject{
+	width:75%;
+	border:1px;
+	border-bottom: 1px solid #6d6e72;
+}
+.choose{
+	font-family: 'NanumBarunGothic', 'Nanum Gothic', Dotum, sans-serif;
+    font-size: 13px;
+    color: #6d6e72;
+	margin-top: 10px;
+	margin-left: 20px;
+	border-bottom: 1px solid #6d6e72;
+}
+.flow{
+	font-family: 'NanumBarunGothic', 'Nanum Gothic', Dotum, sans-serif;
+    font-size: 13px;
+    color: #6d6e72;
+	margin-left: 30px;
+}
+
+#button {
+    background-color: #12A5F4;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left:50%;
+    cursor: pointer;
 }

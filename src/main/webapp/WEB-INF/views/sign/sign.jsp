@@ -60,15 +60,15 @@ IMP.request_pay({
 			<div class="leftContents">
 				<div class="leftMenu">
 					<div class="leftMenu_header">
-						회원가입
+						교육과정
 					</div>
 					<div class="leftMenu_wrapper">
 						<ul>
 							<li>
-								<a href="${pageContext.request.contextPath}/member/memberAgree">이용약관 및 개인정보취급방침</a>
+								<a href="${pageContext.request.contextPath}/calendar/test">커리큘럼</a>
 							</li>
 							<li style="background-color: RGB(18, 165, 244);">
-								<a href="${pageContext.request.contextPath}/member/memberAgree" style="color: white;">회원가입</a>
+								<a href="${pageContext.request.contextPath}/sign/sign_apply" style="color: white;">수강신청</a>
 							</li>
 						</ul>
 					</div>
@@ -82,7 +82,7 @@ IMP.request_pay({
 					<form action="${pageContext.request.contextPath}/sign/sign_apply" method="post" id="frm">
 						<div id="content_body">
 							<div class="subject">
-								<span>수강신청</span>
+								<span class="reg">온라인 수강신청</span>
 							</div>
 							
 							<div class="register_body">
@@ -92,13 +92,13 @@ IMP.request_pay({
 									</div>
 									
 									<div class="major_choose">
-										<p>
-											<b>희망전공</b>
+										<p class="m_p1">
+											<b class="choose">희망전공</b>
 											<select id="hope_major" name="major">
 												<option value="자바프로그래머">자바프로그래머</option>
 												<option value="정보보안">정보보안</option>
 											</select>
-											<b>과정형태</b>
+											<b class="choose">과정형태</b>
 											<select id="hope_type" name="type">
 												<option value="국가기간">국가기간</option>
 												<option value="지역,산업">지역,산업</option>
@@ -116,14 +116,19 @@ IMP.request_pay({
 											<div class="cs_banner">신청자 정보</div>
 										</div>
 										<div class="visit_register">
-											<p>
-												<b>이름</b>
+										<div class="visit_register_form">
+											<p class="cs_p">
+												<b class="choose">이름</b>
+												<div class="cs_a1">
 												<input type="text" id="name" name="name">
+												</div>
 											</p>
 											
-											<p>
-												<b>생년월일</b>
+											<p class="cs_p">
+												<b class="choose">생년월일</b>
+												<div class="cs_a2">
 												<input type="date" name="birth" id="birth">
+												</div>
 												<!-- <select id="year" name="birth">
 													<option value="2000">2000</option>
 													<option value="1999">1999</option>
@@ -189,12 +194,13 @@ IMP.request_pay({
 													<option value="30">30</option>
 													<option value="31">31</option>
 												</select> -->
-												<span>일</span>
 											</p>
 											
-											<p>
-												<b>연락처</b>
+											<p class="cs_p">
+												<b class="choose">연락처</b>
+												<div class="cs_a3">
 												<input type="text" name="phone" id="phone" placeholder="-추가해서 써라">
+												</div>
 												<!-- <select id="ph_num1" name="phone">
 													<option value="010">010</option>
 													<option value="011">011</option>
@@ -204,32 +210,35 @@ IMP.request_pay({
 												<input type="text" name="phone" id="ph_num2">
 												<span>-</span>
 												<input type="text" name="phone" id="ph_num3"> -->
-										
 											</p>
-											<p>
-												<b>최종학력</b>
-												
+											<p class="cs_p">
+												<b class="choose">최종학력</b>
+													<div class="cs_a4">
 													<input type="radio" name="f_edu" value="대졸이상">대졸이상
 													<input type="radio" name="f_edu" value="초대졸">초대졸
 													<input type="radio" name="f_edu" value="고졸">고졸
 													<input type="radio" name="f_edu" value="기타">기타
-												
+													</div>
 											</p>
 											
-											<p>
-												<b>수강목적</b>
-												
+											<p class="cs_p">
+												<b class="choose">수강목적</b>
+													<div class="cs_a5">
 													<input type="radio" name="purpose" value="취업">취업
 													<input type="radio" name="purpose" value="이직">이직
 													<input type="radio" name="purpose" value="창업">창업
 													<input type="radio" name="purpose" value="기타">기타
-												
+													</div>
 											</p>
-											
-											<p>
-												<b>각오</b>
-												<p><textarea rows="5" cols="50" placeholder="각오한마디" name="resolution"></textarea></p>
-											</p>
+												<p class="cs_p1">
+												<b class="choose">각오</b>
+												</p>
+												<p class="cs_p">
+												<div class="cs_a6">
+													<textarea rows="4" cols="45" placeholder="각오한마디" name="resolution" style="resize: none;"></textarea>
+												</div>
+												</p>
+										</div>
 										</div>
 									</div>
 									<!-- ====================================신청자 정보=========================================== -->
@@ -240,13 +249,12 @@ IMP.request_pay({
 										
 										<div class="loca_register">
 											<p>
-												<b>지역선택</b>
-												
-													<input type="radio" name="location" value="강남">강남
-													<input type="radio" name="location" value="종로">종로
-													<input type="radio" name="location" value="당산">당산
-													<input type="radio" name="location" value="이태원">이태원
-												
+													<div class="lo_a">
+														<input type="radio" name="location" value="강남">강남
+														<input type="radio" name="location" value="종로">종로
+														<input type="radio" name="location" value="당산">당산
+														<input type="radio" name="location" value="이태원">이태원
+													</div>
 											</p>
 										</div>
 									</div>
@@ -287,6 +295,7 @@ IMP.request_pay({
 							        msg += '에러내용 : ' + rsp.error_msg;
 							    }
 							    alert(msg);
+							    return "redirect:../calender/calender_test";
 							});
 						});
 						</script>

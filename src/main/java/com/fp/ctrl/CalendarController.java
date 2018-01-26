@@ -18,19 +18,16 @@ public class CalendarController {
 
 	@Inject
 	private CalendarService calendarService;
+
+
 	
-	/*//calendar
-	@RequestMapping(value="calendar")
-	@ResponseBody
-	public ModelAndView calList(ModelAndView mv)throws Exception{
-		mv = calendarService.
-	}*/
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
     public ModelAndView calendarList(ModelAndView mv)throws Exception{
 		mv = calendarService.selectList();
 		mv.setViewName("list");
 		mv.setViewName("data");
+		mv.addObject("menuTitle", "커리큘럼");
 		mv.setViewName("calendar/calendar");
 		return mv;
 	}
@@ -49,6 +46,7 @@ public class CalendarController {
 		CalendarDTO calendarDTO = calendarService.selectOne(id);
 		if(calendarDTO != null){
 			mv.addObject("view", calendarDTO);
+			mv.addObject("viewTitle", "커리큘럼 내용");
 			mv.setViewName("calendar/calendar_view");
 		}else{
 			rd.addFlashAttribute("message", "에러");

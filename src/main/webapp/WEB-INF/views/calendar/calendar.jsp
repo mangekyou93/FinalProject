@@ -38,13 +38,10 @@ $.get("../calendar/calendar_list",function(data){
 	      businessHours: true, // display business hours
 	      editable: false,
 	      events: $.parseJSON(data),
-	      eventClick: function(date, jsEvent, view, id) {
-	    	   alert(data);
-	    	   alert("date.start의 id는 : "+date.id)
-	    	  
+	      eventClick: function(date, jsEvent, view, id) {	    	  
 	    	 /* <c:if test="${date.id eq view.id}"> */
 	    	  	/* window.open("calender_view?id=${view.id}"); */
-	    	  	location.href = ("./calender_view?id="+date.id);
+	    	  	location.href = ("./calendar_view?id="+date.id);
 	    	  /* </c:if>  */	    		   
 	      }
 	 });
@@ -58,6 +55,18 @@ $(function(){
 	    })
 	});
 </script>
+
+<!-- <script type="text/javascript">
+$(document).ready(function(){
+    $("#btn btn-info btn-lg").click(function(){
+    	if(kind == admin){
+        $(this).show();
+    	}else{
+    	$(this).hide();
+    	}
+    });
+});
+</script> -->
 </head>
 <body>
 <!--  header start -->
@@ -77,13 +86,16 @@ $(function(){
 								<a href="${pageContext.request.contextPath}/calendar/calendar/test" style="color: white;">커리큘럼</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/member/memberAgree">수강신청</a>
+								<a href="${pageContext.request.contextPath}/sign/sign_apply">수강신청</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="rightContents">
+					<div class="right_img">
+						<img alt="" src="${pageContext.request.contextPath}/resources/images/cal_1.PNG" style="width:100%; height: 100%;">
+					</div>
 				<div class="contents_header">
 					${menuTitle}			
 				</div>
@@ -91,10 +103,23 @@ $(function(){
 					<div id='calendar'></div>
 					<div class="container">
 					<%-- <input type="hidden" id="cal" value = "${view.date_start}"> --%>
-					  <h2>Modal Example</h2>
-					  <!-- Trigger the modal with a button -->
-					  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">추가</button>
 					
+					  <!-- admin -->
+					  <c:if test="${member.kind eq null}">
+					  </c:if>
+					  <c:if test="${member.kind != null}">
+					  </c:if> 
+					  <c:if test="${member.kind eq normal}">
+					  </c:if>
+					   <c:if test="${member.kind eq student}">
+					  </c:if>
+					   <c:if test="${member.kind eq teacher}">
+					  </c:if>
+					  <c:if test="${member.kind eq 'admin'}">
+					   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">추가</button>
+					  </c:if>
+					  <!-- admin -->
+					  
 					  <!-- Modal -->
 					  <div class="modal fade" id="myModal" role="dialog">
 					    <div class="modal-dialog">
@@ -150,21 +175,35 @@ $(function(){
 					
 					</div>
 					
-					<table id="table">
+					
+					<div class="cal_list">
+						<img alt="" src="${pageContext.request.contextPath}/resources/images/cal_list.PNG" style="width:100%; height: 100%;">
+					</div>
+				
+					<div class="line1"></div>
+					<h2>일정</h2>
+					<table id="table" style="width: 100%">
 					  <tr>
-					    <th>반 제목</th>
+					    <th>강의 제목</th>
 					    <th>과목</th>
 					    <th>개강일</th>
 					    <th>종강일</th>
+					    <c:if test="${member.kind eq 'admin'}">
 					    <th></th>
+					    </c:if>
 					  </tr>
 					  <c:forEach items="${list}" var="dto">
 					  <tr>
-					    <td>${dto.title}</td>
+					    <td><a href="${pageContext.request.contextPath}/calendar/calendar_view?id=${dto.id}">${dto.title}</a></td>
 					    <td>${dto.contents}</td>
 					    <td>${dto.date_start}</td>
 					    <td>${dto.date_end}</td>
+					    <c:if test="${member.kind eq 'normal'}">
 					    <td><a href="${pageContext.request.contextPath}/sign/sign_apply">신청</a></td>
+					    </c:if>
+					    <c:if test="${member.kind eq 'student'}">
+					    <td><a href="${pageContext.request.contextPath}/sign/sign_apply">신청</a></td>
+					    </c:if>
 					  </tr>
 					  </c:forEach>
 					</table>
