@@ -25,7 +25,8 @@ public class SignController {
 
 	@RequestMapping(value="sign_apply", method=RequestMethod.GET)
 	public String insert(Model model)throws Exception{
-		System.out.println("겟까지 왔음");
+		/*System.out.println("겟까지 왔음");*/
+		model.addAttribute("menuTitle", "수강신청");
 		return "sign/sign";
 	}
 	
@@ -33,7 +34,7 @@ public class SignController {
 	public String insert(RedirectAttributes rd, SignDTO signDTO, HttpSession session)throws Exception{
 	
 		int result = signService.insert(signDTO, session);
-		System.out.println("포스트 까지 왔음");
+		/*System.out.println("포스트 까지 왔음");*/
 		String message="no";
 		if(result>0){
 			message="yes";
