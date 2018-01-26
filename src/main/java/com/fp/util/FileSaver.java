@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-
 public class FileSaver {
 
 	public String fileSave(MultipartFile multipartFile, HttpSession session, String path) throws Exception {

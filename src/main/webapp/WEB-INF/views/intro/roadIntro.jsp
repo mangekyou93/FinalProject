@@ -50,7 +50,49 @@
 					${menuTitle}			
 				</div>
 				<div class="contents_wrapper">
-				
+					<div id="map"></div>
+					<script>
+						function initMap() {
+					    	var uluru = {lat: 37.499, lng: 127.0329};
+					        var map = new google.maps.Map(document.getElementById('map'), {
+					          zoom: 19,
+					          center: uluru
+					        });
+					        var marker = new google.maps.Marker({
+					          position: uluru,
+					          map: map
+					        });
+					      }
+					</script>
+					<script async defer
+					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV_xvLlH4AMIFeiDKA-8mXPfEpjz3gRI4&callback=initMap">
+					</script>
+					<div class="location_info">
+						<table>
+							<tr>
+								<td class="info_header">주소</td>
+								<td>서울특별시 강남구 테헤란로 14길 6 남도빌딩 2F, 3F, 4F, 5F <br> (T: 1544-9970 / F: 070-8290-2889)</td>
+							</tr>
+							<tr>
+								<td class="info_header">버스</td>
+								<td>
+									역삼역.포스코P&S타워 정류장 <br>
+									<div>
+										<img src="${pageContext.request.contextPath}/resources/images/blueBus.jpg">
+									</div>
+									146 / 740 / 341 / 360
+									<div style="margin-left: 10px;">
+										<img src="${pageContext.request.contextPath}/resources/images/redBus.jpg">
+									</div>
+									1100 / 1700 / 2000 / 7007 / 8001
+								</td>
+							</tr>
+							<tr>
+								<td class="info_header">지하철</td>
+								<td>지하철 2호선 역삼역 3번출구 100m</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

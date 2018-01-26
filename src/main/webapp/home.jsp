@@ -49,17 +49,17 @@
 	
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="resources/images/1.jpg" alt="banner1"
+							<img src="resources/images/banner_java.jpg" alt="banner1"
 								style="width: 100%; height: 400px;">
 						</div>
 	
 						<div class="item">
-							<img src="resources/images/2.jpg" alt="banner2"
+							<img src="resources/images/banner_notice.jpg" alt="banner2"
 								style="width: 100%; height: 400px;">
 						</div>
 	
 						<div class="item">
-							<img src="resources/images/3.jpg" alt="banner3"
+							<img src="resources/images/banner_simpleEdu.jpg" alt="banner3"
 								style="width: 100%; height: 400px;">
 						</div>
 					</div>
@@ -80,10 +80,10 @@
 						<p>코딩이 습관이 되는곳! - OO IT학원</p>
 					</div>
 					<div class="slide_bottom_nav_img">
-						<a href="#"><img alt="nav1" src="resources/images/nav1_off.png"
+						<a href="${pageContext.request.contextPath}/intro/roadIntro"><img alt="nav1" src="resources/images/nav1_off.png"
 							onmouseover="this.src='resources/images/nav1_on.png'"
 							onmouseout="this.src='resources/images/nav1_off.png'"></a> <a
-							href="#"><img alt="nav2" src="resources/images/nav2_off.png"
+							href="${pageContext.request.contextPath}/calendar/test"><img alt="nav2" src="resources/images/nav2_off.png"
 							onmouseover="this.src='resources/images/nav2_on.png'"
 							onmouseout="this.src='resources/images/nav2_off.png'"></a> <a
 							href="#"><img alt="nav3" src="resources/images/nav3_off.png"
@@ -97,13 +97,17 @@
 					<div class="contents_menu_all">
 						<div class="contents_top_left">
 							<ul class="contents_ul">
-								<li><a href="#"><img class="contents_img" src="resources/images/banner_01.png"></a></li>
-								<li><a href="#"><img class="contents_img" src="resources/images/banner_03.png"></a></li>
+								<li><a href="${pageContext.request.contextPath}/calendar/test"><img class="contents_img" src="resources/images/banner_01.png"></a></li>
+								<li><a href="${pageContext.request.contextPath}/sign/sign_apply"><img class="contents_img" src="resources/images/banner_03.png"></a></li>
 								<li><a href="#"><img style="width:254px;" class="contents_img" src="resources/images/banner_04.png"></a></li>
 							</ul>
 						</div>
 						<div class="contents_bottom_left">
-						
+							<ul class="contents_ul">
+								<li><a href="#"><img class="contents_img" src="resources/images/bottom_quick01.jpg"></a></li>
+								<li><a href="#"><img class="contents_img" src="resources/images/bottom_quick02.jpg"></a></li>
+								<li><a href="javascript:void(0)"><img style="width:254px;" class="contents_img" src="resources/images/banner_06.png"></a></li>
+							</ul>
 						</div>
 					</div>
 					<div class="contents_menu_top">

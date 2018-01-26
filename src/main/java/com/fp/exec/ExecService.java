@@ -31,6 +31,7 @@ public class ExecService {
 
 		mv.addObject("pager", pager);
 		mv.addObject("list", ar);
+		mv.addObject("menuTitle", "과제 게시판");
 
 		mv.setViewName("quiz/quizList");
 		return mv;
