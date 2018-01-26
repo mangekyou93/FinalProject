@@ -93,9 +93,6 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="rightContents">
-					<div class="right_img">
-						<img alt="" src="${pageContext.request.contextPath}/resources/images/cal_1.PNG" style="width:100%; height: 100%;">
-					</div>
 				<div class="contents_header">
 					${menuTitle}			
 				</div>
@@ -188,7 +185,7 @@ $(document).ready(function(){
 					    <th>과목</th>
 					    <th>개강일</th>
 					    <th>종강일</th>
-					    <c:if test="${member.kind eq 'admin'}">
+					    <c:if test="${member.kind eq 'normal'}">
 					    <th></th>
 					    </c:if>
 					  </tr>
@@ -199,9 +196,6 @@ $(document).ready(function(){
 					    <td>${dto.date_start}</td>
 					    <td>${dto.date_end}</td>
 					    <c:if test="${member.kind eq 'normal'}">
-					    <td><a href="${pageContext.request.contextPath}/sign/sign_apply">신청</a></td>
-					    </c:if>
-					    <c:if test="${member.kind eq 'student'}">
 					    <td><a href="${pageContext.request.contextPath}/sign/sign_apply">신청</a></td>
 					    </c:if>
 					  </tr>
