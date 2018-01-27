@@ -181,12 +181,12 @@
 			if ($("#username").val() == msg.substring(0, 3)) {
 				$("#chatMessageArea")
 						.append(
-								'<div class="list-group-item list-group-item-warning" style="color : red;text-align: right;">'
+								'<div id="fade-in" class="list-group-item list-group-item-warning" style="color : red;text-align: right;">'
 										+ "나" + msg.substring(3) + '</div>');
 			} else {
 				$("#chatMessageArea")
 						.append(
-								'<div class="list-group-item list-group-item-info" style="color : blue;text-align: left;">'
+								'<div id="fade-in" class="list-group-item list-group-item-info" style="color : blue;text-align: left;">'
 										+ msg + '</div>');
 			}
 			/* var chatAreaHeight = $("#chatArea").height(); */
@@ -206,7 +206,7 @@
 			var maxScroll = $("#chatMessageArea").height();
 			$("#chatMessageArea")
 					.append(
-							'<div class="list-group-item list-group-item-danger" style="color : blue; text-align: center;">'
+							'<div id="fade-in" class="list-group-item list-group-item-danger" style="color : blue; text-align: center;">'
 									+ msg + '</div>');
 			/* var chatAreaHeight = $("#chatArea").height(); */
 			$("#scroll").scrollTop(maxScroll);
