@@ -204,6 +204,7 @@ a {
 }
 .btn_group p {
 	font-size: 15px;
+	margin-bottom: 40px;
 }
 .btn_group p a:hover {
 	color: RGB(18, 165, 244);
@@ -217,7 +218,7 @@ a {
 	height: 40px;
 	font-size: 14px;
 	font-weight: 400;
-	margin-left: 370px;
+	margin-left: 135px;
     margin-right: 10px;
 	background-color: RGB(18, 165, 244)!important;
 	border: none;

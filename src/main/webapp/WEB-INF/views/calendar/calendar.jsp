@@ -98,25 +98,10 @@ $(document).ready(function(){
 				</div>
 				<div class="contents_wrapper">
 					<div id='calendar'></div>
-					<div class="container">
-					<%-- <input type="hidden" id="cal" value = "${view.date_start}"> --%>
-					
-					  <!-- admin -->
-					  <c:if test="${member.kind eq null}">
-					  </c:if>
-					  <c:if test="${member.kind != null}">
-					  </c:if> 
-					  <c:if test="${member.kind eq normal}">
-					  </c:if>
-					   <c:if test="${member.kind eq student}">
-					  </c:if>
-					   <c:if test="${member.kind eq teacher}">
-					  </c:if>
 					  <c:if test="${member.kind eq 'admin'}">
-					   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">추가</button>
+					   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" style="position: relative; top: -583px; right: -667px;">추가</button>
 					  </c:if>
-					  <!-- admin -->
-					  
+					<div class="container">
 					  <!-- Modal -->
 					  <div class="modal fade" id="myModal" role="dialog">
 					    <div class="modal-dialog">
