@@ -1,5 +1,7 @@
 package com.fp.reply;
 
+import java.sql.Date;
+
 import com.fp.board.BoardDTO;
 
 public class ReplyDTO extends BoardDTO{
@@ -8,8 +10,15 @@ public class ReplyDTO extends BoardDTO{
 	private int ref;
 	private int step;
 	private int depth;
+	private Date reply_date;
 	
 	
+	public Date getReply_date() {
+		return reply_date;
+	}
+	public void setReply_date(Date reply_date) {
+		this.reply_date = reply_date;
+	}
 	public int getReply_seq() {
 		return reply_seq;
 	}

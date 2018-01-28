@@ -1,5 +1,7 @@
 package com.fp.reply;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,4 +14,18 @@ public class ReplyDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "replyMapper.";
 	
+	
+	public int freeboardInsert(ReplyDTO replyDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"freeboardReplyInsert", replyDTO);
+	}
+	
+	
+	public List<ReplyDTO> selectList(int board_seq) throws Exception {
+		System.out.println(board_seq);
+		return sqlSession.selectList(NAMESPACE+"replyList", board_seq);
+	}
+
+	public int reply_seq() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"reply_seq");
+	}
 }

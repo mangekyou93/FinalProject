@@ -11,5 +11,6 @@
  		<typeAlias type="com.fp.teacher.TeacherDTO" alias="TeacherDTO"/>
  		<typeAlias type="com.fp.calendar.CalendarDTO" alias="CalendarDTO"/>
  		<typeAlias type="com.fp.sign.SignDTO" alias="SignDTO"/>
+ 		<typeAlias type="com.fp.notice.NoticeDTO" alias="NoticeDTO"/>
  	</typeAliases>
  </configuration>

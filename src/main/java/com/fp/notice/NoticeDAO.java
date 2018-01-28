@@ -20,20 +20,17 @@ public class NoticeDAO implements BoardDAO{
 	
 	@Override
 	public List<BoardDTO> selectList(RowNum rowNum) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(NAMESPACE+"selectList", rowNum);
 	}
 
 	@Override
-	public BoardDTO selectOne(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public BoardDTO selectOne(int board_seq) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"selectOne", board_seq);
 	}
 
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(NAMESPACE+"insert", boardDTO);
 	}
 
 	@Override
@@ -50,8 +47,7 @@ public class NoticeDAO implements BoardDAO{
 
 	@Override
 	public int totalCount(RowNum rowNum) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(NAMESPACE+"totalCount", rowNum);
 	}
 
 	@Override

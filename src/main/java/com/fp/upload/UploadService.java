@@ -1,10 +1,14 @@
 package com.fp.upload;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.fp.member.MemberDTO;
+import com.fp.util.FileSaver;
 
 @Service
 public class UploadService {
@@ -31,5 +35,11 @@ public class UploadService {
 	public int memberImageUpdate(UploadDTO uploadDTO) throws Exception {
 		
 		return uploadDAO.memberImageUpdate(uploadDTO);
+	}
+//자유게시판 파일 임시 업로드
+	public String boardFileInsert(MultipartFile[] file, HttpSession session) throws Exception {
+		FileSaver fileSaver = new FileSaver();
+		String fileName = fileSaver.fileSave(file, session, "upload");
+		return fileName;
 	}
 }
