@@ -181,12 +181,12 @@
 			if ($("#username").val() == msg.substring(0, 3)) {
 				$("#chatMessageArea")
 						.append(
-								'<div id="fade-in" class="list-group-item list-group-item-warning" style="color : red;text-align: right;">'
+								'<div id="fade-in" class="list-group-item list-group-item-warning" style="color : red;text-align: right;margin-top:2%;">'
 										+ "나" + msg.substring(3) + '</div>');
 			} else {
 				$("#chatMessageArea")
 						.append(
-								'<div id="fade-in" class="list-group-item list-group-item-info" style="color : blue;text-align: left;">'
+								'<div id="fade-in" class="list-group-item list-group-item-info" style="color : blue;text-align: left;margin-top:2%">'
 										+ msg + '</div>');
 			}
 			/* var chatAreaHeight = $("#chatArea").height(); */
