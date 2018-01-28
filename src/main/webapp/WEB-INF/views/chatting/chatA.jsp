@@ -163,7 +163,7 @@
 		function send() {
 			var nickname = $("#nickname").val();
 			var msg = $("#message").val();
-			wsocket.send("msg:" + $("#username").val() + ":" + msg);
+			wsocket.send("msg:" + $("#username").val() + ": " + msg);
 
 			$("#message").val("");
 		}
@@ -180,14 +180,11 @@
 			var maxScroll = $("#chatMessageArea").height();
 			if ($("#username").val() == msg.substring(0, 3)) {
 				$("#chatMessageArea")
-						.append(
-								'<div id="fade-in" class="list-group-item list-group-item-warning" style="color : red;text-align: right;margin-top:2%;">'
-										+ "나" + msg.substring(3) + '</div>');
+						.append('<div style="text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+ "나" + msg.substring(3) + '</div></div>');
 			} else {
 				$("#chatMessageArea")
 						.append(
-								'<div id="fade-in" class="list-group-item list-group-item-info" style="color : blue;text-align: left;margin-top:2%">'
-										+ msg + '</div>');
+								'<div style="text-align: -webkit-left;"><div id="fade-in" class="list-group-item list-group-item-info" style=" margin-top:2%;width: fit-content;">' + msg + '</div></div>');
 			}
 			/* var chatAreaHeight = $("#chatArea").height(); */
 			$("#scroll").scrollTop(maxScroll);
@@ -206,7 +203,7 @@
 			var maxScroll = $("#chatMessageArea").height();
 			$("#chatMessageArea")
 					.append(
-							'<div id="fade-in" class="list-group-item list-group-item-danger" style="color : blue; text-align: center;">'
+							'<div id="fade-in" class="list-group-item list-group-item-danger" style="color : blue; text-align: center; margin-top:2%;">'
 									+ msg + '</div>');
 			/* var chatAreaHeight = $("#chatArea").height(); */
 			$("#scroll").scrollTop(maxScroll);
