@@ -24,15 +24,13 @@ public class NoticeDAO implements BoardDAO{
 	}
 
 	@Override
-	public BoardDTO selectOne(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public BoardDTO selectOne(int board_seq) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"selectOne", board_seq);
 	}
 
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(NAMESPACE+"insert", boardDTO);
 	}
 
 	@Override

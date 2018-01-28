@@ -5,6 +5,10 @@
   
 <mapper namespace="noticeMapper">
  	
+ 	<insert id="insert" parameterType="NoticeDTO">
+		INSERT INTO notice VALUES(board_seq.nextval,#{writer},#{title},#{contents},sysdate,0)
+ 	</insert>
+ 	
  	<select id="selectList" parameterType="com.fp.util.RowNum" resultType="NoticeDTO">
  		SELECT * FROM (SELECT rownum R, N.* FROM (SELECT * FROM notice 
  		<where>
@@ -34,5 +38,9 @@
  				contents LIKE '%'||#{search}||'%'
  			</if>
  		</where>
+ 	</select>
+ 	
+ 	<select id="selectOne" parameterType="int" resultType="NoticeDTO">
+ 		SELECT * FROM notice WHERE board_seq=#{board_seq}
  	</select>
 </mapper>

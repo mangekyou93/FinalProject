@@ -21,5 +21,4 @@
 	<insert id="memberImageUpdate" parameterType="UploadDTO">
 		INSERT INTO upload VALUES(file_seq.nextval, 0, #{member_seq}, #{file_name}, #{ori_name})
 	</insert>
-
 </mapper>

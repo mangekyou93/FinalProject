@@ -18,6 +18,10 @@
 <link href="${pageContext.request.contextPath }/resources/css/community/boardList.css" rel="stylesheet">
 <script type="text/javascript">
 	$(function(){
+		if(${message eq '작성성공'}){
+			alert("${message}");
+		}
+		
 		$(".page").click(function(){
 			 var cur = $(this).prop("title");
 			 var kind = $(".kind").val();
@@ -118,7 +122,7 @@
 							</form>
 						</div>
 							<a href="#" class="coummunity list">목록</a>
-							<c:if test="">
+							<c:if test="${member ne null}">
 								<a href="${pageContext.request.contextPath}/notice/freeboardInsert" class="coummunity write">글쓰기</a>
 							</c:if>
 					</div>

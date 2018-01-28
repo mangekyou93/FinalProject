@@ -1,5 +1,7 @@
 package com.fp.reply;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +20,6 @@ public class ReplyService implements BoardService{
 	
 	@Override
 	public ModelAndView selectList(ListData listData, ModelAndView mv) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -45,5 +46,15 @@ public class ReplyService implements BoardService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	public int freeboardInsert(ReplyDTO replyDTO) throws Exception {
+		int reply_seq = replyDAO.reply_seq();
+		replyDTO.setReply_seq(reply_seq);
+		replyDTO.setRef(reply_seq);
+		return replyDAO.freeboardInsert(replyDTO);
+	}
+	
+	public List<ReplyDTO> freeboardList(int board_seq) throws Exception {
+		return replyDAO.selectList(board_seq);
+	}
 }
