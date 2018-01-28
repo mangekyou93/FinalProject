@@ -93,33 +93,15 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="rightContents">
-					<div class="right_img">
-						<img alt="" src="${pageContext.request.contextPath}/resources/images/cal_1.PNG" style="width:100%; height: 100%;">
-					</div>
 				<div class="contents_header">
 					${menuTitle}			
 				</div>
 				<div class="contents_wrapper">
 					<div id='calendar'></div>
-					<div class="container">
-					<%-- <input type="hidden" id="cal" value = "${view.date_start}"> --%>
-					
-					  <!-- admin -->
-					  <c:if test="${member.kind eq null}">
-					  </c:if>
-					  <c:if test="${member.kind != null}">
-					  </c:if> 
-					  <c:if test="${member.kind eq normal}">
-					  </c:if>
-					   <c:if test="${member.kind eq student}">
-					  </c:if>
-					   <c:if test="${member.kind eq teacher}">
-					  </c:if>
 					  <c:if test="${member.kind eq 'admin'}">
-					   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">추가</button>
+					   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" style="position: relative; top: -583px; right: -667px;">추가</button>
 					  </c:if>
-					  <!-- admin -->
-					  
+					<div class="container">
 					  <!-- Modal -->
 					  <div class="modal fade" id="myModal" role="dialog">
 					    <div class="modal-dialog">
@@ -188,7 +170,7 @@ $(document).ready(function(){
 					    <th>과목</th>
 					    <th>개강일</th>
 					    <th>종강일</th>
-					    <c:if test="${member.kind eq 'admin'}">
+					    <c:if test="${member.kind eq 'normal'}">
 					    <th></th>
 					    </c:if>
 					  </tr>
@@ -199,9 +181,6 @@ $(document).ready(function(){
 					    <td>${dto.date_start}</td>
 					    <td>${dto.date_end}</td>
 					    <c:if test="${member.kind eq 'normal'}">
-					    <td><a href="${pageContext.request.contextPath}/sign/sign_apply">신청</a></td>
-					    </c:if>
-					    <c:if test="${member.kind eq 'student'}">
 					    <td><a href="${pageContext.request.contextPath}/sign/sign_apply">신청</a></td>
 					    </c:if>
 					  </tr>
