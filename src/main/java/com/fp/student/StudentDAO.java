@@ -24,4 +24,9 @@ public class StudentDAO {
 		
 		return sqlSession.delete(NAMESPACE+"memberDelete", member_seq);
 	}
+//학생회원 추가
+	public int memberInsert(StudentDTO studentDTO) throws Exception {
+		
+		return sqlSession.insert(NAMESPACE+"memberInsert", studentDTO);
+	}
 }

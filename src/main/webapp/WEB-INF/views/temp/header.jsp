@@ -26,7 +26,11 @@
 	<div class="header_wrap">
 		<div class="header_menu_wrap">
 			<div class="logo_wrap">
-				<a href="${pageContext.request.contextPath }"><img style="width:220px;height:90px;margin-bottom:20px;margin-left:70px;" alt="logo" src="${pageContext.request.contextPath }/resources/images/logo.png"></a>
+				<a href="${pageContext.request.contextPath }">
+				<%-- 
+					<img style="width:220px;height:90px;margin-bottom:20px;margin-left:70px;" alt="logo" src="${pageContext.request.contextPath }/resources/images/logo.png">
+				 --%>
+				</a>
 			</div>
 				<div class="header_nav_wrap">
 	               <div class="header_nav_info">
@@ -148,7 +152,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 style="font-size: 25px; font-weight: bold;">회원 로그인</h4>
         </div>
-        <div class="modal-body" style="height: 260px;">
+        <div class="modal-body" style="height: 290px;">
           <form class="modal_frm" action="${pageContext.request.contextPath}/member/memberLogin">
             <div class="form-group">
               <label for="logId" style="display: block;"><span class="glyphicon glyphicon-user" style="top: 3px;"></span> ID</label>
@@ -164,6 +168,7 @@
 					<span>&nbsp; | &nbsp;</span>
 					<a href="${pageContext.request.contextPath}/member/memberFind">ID/PW 찾기</a>
 				</p>
+				<div id="naver_id_login" style="display: inline-block;"></div>
 	            <button type="submit" class="btn btn-default btn-success btn-block">
 	            	<span class="glyphicon glyphicon-off" style="top: 3px;"></span> 로그인
 	           	</button>
@@ -172,10 +177,6 @@
 		        </button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-			<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-			  <div id="naver_id_login"></div>
         </div>
       </div>
     </div>

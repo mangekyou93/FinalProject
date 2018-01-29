@@ -12,15 +12,8 @@ public class SignDTO extends CalendarDTO{
 	private String F_edu;
 	private String purpose;
 	private String resolution;
-	private String location;
-	private int sid;
-	
-	public int getSid() {
-		return sid;
-	}
-	public void setSid(int sid) {
-		this.sid = sid;
-	}
+
+
 	public String getMajor() {
 		return major;
 	}
@@ -69,10 +62,5 @@ public class SignDTO extends CalendarDTO{
 	public void setResolution(String resolution) {
 		this.resolution = resolution;
 	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
+
 }

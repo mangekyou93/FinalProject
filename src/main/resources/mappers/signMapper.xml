@@ -6,7 +6,8 @@
   <mapper namespace="signMapper">
   
   <insert id="insert" parameterType="SignDTO">
-		insert into sign values(#{major},#{type},#{name},#{birth},#{phone},#{F_edu},#{purpose},#{resolution},#{location},#{sid})
+		insert into sign values(#{major},#{type},#{name},#{birth},#{phone},#{F_edu},#{purpose},#{resolution})
+		<!-- #{major},#{type}, -->
   	</insert>
   	
   	<select id="selectList">
@@ -21,7 +22,7 @@
   </resultMap>
   
   <select id="selectOne" parameterType="int" resultMap="signResult">
-  	 select * from sign where sid=#{sid}
-  	 <!-- select * from calender a, sign b where a.id = b.sid -->
+  			select * from sign where sid=#{sid}
+  	 	 <!-- select * from calendar a, sign b where a.{id} = b.{sid} -->
   </select>
   </mapper>

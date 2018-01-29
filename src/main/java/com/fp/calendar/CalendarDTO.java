@@ -8,7 +8,6 @@ public class CalendarDTO {
 	private String contents;
 	private String date_start;
 	private String date_end;
-	
 	private String classname;
 
 	public int getNum() {

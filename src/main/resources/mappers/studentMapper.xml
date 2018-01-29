@@ -32,5 +32,9 @@
 	<delete id="memberDelete" parameterType="int">
 		DELETE student WHERE member_seq=#{member_seq}
 	</delete>
+<!-- 학생 추가 -->
+	<insert id="memberInsert" parameterType="StudentDTO">
+		INSERT into student VALUES(#{member_seq}, #{classname})
+	</insert>
 
 </mapper>

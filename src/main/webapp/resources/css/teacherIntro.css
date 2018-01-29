@@ -105,6 +105,9 @@ section {
 .career_header {
 	font-size: 20px;
 }
-.career_contents {
-	
+.career_contents p {
+	font-size: 17px;
+    line-height: 35px;
+    padding-left: 15px;
+    margin-top: 10px;
 }

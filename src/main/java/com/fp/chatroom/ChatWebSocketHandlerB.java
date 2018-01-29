@@ -38,9 +38,9 @@ public class ChatWebSocketHandlerB extends TextWebSocketHandler {
 		usercount= "유저수:" + guestlist.size();
 		
 		data = "접속자:";
-		data = data +" ●" + guestlist.get(0);
+		data = data +"<div>"+ "<img src='resources/images/online.png'>" + guestlist.get(0)+"</div>";
 		for(int i=1; i< guestlist.size();i++){
-			data = data +  " ●" + guestlist.get(i);
+			data = data +"<div style='margin-top:3%;'>"+ "<img src='resources/images/online.png'>" + guestlist.get(i)+"</div>";
 			/*addguestlist(session);*/
 
 		}
@@ -88,9 +88,9 @@ public class ChatWebSocketHandlerB extends TextWebSocketHandler {
 		for (WebSocketSession s : users.values()){
 			System.out.println(s.getId());
 		}
-		data = data + " ●" +guestlist.get(0);
+		data = data + "<div>"+ "<img src='resources/images/online.png'>" +guestlist.get(0)+"</div>";
 		for(int i=1; i< guestlist.size();i++){
-			data = data +  " ●" + guestlist.get(i);
+			data = data +  "<div style='margin-top:3%;'>"+ "<img src='resources/images/online.png'>" + guestlist.get(i)+"</div>";
 			/*addguestlist(session);*/
 
 		}

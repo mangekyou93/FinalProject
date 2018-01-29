@@ -41,4 +41,18 @@ public class TeacherService {
 		
 		return teacherDAO.memberDelete(member_seq);
 	}
+	
+//강사 커리어 수정
+	public String careerWrite(TeacherDTO teacherDTO) throws Exception {
+		
+		int result = teacherDAO.careerWrite(teacherDTO);
+		String message = "경력을 수정하지 못했습니다.";
+		
+		if(result > 0)
+		{
+			message = "경력을 수정하였습니다.";
+		}
+		
+		return message;
+	}
 }

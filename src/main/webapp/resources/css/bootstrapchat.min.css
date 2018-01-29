@@ -1663,6 +1663,7 @@ pre code {
 	width: 81%;
 	border:solid;
 	border-radius: 8px;
+	background-color: #85a3e0;
 	
 }
 
@@ -5382,7 +5383,7 @@ a.list-group-item-success.active, a.list-group-item-success.active:hover,
 }
 
 .list-group-item-info {
-	color: #31708f;
+	color: #000;
 	background-color: #d9edf7
 }
 
@@ -5395,7 +5396,7 @@ a.list-group-item-info .list-group-item-heading {
 }
 
 a.list-group-item-info:hover, a.list-group-item-info:focus {
-	color: #31708f;
+	color: #000;
 	background-color: #c4e3f3
 }
 
@@ -5407,8 +5408,8 @@ a.list-group-item-info.active, a.list-group-item-info.active:hover, a.list-group
 }
 
 .list-group-item-warning {
-	color: #8a6d3b;
-	background-color: #fcf8e3
+	color: #000;
+	background-color: #ffff80;
 }
 
 a.list-group-item-warning {

@@ -46,4 +46,9 @@ public class TeacherDAO {
 		
 		return sqlSession.delete(NAMESPACE+"memberDelete", member_seq);
 	}
+//강사 커리어 수정
+	public int careerWrite(TeacherDTO teacherDTO) throws Exception {
+		
+		return sqlSession.update(NAMESPACE+"careerWrite", teacherDTO);
+	}
 }
