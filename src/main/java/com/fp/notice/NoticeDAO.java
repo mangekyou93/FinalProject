@@ -40,9 +40,8 @@ public class NoticeDAO implements BoardDAO{
 	}
 
 	@Override
-	public int delete(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(int board_seq) throws Exception {
+		return sqlSession.delete(NAMESPACE+"noticeDelete", board_seq);
 	}
 
 	@Override
@@ -60,6 +59,10 @@ public class NoticeDAO implements BoardDAO{
 	public int getNum() throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public int select_board_seq() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"select_board_seq");
 	}
 
 }

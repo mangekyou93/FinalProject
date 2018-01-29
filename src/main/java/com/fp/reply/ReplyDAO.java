@@ -28,4 +28,9 @@ public class ReplyDAO {
 	public int reply_seq() throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"reply_seq");
 	}
+	
+	public int replyDelete(int board_seq) throws Exception {
+		return sqlSession.delete(NAMESPACE+"replyDelete", board_seq);
+	}
+	
 }

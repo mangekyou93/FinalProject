@@ -92,9 +92,10 @@
             this.size = $("<div class='filesize'></div>").appendTo(this.statusbar);
             this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
             this.abort = $("<div class='abort'>중지</div>").appendTo(this.statusbar);
-            this.del = $("<input type='button' id='"+delCount+"' class='clickBtn'>").appendTo(this.statusbar);
+            this.del = $("<input type='button' id='clickBtn"+delCount+"' class='clickBtn'>").appendTo(this.statusbar);
+            
             $("#fileBox").append(this.statusbar);
-            delCount++;
+          
             this.setFileNameSize = function(name,size){
                 var sizeStr="";
                 var sizeKB = size/1024;
@@ -129,7 +130,7 @@
             }
         }
         var fileNameAr = [];
-        var count = 0;
+        var count = 1;
         function sendFileToServer(formData,status)
         {
             var uploadURL = "${pageContext.request.contextPath}/upload/boardInsert"; //Upload URL
@@ -161,7 +162,6 @@
                     status.setProgress(100);
           			fileNameAr.push(data);
           			$("#frm").append('<div><input type="hidden" id="ori'+count+'" name="oriName" value='+data+'></div>');
-          			count++;
                     //$("#status1").append("File upload Done<br>");           
                 }
             }); 
@@ -181,14 +181,34 @@
         		data:{
         			fileName:fileName
         		}, success:function(data){
-        			$("#ori"+str).remove();
         			$(del).parent().remove();
+        		}
+        	})
+        });
+        
+        $("clickBtn").click(function(){
+        	var index = $(this).prop("title");
+        	var title_value = $("#upload"+index).prop("title");
+        	$.ajax({
+        		url:"../upload/fileFakeDelete",
+        		type:"post",
+        		data:{
+        			fileName:title_value
+        		}, success:function(data){
+        			$("#uploadDel"+index).remove();
         		}
         	})
         });
      });
 	
 </script>
+<style>
+	.fileUpdate {
+		height: 37px;
+    	background: #EBEFF0;
+    	padding: 10px 10px 0 10px;	
+	}
+</style>
 </head>
 <body>
 	<!--  header start -->
@@ -220,15 +240,19 @@
 				<div class="contents_wrapper">
 					<div class="contents_input_warp">
 						<form id="frm" name="frm" method="post" action="./freeboardInsert" enctype="multipart/form-data">
-						<input type="hidden" name="writer" value="${member.name }">
-						<input type="hidden" name="writer" value="${member.member_seq }">
+						<input type="hidden" name="writer" value="${list.writer}">
 						<div>
-							<input type="text" placeholder="제목을 입력해주세요" name="title" class="coumunity_input_title"> 
+							<input type="text" placeholder="제목을 입력해주세요" name="title" value="${list.title }" class="coumunity_input_title"> 
 						</div>
-						<textarea rows="10" cols="100" name="contents" id="contents" style="height:500px;"></textarea>
+						<textarea rows="10" cols="100" name="contents" id="contents" style="height:500px;">${list.contents }</textarea>
 						<div class="community_file_warp">파일 업로드</div>
 						<div id="fileUpload" class="dragAndDropDiv">파일을 올려주세요</div>
+						<c:forEach items="${files}" var="fileNames" varStatus="status">
+							<div class="fileUpdate"><div id="uploadDel${status.index }" title="${fileNames.file_name }" class="fileUpdateClick" style="margin-right: 5px;">${fileNames.file_name }<input type='button' id='clickBtn' style="padding-left: 10px;" title="${status.index }" value="X" class='clickBtn'></div></div>
+						</c:forEach>
 						<div id="fileBox"></div>
+						
+						
 							<input type="button" value="취소" id="community_cancle">
 							<input type="button" value="작성" id="community_insert">
 						</form>

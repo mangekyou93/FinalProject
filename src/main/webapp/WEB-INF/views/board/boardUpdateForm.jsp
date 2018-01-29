@@ -92,9 +92,10 @@
             this.size = $("<div class='filesize'></div>").appendTo(this.statusbar);
             this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
             this.abort = $("<div class='abort'>중지</div>").appendTo(this.statusbar);
-            this.del = $("<input type='button' id='"+delCount+"' class='clickBtn'>").appendTo(this.statusbar);
+            this.del = $("<input type='button' id='clickBtn"+delCount+"' class='clickBtn'>").appendTo(this.statusbar);
+            
             $("#fileBox").append(this.statusbar);
-            delCount++;
+          
             this.setFileNameSize = function(name,size){
                 var sizeStr="";
                 var sizeKB = size/1024;
@@ -129,7 +130,7 @@
             }
         }
         var fileNameAr = [];
-        var count = 0;
+        var count = 1;
         function sendFileToServer(formData,status)
         {
             var uploadURL = "${pageContext.request.contextPath}/upload/boardInsert"; //Upload URL
@@ -161,7 +162,6 @@
                     status.setProgress(100);
           			fileNameAr.push(data);
           			$("#frm").append('<div><input type="hidden" id="ori'+count+'" name="oriName" value='+data+'></div>');
-          			count++;
                     //$("#status1").append("File upload Done<br>");           
                 }
             }); 
@@ -181,7 +181,6 @@
         		data:{
         			fileName:fileName
         		}, success:function(data){
-        			$("#ori"+str).remove();
         			$(del).parent().remove();
         		}
         	})
@@ -229,6 +228,7 @@
 						<div class="community_file_warp">파일 업로드</div>
 						<div id="fileUpload" class="dragAndDropDiv">파일을 올려주세요</div>
 						<div id="fileBox"></div>
+						
 							<input type="button" value="취소" id="community_cancle">
 							<input type="button" value="작성" id="community_insert">
 						</form>

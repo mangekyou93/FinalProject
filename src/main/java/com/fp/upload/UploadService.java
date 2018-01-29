@@ -1,5 +1,8 @@
 package com.fp.upload;
 
+import java.io.File;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -41,5 +44,25 @@ public class UploadService {
 		FileSaver fileSaver = new FileSaver();
 		String fileName = fileSaver.fileSave(file, session, "upload");
 		return fileName;
+	}
+	
+	public int boardDelete(int board_seq) throws Exception {
+		return uploadDAO.noticeDelete(board_seq);
+	}
+
+	public int boardDelete(String fileName, HttpSession session) throws Exception {
+		String path  = session.getServletContext().getRealPath("resources/upload/"+fileName);
+		File file = new File(path);
+		int count = 0;
+		if(file.exists()){
+			file.delete();
+			count++;
+		}
+		
+		return count;
+	}
+	
+	public List<UploadDTO> boardSelect(int board_seq) throws Exception {
+		return uploadDAO.noticeSelect(board_seq);
 	}
 }

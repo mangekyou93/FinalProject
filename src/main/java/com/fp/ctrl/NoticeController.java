@@ -20,6 +20,8 @@ import com.fp.notice.NoticeDTO;
 import com.fp.notice.NoticeService;
 import com.fp.reply.ReplyDAO;
 import com.fp.reply.ReplyDTO;
+import com.fp.upload.UploadDTO;
+import com.fp.upload.UploadService;
 
 @Controller
 @RequestMapping(value="/notice/*")
@@ -29,6 +31,8 @@ public class NoticeController {
 	NoticeService noticeService;
 	@Inject
 	ReplyDAO replyDAO;
+	@Inject
+	UploadService uploadService;
 
 	//게시판 리스트 
 		@RequestMapping(value="freeboard")
@@ -70,12 +74,13 @@ public class NoticeController {
 		}
 		//게시판 작성 실제 처리
 		@RequestMapping(value="freeboardInsert", method=RequestMethod.POST) 
-		public String freeboardInsert(RedirectAttributes rd, HttpSession session, BoardDTO boardDTO, HttpServletRequest request) {
-			System.out.println("writer"+boardDTO.getWriter());
+		public String freeboardInsert(RedirectAttributes rd, HttpSession session, BoardDTO boardDTO, HttpServletRequest request, String[] oriName) {
+			System.out.println("writer"+boardDTO.getBoard_seq());
 			int result = 0;
 			String message = "작성실패";
+			
 			try {
-				result = noticeService.insert(boardDTO);
+				result = noticeService.insert(boardDTO, oriName);
 				if(result>0) {
 					message="작성성공";
 				}
@@ -90,6 +95,7 @@ public class NoticeController {
 		public ModelAndView freeboardOne(int board_seq, ModelAndView mv, HttpSession session) {
 			BoardDTO noticeDTO = new NoticeDTO();
 			List<ReplyDTO> ar = null;
+			List<UploadDTO> file = null;
 			if(session.getAttribute("member") != null){
 				MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 				mv.addObject("member", memberDTO);
@@ -97,14 +103,62 @@ public class NoticeController {
 			
 			try {
 				noticeDTO = noticeService.selectOne(board_seq);
+				file = uploadService.boardSelect(board_seq);
 				System.out.println("seq : "+board_seq);
 				ar = replyDAO.selectList(board_seq);
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			mv.addObject("view", noticeDTO).addObject("menuTitle", "자유게시판").addObject("list", ar);
+			
+			mv.addObject("view", noticeDTO).addObject("menuTitle", "자유게시판").addObject("list", ar).addObject("files", file);
 			mv.setViewName("board/boardView");
+			return mv;
+		}
+		//게시판 삭제
+		@RequestMapping(value="delete")
+		public String freeboardDelete(int board_seq, ModelAndView mv, HttpSession session) {
+			try {
+				noticeService.delete(board_seq, session);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "redirect:./freeboard";
+		}
+		
+		public String freeboardUpdate(int board_seq, ModelAndView mv) {
+			
+		 	try {
+				BoardDTO boardDTO = noticeService.selectOne(board_seq);
+				mv.addObject("view", boardDTO).addObject("menuTitle", "자유게시판");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "board/boardUpdateForm";
+		}
+		
+		@RequestMapping(value="update")
+		public ModelAndView freeboardUpdate(ModelAndView mv, BoardDTO boardDTO, HttpSession session) {
+			if(session.getAttribute("member") != null){
+				MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+				List<UploadDTO> uploadDTO = null;
+				try {
+					boardDTO = noticeService.selectOne(boardDTO.getBoard_seq());
+					uploadDTO = uploadService.boardSelect(boardDTO.getBoard_seq());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				mv.addObject("member", memberDTO).addObject("list", boardDTO).addObject("files", uploadDTO);
+				mv.setViewName("board/boardUpdateForm2");
+			} else {
+				mv.setViewName("/");
+			}
+			
+			
+			
+			mv.addObject("menuTitle", "게시글 수정");
 			return mv;
 		}
 }

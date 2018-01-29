@@ -54,7 +54,7 @@ public class FileSaver {
 			
 			fileName = multipartFile[i].getOriginalFilename();
 			fileName.substring(fileName.lastIndexOf('.'));
-			fileName = UUID.randomUUID().toString()+fileName;
+			fileName = UUID.randomUUID().toString()+"#"+fileName;
 			file = new File(filePath, fileName);
 			multipartFile[i].transferTo(file);
 		}

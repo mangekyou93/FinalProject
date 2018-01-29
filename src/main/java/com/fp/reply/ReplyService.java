@@ -42,9 +42,8 @@ public class ReplyService implements BoardService{
 	}
 
 	@Override
-	public int delete(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(int board_seq) throws Exception {
+		return replyDAO.replyDelete(board_seq);
 	}
 	
 	public int freeboardInsert(ReplyDTO replyDTO) throws Exception {

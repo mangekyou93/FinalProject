@@ -1,5 +1,7 @@
 package com.fp.upload;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -33,5 +35,17 @@ public class UploadDAO {
 	public int memberImageUpdate(UploadDTO uploadDTO) throws Exception {
 		
 		return sqlSession.insert(NAMESPACE+"memberImageUpdate", uploadDTO);
+	}
+	
+	public int noticeInsert(UploadDTO uploadDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"noticeInsert", uploadDTO);
+	}
+	
+	public int noticeDelete(int board_seq) throws Exception {
+		return sqlSession.delete(NAMESPACE+"noticeDelete", board_seq);
+	}
+	
+	public List<UploadDTO> noticeSelect(int board_seq) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"noticeSelect", board_seq);
 	}
 }

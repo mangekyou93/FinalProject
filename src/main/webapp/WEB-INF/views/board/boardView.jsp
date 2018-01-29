@@ -160,22 +160,61 @@ section {
 }
 .reply_writer {
 	display: inline-block;
-	vertical-align: top;
+    padding-left: 25px;
+    padding-top: 20px;
+    vertical-align: top;
+    font-weight: bold;
 }
 .reply_contents {
 	display: inline-block;
 }
 .community_reply_wrap {
     margin-top: 20px;
-    padding-bottom: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
     border-bottom: 1px dotted #ddd;
 }
 .reply_contents_wrap_M {
     display: inline-block;
-    border: 1px solid;
-    /* margin-left: 50px; */
-    margin-left: 50px;
+    margin-left: 26px;
+    border-left: 2px solid #ddd;
+    padding-left: 20px;
     width: 600px;
+}
+.view_reply_buttons {
+	height: 90px;
+	width: 120px;
+	position: absolute;
+	background-color: #3f4b5e;
+	font-size: 17px;
+    font-weight: bold;
+    color: white;
+    border:0;
+    margin-left: 15px;
+}
+.up, .del {
+	float:right;
+}
+.del {
+	margin-left: 5px;
+}
+#file_output {
+	border: 0;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+.fileDownload {
+    margin-top: 5px;
+}
+.view_reply_wraps {
+	width:100%;
+	height: 180px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    padding-top: 35px;
+    padding-left: 41px;
 }
 </style>
 <script>
@@ -191,7 +230,6 @@ section {
 		
 	    $(".view_reply_button").click(function(){
 	    	var writer = '${member.name}';
-	    	
 	    	if(${member eq null}){
 	    		alert("로그인 후 댓글 작성이 가능합니다.");
 	    		location.reload();
@@ -206,12 +244,21 @@ section {
 	    					board_seq:${view.board_seq}
 	    				},
 	    				success:function(data){
-
+	    					$('.community_reply_contents_wrap').html(data);
 	    				}
 	    		});
 	    			}
-	    		});
-	    });
+		    	});
+	    var count = 0;
+	    $(".fileDownload").hide();
+	   	$("#file_output").click(function(){
+	   		$(".fileDownload").toggle("slow");
+	   	});
+	   	$(".clickReply").click(function(){
+	   		var thisDiv = $(this).prop("title");
+	   		$(".checkReply"+thisDiv).append("<div class='view_reply_wraps'><div class='view_reply_contents_wrap'><textarea class='view_reply_contents' name='contents'></textarea><input type='button' class='view_reply_buttons' value='댓글 등록'><p class='check_wirte'></p></div></div>");
+	   	});
+	  });
 </script>
 </head>
 <body>
@@ -247,28 +294,38 @@ section {
 						<div class="view_hit"><img style="padding-right: 5px;" src="${pageContext.request.contextPath }/resources/images/icon_view.png">${view.hit } <span class="view_date">${view.reg_date }</span></div>
 						<div class="view_contents">${view.contents}</div>
 					</div>
+					<button type="button" id="file_output">파일첨부 <img src="${pageContext.request.contextPath }/resources/images/icon_reply01.png"></button>
+					<div class="fileDownload">
+					<c:forEach items="${files}" var="fileNames">
+						<span style="margin-right: 5px;"><a href="../upload/filedown?file_name=${fileNames.file_name }&ori_name=${fileNames.ori_name}">${fileNames.file_name }</a></span>
+					</c:forEach>
+					</div>
 					<div class="view_listBack">
 						<a href="./freeboard"><input style="margin-left: 5px;" class="btn btn-default" type="button" value="목록"></a>
+						<a href="./delete?board_seq=${view.board_seq}"><input class="del btn btn-default" type="button" value="삭제"></a>
+						<a href="./update?board_seq=${view.board_seq}"><input class="up btn btn-default" type="button" value="수정"></a>
 					</div>
 					<div class="view_reply_wrap">
 						<div class="view_reply_contents_wrap">
 							<textarea class="view_reply_contents" name="contents"></textarea>
 								<input type="button" class="view_reply_button" value="댓글 등록">
 							<p class="check_wirte"></p>
+							
 						</div>
-					</div> 
-					<div class="community_reply_contents_wrap">
-						<c:forEach items="${list}" var="dto2">
-							<div class="community_reply_wrap">
-								<p class="reply_writer">${dto2.writer }</p>
-								<div class="reply_contents_wrap_M">
-								<p class="reply_contents">${dto2.contents }</p>
-								<p style="font-size: 12px;color: #aaa;" class="reply_date_wrap">${dto2.reply_date }<span style="padding-left: 10px;font-size: 12px;color: RGB(18, 165, 244);">답글 달기</span></p>
-								</div>
-							</br>
-							</div>
-						</c:forEach>
 					</div>
+					<div class="community_reply_contents_wrap">
+                  <c:forEach items="${list}" var="dto2" varStatus="status">
+                     <div class="community_reply_wrap">
+                        <p class="reply_writer">${dto2.writer }</p>
+                        <div class="reply_contents_wrap_M">
+                        <p class="reply_contents">${dto2.contents }</p>
+                        <p style="font-size: 12px;color: #aaa;" class="reply_date_wrap">${dto2.reply_date }<span class="clickReply" title="${status.index }" style="padding-left: 10px;font-size: 12px;color: RGB(18, 165, 244);">답글 달기</span></p>
+                        </div>
+                     <br>
+                     </div>
+                     <div class="checkReply${status.index }"></div>
+                  </c:forEach>
+               </div> 
 				</div>
 			</div>
 		</div>

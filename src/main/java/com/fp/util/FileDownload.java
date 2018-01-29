@@ -25,9 +25,10 @@ public class FileDownload extends AbstractView {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentLength((int)file.length());					//내가 보내주는 파일의 크기
 		
-		String oriName= (String)model.get("oriname");
+		String oriName= (String)model.get("oriName");
+		System.out.println("D_ori_name : "+oriName);
 		String fileName = URLEncoder.encode(oriName, "UTF-8");	//파일명을 UTF-8로 인코딩
-		
+		System.out.println("D_file_namme : "+fileName);
 		response.setHeader("Content-Disposition", "attachment;filename=\""+fileName+"\"");
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		

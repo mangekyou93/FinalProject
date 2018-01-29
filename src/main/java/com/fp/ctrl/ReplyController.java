@@ -25,7 +25,6 @@ public class ReplyController {
 	
 	@RequestMapping(value="freeboardreplyInsert", method=RequestMethod.POST)
 	public ModelAndView freeboardreplyInsert(ReplyDTO replyDTO, HttpSession session, ModelAndView mv) {
-		System.out.println("리플라");
 		int result = 0;
 		List<ReplyDTO> ar = new ArrayList<ReplyDTO>();
 		try {
@@ -50,4 +49,6 @@ public class ReplyController {
 		
 		return mv;
 	}
+	
+	
 }

@@ -16,4 +16,8 @@
  	<select id="replyList" parameterType="int" resultType="com.fp.reply.ReplyDTO">
  		SELECT * FROM reply WHERE board_seq=#{board_seq} ORDER BY reply_seq desc
  	</select>
+ 	
+ 	<delete id="replyDelete" parameterType="int">
+ 		DELETE reply WHERE board_seq=#{board_seq}
+ 	</delete>
 </mapper>
