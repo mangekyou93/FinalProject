@@ -5091,10 +5091,11 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   border-top-right-radius: 0;
 }
 .share {
-  background-color: #ffb366;
   position: relative;
-  border-radius: 6px;
   overflow:auto; 
+  border: solid;
+  border-radius: 8px;
+  background-color: #fff;
 }
 .share ul {
   list-style-type: none;

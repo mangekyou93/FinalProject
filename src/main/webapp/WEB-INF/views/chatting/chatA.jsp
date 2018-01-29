@@ -84,23 +84,23 @@
 			<!-- /navbar -->
 		</div>
 		<div class="row">
-			<div class="col-xs-2">
-				<h4>
+			<div style="text-align: center;" class ="col-xs-2">
+				<h9>
 					접속자 [
 					<div id=usercount style="display: inline-block"></div>
 					]
-				</h4>
+				</h9>
 				<div class="share">
 					<ul ng-repeat="participant in participants">
 						<li>
-							<div id=guest style="margin-right: 56%"></div>
+							<div id=guest></div>
 
 						</li>
 					</ul>
 				</div>
 			</div>
 			<div style="text-align: center">
-				<h4>대화 내용</h4>
+				<h9>대화 내용</h9>
 			</div>
 			<div class="col-xs-8 chat-box" id="scroll">
 
@@ -163,28 +163,28 @@
 		function send() {
 			var nickname = $("#nickname").val();
 			var msg = $("#message").val();
-			wsocket.send("msg:" + $("#username").val() + ": " + msg);
+			wsocket.send("msg:"+ $("#username").val() + ": " + msg);
 
 			$("#message").val("");
 		}
 
 		function join() {
-			wsocket.send("log:" + "▶" + $("#username").val() + "님 입장!");
+			wsocket.send("log:" + "▶" + '<span style="font-weight:bold">'+ $("#username").val() +"</span>" + "님이 들어왔습니다.");
 		}
 
 		function out() {
-			wsocket.send("log:" + "◀" + $("#username").val() + "님이 나갔습니다.");
+			wsocket.send("log:" + "◀" + '<span style="font-weight:bold">'+$("#username").val() +"</span>" + "님이 나갔습니다.");
 		}
 
 		function appendMessage(msg) {
 			var maxScroll = $("#chatMessageArea").height();
 			if ($("#username").val() == msg.substring(0, 3)) {
 				$("#chatMessageArea")
-						.append('<div style="text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+ "나" + msg.substring(3) + '</div></div>');
+						.append('<div style="font-size: 65%;text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+'<span style="font-weight:bold">'+ "나" +'</span>' + msg.substring(3) + '</div></div>');
 			} else {
 				$("#chatMessageArea")
 						.append(
-								'<div style="text-align: -webkit-left;"><div id="fade-in" class="list-group-item list-group-item-info" style=" margin-top:2%;width: fit-content;">' + msg + '</div></div>');
+								'<div style="font-size: 65%;text-align: -webkit-left;"><div id="fade-in" class="list-group-item list-group-item-info" style=" margin-top:2%;width: fit-content;">' + msg + '</div></div>');
 			}
 			/* var chatAreaHeight = $("#chatArea").height(); */
 			$("#scroll").scrollTop(maxScroll);
@@ -192,7 +192,7 @@
 		}
 
 		function appendMessage2(msg) {
-			$("#guest").html(msg + "<br>");
+			$("#guest").html(msg);
 		}
 
 		function appendMessage3(msg) {
@@ -203,7 +203,7 @@
 			var maxScroll = $("#chatMessageArea").height();
 			$("#chatMessageArea")
 					.append(
-							'<div id="fade-in" class="list-group-item list-group-item-danger" style="color : blue; text-align: center; margin-top:2%;">'
+							'<div id="fade-in" class="list-group-item list-group-item-danger" style="font-size: 60%;color : black; text-align: center; margin-top:2%;">'
 									+ msg + '</div>');
 			/* var chatAreaHeight = $("#chatArea").height(); */
 			$("#scroll").scrollTop(maxScroll);
@@ -227,6 +227,7 @@
 			});
 			$('#exitBtn').click(function() {
 				disconnect();
+				window.close();
 			});
 			window.onbeforeunload = function() {
 
