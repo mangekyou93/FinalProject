@@ -195,11 +195,11 @@
 			var maxScroll = $("#chatMessageArea").height();
 			if ($("#username").val() == msg.substring(31, 34)) {
 				$("#chatMessageArea")
-						.append('<div style="font-size: 65%;text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+'<span style="font-weight:bold">'+ "나" +'</span>' + msg.substring(34) + '</div><span class="">'+time_str+'</span></div>');
+						.append('<div style="font-size: 65%;text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+'<span style="font-weight:bold">'+ "나" +'</span>' + msg.substring(34) + '</div><span id="fade-in">'+time_str+'</span></div>');
 			} else {
 				$("#chatMessageArea")
 						.append(
-								'<div style="font-size: 65%;text-align: -webkit-left;"><div id="fade-in" class="list-group-item list-group-item-info" style=" margin-top:2%;width: fit-content;">' + msg + '</div>'+time_str+'</div>');
+								'<div style="font-size: 65%;text-align: -webkit-left;"><div id="fade-in" class="list-group-item list-group-item-info" style=" margin-top:2%;width: fit-content;">' + msg + '</div><span id="fade-in">'+time_str+'</span></div>');
 			}
 			/* var chatAreaHeight = $("#chatArea").height(); */
 			$("#scroll").scrollTop(maxScroll);
