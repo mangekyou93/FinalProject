@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,9 +20,6 @@ public class CalendarController {
 	@Inject
 	private CalendarService calendarService;
 
-
-	
-	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
     public ModelAndView calendarList(ModelAndView mv)throws Exception{
 		mv = calendarService.selectList();
@@ -37,6 +35,14 @@ public class CalendarController {
 	public ModelAndView selectList(ModelAndView mv)throws Exception{
 		mv = calendarService.selectList();
 		return mv;
+	}
+	@RequestMapping(value="calendarSelectOne", method=RequestMethod.POST)
+	@ResponseBody
+	public CalendarDTO selectOne(int id) throws Exception {
+		
+		CalendarDTO calendarDTO = calendarService.selectOne(id);
+		
+		return calendarDTO;
 	}
 	
 	

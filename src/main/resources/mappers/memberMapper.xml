@@ -54,6 +54,10 @@
 		<update id="memberPwFindUpdate" parameterType="MemberDTO">
 			UPDATE member SET pw=#{pw} WHERE id=#{id}
 		</update>
+	<!-- 일반회원 -> 학생 -->
+		<update id="memberStudentUpdate" parameterType="MemberDTO">
+			UPDATE member SET kind='student' WHERE member_seq=#{member_seq}
+		</update>
 		
 	<!-- state Update -->
 	  	<update id="stateUpdate" parameterType="MemberDTO">
