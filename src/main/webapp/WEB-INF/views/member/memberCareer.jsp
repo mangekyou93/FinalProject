@@ -19,6 +19,22 @@
 <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/memberCareer.css" rel="stylesheet">
+<script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
+<script type="text/javascript">
+   	$(function(){
+   		
+		CKEDITOR.replace("career");
+		
+   	});
+   	
+   	$("#community_insert").click(function(){
+   		document.frm.submit();
+   	});
+   	$("#community_cancle").click(function(){
+   		history.back();
+   	});
+
+</script>
 </head>
 <body>
 <c:import url="${pageScope.pageContext.request.ContextPath}/WEB-INF/views/temp/header.jsp"></c:import>
@@ -49,7 +65,25 @@
 					${menuTitle}			
 				</div>
 				<div class="contents_wrapper">
-					
+					<div class="contents_input_warp">
+						<form id="frm" name="frm" method="post" action="${pageContext.request.contextPath}/member/careerWrite" enctype="multipart/form-data">
+							<div>
+								<h5>강사님의 경력을 적어주세요.</h5> 
+							</div>
+							<textarea rows="10" cols="100" name="career" id="career" style="height:500px;">
+								<c:if test="${!empty member.career}">
+									${member.career}						
+								</c:if>
+								<c:if test="${empty member.career}">
+									예) 2018년. 단국대학교 졸업
+								</c:if>
+							</textarea>
+							<div class="btn_form">
+								<input type="submit" value="작성" id="community_insert" style="background-color: RGB(18, 165, 244); margin-right: 10px;">						
+								<input type="button" value="취소" id="community_cancle" style="background-color: red;">
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

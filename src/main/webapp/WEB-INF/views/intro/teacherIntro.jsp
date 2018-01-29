@@ -65,7 +65,7 @@
 										경력
 									</div>
 									<div class="career_contents">
-										
+										${dto.career}
 									</div>
 								</div>
 							</div>

@@ -98,7 +98,7 @@ section {
     float: left;
     font-size: 12px;
 }
-.form-control {
+#search {
 	width: 200px;
     display: inline-block !important;
     border: 0 !important;
@@ -107,12 +107,13 @@ section {
     float: left;
     
 }
-.btn {
+#search_btn {
 	border: 0 !important;
     height: 21px !important;
     font-size: 10px !important;
     padding-top:4px !important;
     float: left;
+    padding: 0;
 }
 .community_search {
 	width:295px;

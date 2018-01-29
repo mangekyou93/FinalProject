@@ -541,5 +541,27 @@ public class MemberController {
 		return "redirect:./memberMypage";
 	}
 	
+//강사 커리어 수정 GET
+	@RequestMapping(value="careerWrite", method=RequestMethod.GET)
+	public ModelAndView careerWrite(ModelAndView mv) throws Exception {
+		
+		mv.addObject("menuTitle", "경력 추가 및 수정");
+		mv.setViewName("member/memberCareer");
+		
+		return mv;
+	}
+	
+//강사 커리어 수정 POST
+	@RequestMapping(value="careerWrite", method=RequestMethod.POST)
+	public String careerWrite(HttpSession session, TeacherDTO teacherDTO, RedirectAttributes rd) throws Exception {
+		
+		teacherDTO.setMember_seq(((TeacherDTO)session.getAttribute("member")).getMember_seq());
+		
+		String message = teacherService.careerWrite(teacherDTO);
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:/";
+	}
 }
 

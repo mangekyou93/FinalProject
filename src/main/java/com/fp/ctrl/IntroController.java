@@ -60,7 +60,7 @@ public class IntroController {
 		
 		return mv;
 	}
-//강사 소개
+//찾아오시는 길
 	@RequestMapping(value="roadIntro")
 	public ModelAndView roadIntro(ModelAndView mv) throws Exception {
 		

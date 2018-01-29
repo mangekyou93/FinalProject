@@ -22,7 +22,7 @@
 				Copyright © 1998-2017 KH Information Educational Institute All Right Reserved
 			</div>
 			<div class="footer_logo">
-				<img alt="footerLogo" style="width:122px;margin-top: 45px;margin-left:14px;height:50px" src="${pageContext.request.contextPath }/resources/images/logo.png">
+				<img alt="footerLogo" style="width:122px; margin-top: 10px; height:50px;" src="${pageContext.request.contextPath }/resources/images/logo.png">
 			</div>
 		</div>
 	</div>	

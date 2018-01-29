@@ -29,4 +29,9 @@
 		DELETE teacher WHERE member_seq=#{member_seq}
 	</delete>
 	
+<!-- 선생님 경력 추가 및 수정 -->
+	<update id="careerWrite" parameterType="TeacherDTO">
+		UPDATE teacher SET career=#{career} WHERE member_seq=#{member_seq}
+	</update>
+	
 </mapper>
