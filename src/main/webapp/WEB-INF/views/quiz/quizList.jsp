@@ -75,11 +75,11 @@
 							<li>
 								<a href="#">반 게시판</a>
 							</li>
-							<li>
-								<c:if test="${member.kind eq 'student' or member.kind eq 'teacher'}">
-								<a href="#" id="messanger" onclick="window.open('${pageContext.request.contextPath}/chat${member.classname}','toolbar=no,menubar=no,location=no,status=no');">반 메신져</a>
-								</c:if>
-							</li>
+							<c:if test="${member.kind eq 'student' or member.kind eq 'teacher'}">
+								<li>
+									<a href="#" id="messanger" onclick="window.open('${pageContext.request.contextPath}/chat${member.classname}','toolbar=no,menubar=no,location=no,status=no');">반 메신져</a>
+								</li>
+							</c:if>
 							<li style="background-color: RGB(18, 165, 244);">
 								<a href="${pageContext.request.contextPath}/quiz/quizList" style="color: white;">과제 게시판</a>
 							</li>
