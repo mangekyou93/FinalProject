@@ -163,32 +163,7 @@ $(document).ready(function(){
 					<div class="cal_list">
 						<img alt="" src="${pageContext.request.contextPath}/resources/images/cal_list.PNG" style="width:100%; height: 100%;">
 					</div>
-				
-					<div class="line1"></div>
-					<h2>일정</h2>
-					<table id="table" style="width: 100%">
-					  <tr>
-					    <th>강의 제목</th>
-					    <th>과목</th>
-					    <th>개강일</th>
-					    <th>종강일</th>
-					    <c:if test="${member.kind eq 'normal'}">
-					    <th></th>
-					    </c:if>
-					  </tr>
-					  <c:forEach items="${list}" var="dto">
-					  <tr>
-					    <td><a href="${pageContext.request.contextPath}/calendar/calendar_view?id=${dto.id}">${dto.title}</a></td>
-					    <td>${dto.contents}</td>
-					    <td>${dto.date_start}</td>
-					    <td>${dto.date_end}</td>
-					    <c:if test="${member.kind eq 'normal'}">
-					   <%-- <td><a href="${pageContext.request.contextPath}/sign/sign_view?sid=${dto.id}">신청</a></td> --%>
-					   <td><a href="${pageContext.request.contextPath}/sign/sign_apply?sid=${dto.id}">신청</a></td>
-					    </c:if>
-					  </tr>
-					  </c:forEach>
-					</table>
+
 				</div>
 			</div>
 		</div>

@@ -69,6 +69,11 @@ public class MemberDAO {
 
 		return sqlSession.update(NAMESPACE+"memberPwFindUpdate", memberDTO);
 	}
+//일반회원 -> 학생
+	public int memberStudentUpdate(MemberDTO memberDTO) throws Exception {
+
+		return sqlSession.update(NAMESPACE+"memberStudentUpdate", memberDTO);
+	}
 	
 //state Update
 	public int stateUpate(MemberDTO memberDTO) throws Exception {

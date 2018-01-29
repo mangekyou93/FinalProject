@@ -16,6 +16,27 @@
 <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/sign.css" rel="stylesheet">
+<script type="text/javascript">
+	$(function(){
+		$(".choose_lecture").click(function(){
+			$(".choose_lecture").prop("checked", false);
+			$(this).prop("checked", true);
+			
+			$.ajax({
+				url:"../calendar/calendarSelectOne",
+				type:"post",
+				data:{
+					id:$(this).val()
+				},
+				success:function(data){
+					$("#major").val(data.title);
+					$("#type").val(data.contents);
+					$("#classname").val(data.classname);
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 <!--  header start -->
@@ -40,50 +61,43 @@
 					</div>
 				</div>
 			</div>
-			
-								<%-- <div class="major_choose">
-									<!--  -->
-									<table>
-										<td>${cview.contents}</td>
-										<td>${cview.date_start}</td>
-										<td>${cview.date_end}</td>
-									</table>
-									</div> --%>
-			
+			<div class="rightContents">
 				<div class="contents_header">
 					${menuTitle}			
 				</div>
-			<div class="rightContents">
 				<div class="contents_wrapper">
+					<div>
+						<h2>일정</h2>
+						<table id="table" style="width: 100%">
+						  <tr>
+						    <th>강의 제목</th>
+						    <th>과목</th>
+						    <th>개강일</th>
+						    <th>종강일</th>
+						    <c:if test="${!empty member}">
+						   	 <th></th>
+						    </c:if>
+						  </tr>
+						  <c:forEach items="${list}" var="dto">
+						  <tr>
+						    <td><a href="${pageContext.request.contextPath}/calendar/calendar_view?id=${dto.id}">${dto.title}</a></td>
+						    <td>${dto.contents}</td>
+						    <td>${dto.date_start}</td>
+						    <td>${dto.date_end}</td>
+						    <c:if test="${member.kind eq 'normal'}">
+							    <td><input type="checkbox" class="choose_lecture" value="${dto.id}"></td>
+						    </c:if>
+						  </tr>
+						  </c:forEach>
+						</table>
+					</div>
 					<form action="${pageContext.request.contextPath}/sign/sign_apply" method="post" id="frm">
+						<input type="hidden" value="" name="major" id="major">
+						<input type="hidden" value="" name="type" id="type">
+						<input type="hidden" value="" name="classname" id="classname">
 						<div id="content_body">
-							<div class="subject">
-								<span class="reg">온라인 수강신청</span>
-							</div>
-							
+							<h2>수강 등록 신청서</h2>
 							<div class="register_body">
-								<div class="hope_major">
-									<div class="hope_left">
-										<div class="hope_banner">희망전공선택</div>
-									</div>
-									
-									<div class="major_choose">
-									<!--  -->
-									<table>
-									<c:if test="${sview.sid eq view.id}">
-										<td>${sview.major}</td>
-										<td>${sview.type}</td>
-										<td>${sview.name}</td>
-										<td>${view.contents}</td>
-										<td>${view.date_start}</td>
-										<td>${view.date_end}</td>
-									</c:if>
-									</table>
-									</div>
-									
-								</div>
-								<!-- ====================================희망전공=========================================== -->
-									
 									<div id="cs_info">
 										<div class="cs_left">
 											<div class="cs_banner">신청자 정보</div>
@@ -142,7 +156,6 @@
 										</div>
 										</div>
 									</div>
-									
 							</div>
 						</div>
 						<input type="button" id="button" value="수강신청">

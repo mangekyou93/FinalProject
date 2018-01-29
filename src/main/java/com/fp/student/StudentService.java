@@ -22,6 +22,10 @@ public class StudentService {
 		
 		return studentDAO.memberDelete(member_seq);
 	}
-	
+//학생회원 추가
+	public int studentInsert(StudentDTO studentDTO) throws Exception {
+		
+		return studentDAO.memberInsert(studentDTO);
+	}
 	
 }

@@ -6,7 +6,7 @@
   <mapper namespace="signMapper">
   
   <insert id="insert" parameterType="SignDTO">
-		insert into sign values(#{name},#{birth},#{phone},#{F_edu},#{purpose},#{resolution},#{sid})
+		insert into sign values(#{major},#{type},#{name},#{birth},#{phone},#{F_edu},#{purpose},#{resolution})
 		<!-- #{major},#{type}, -->
   	</insert>
   	

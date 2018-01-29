@@ -24,9 +24,12 @@ public class CalendarService {
 		mv.setViewName("calendar/calendar_list");
 		return mv;
 	}*/
+	
+	
 	public ModelAndView selectList()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<CalendarDTO> ar = calendarDAO.selectList();
+/*
 		CalendarDTO calendarDTO = new CalendarDTO();
 		
 		calendarDTO.setNum(calendarDTO.getNum());
@@ -36,6 +39,7 @@ public class CalendarService {
 		calendarDTO.setDate_end(calendarDTO.getDate_end());
 		calendarDTO.setClassname(calendarDTO.getClassname());
 		calendarDTO.setId(calendarDTO.getId());
+*/
 		String js = "[";
 		String str ="";
 		for(CalendarDTO c : ar){

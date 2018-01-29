@@ -224,7 +224,11 @@ public String memberInfoUpdate(HttpSession session, MemberDTO memberDTO, int cou
 		
 		return memberDAO.memberPwFindUpdate(memberDTO);
 	}
-	
+//일반회원 -> 학생
+	public int memberStudentUpdate(MemberDTO memberDTO) throws Exception {
+		
+		return memberDAO.memberStudentUpdate(memberDTO);
+	}
 	
 //state Update
 	public int stateUpdate(MemberDTO memberDTO) throws Exception {
