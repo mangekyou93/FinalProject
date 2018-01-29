@@ -98,10 +98,12 @@ $(document).ready(function(){
 				</div>
 				<div class="contents_wrapper">
 					<div id='calendar'></div>
+
 					  <c:if test="${member.kind eq 'admin'}">
 					   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" style="position: relative; top: -583px; right: -667px;">추가</button>
 					  </c:if>
 					<div class="container">
+
 					  <!-- Modal -->
 					  <div class="modal fade" id="myModal" role="dialog">
 					    <div class="modal-dialog">
@@ -181,7 +183,8 @@ $(document).ready(function(){
 					    <td>${dto.date_start}</td>
 					    <td>${dto.date_end}</td>
 					    <c:if test="${member.kind eq 'normal'}">
-					    <td><a href="${pageContext.request.contextPath}/sign/sign_apply">신청</a></td>
+					   <%-- <td><a href="${pageContext.request.contextPath}/sign/sign_view?sid=${dto.id}">신청</a></td> --%>
+					   <td><a href="${pageContext.request.contextPath}/sign/sign_apply?sid=${dto.id}">신청</a></td>
 					    </c:if>
 					  </tr>
 					  </c:forEach>
