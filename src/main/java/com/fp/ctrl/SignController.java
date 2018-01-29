@@ -1,5 +1,7 @@
 package com.fp.ctrl;
 
+import java.lang.ProcessBuilder.Redirect;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -21,20 +23,34 @@ public class SignController {
 
 	@Inject
 	private SignService signService;
-
-
+	@Inject
+	private CalendarService calednarService;
+	//모델로 받아서 가지고 오도록
+	/*@RequestMapping(value="sign_apply", method = RequestMethod.GET)
+	public ModelAndView selectOne1(ModelAndView mv, int id, RedirectAttributes rd)throws Exception{
+		CalendarDTO calendarDTO = calednarService.selectOne(id);
+		if(calendarDTO != null){
+			mv.addObject("cview", calendarDTO);
+			mv.addObject("menuTitle", "커리큘럼 수강신청");
+			mv.setViewName("sign/sign_view");
+		}else{
+			rd.addFlashAttribute("message", "에러");
+			mv.setViewName("redirect:../../calendar");
+		}
+		return mv;
+	}*/
+	
+	//
 	@RequestMapping(value="sign_apply", method=RequestMethod.GET)
 	public String insert(Model model)throws Exception{
-		/*System.out.println("겟까지 왔음");*/
 		model.addAttribute("menuTitle", "수강신청");
 		return "sign/sign";
 	}
 	
+	
 	@RequestMapping(value="sign_apply", method=RequestMethod.POST)
 	public String insert(RedirectAttributes rd, SignDTO signDTO, HttpSession session)throws Exception{
-	
 		int result = signService.insert(signDTO, session);
-		/*System.out.println("포스트 까지 왔음");*/
 		String message="no";
 		if(result>0){
 			message="yes";
@@ -43,17 +59,16 @@ public class SignController {
 		return "redirect:../calendar/test";
 	}
 	@RequestMapping(value="sign_view", method=RequestMethod.GET)
-	public ModelAndView selectOne(ModelAndView mv, int sid, RedirectAttributes rd)throws Exception{
+	public ModelAndView selectOne(ModelAndView mv, int sid, int id, RedirectAttributes rd)throws Exception{
 		SignDTO signDTO = signService.selectOne(sid);
-		System.out.println(signDTO.getClassname());
-		
+		CalendarDTO calendarDTO = calednarService.selectOne(id);
 		if(signDTO != null)
 		{
+			mv.addObject("view", calendarDTO);
 			mv.addObject("sview", signDTO);
-			mv.setViewName("sign/sign_view");
-		}
-		else
-		{
+			mv.setViewName("sign/sign_apply");
+			/*mv.setViewName("sign/sign_view");*/
+		}else{
 			mv.setViewName("redirect:../../calendar");
 		}
 		return mv;

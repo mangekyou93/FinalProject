@@ -104,22 +104,9 @@ $(document).ready(function(){
 					<div class="container">
 					<%-- <input type="hidden" id="cal" value = "${view.date_start}"> --%>
 					
-					  <!-- admin -->
-					  <c:if test="${member.kind eq null}">
-					  </c:if>
-					  <c:if test="${member.kind != null}">
-					  </c:if> 
-					  <c:if test="${member.kind eq normal}">
-					  </c:if>
-					   <c:if test="${member.kind eq student}">
-					  </c:if>
-					   <c:if test="${member.kind eq teacher}">
-					  </c:if>
 					  <c:if test="${member.kind eq 'admin'}">
 					   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">추가</button>
-					  </c:if>
-					  <!-- admin -->
-					  
+					  </c:if>				  
 					  <!-- Modal -->
 					  <div class="modal fade" id="myModal" role="dialog">
 					    <div class="modal-dialog">
@@ -199,7 +186,8 @@ $(document).ready(function(){
 					    <td>${dto.date_start}</td>
 					    <td>${dto.date_end}</td>
 					    <c:if test="${member.kind eq 'normal'}">
-					    <td><a href="${pageContext.request.contextPath}/sign/sign_apply">신청</a></td>
+					   <%-- <td><a href="${pageContext.request.contextPath}/sign/sign_view?sid=${dto.id}">신청</a></td> --%>
+					   <td><a href="${pageContext.request.contextPath}/sign/sign_apply?sid=${dto.id}">신청</a></td>
 					    </c:if>
 					    <c:if test="${member.kind eq 'student'}">
 					    <td><a href="${pageContext.request.contextPath}/sign/sign_apply">신청</a></td>
