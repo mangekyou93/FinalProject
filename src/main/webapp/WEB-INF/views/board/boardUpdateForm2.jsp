@@ -247,18 +247,11 @@
 						<textarea rows="10" cols="100" name="contents" id="contents" style="height:500px;">${list.contents }</textarea>
 						<div class="community_file_warp">파일 업로드</div>
 						<div id="fileUpload" class="dragAndDropDiv">파일을 올려주세요</div>
-<<<<<<< HEAD
+						
 						<c:forEach items="${files}" var="fileNames" varStatus="status">
 							<div class="fileUpdate"><div id="uploadDel${status.index }" title="${fileNames.file_name }" class="fileUpdateClick" style="margin-right: 5px;">${fileNames.file_name }<input type='button' id='clickBtn' style="padding-left: 10px;" title="${status.index }" value="X" class='clickBtn'></div></div>
 						</c:forEach>
 						<div id="fileBox"></div>
-						
-=======
-						<div id="fileBox"></div>
-						<c:forEach items="${files}" var="fileNames">
-							<span style="margin-right: 5px;"><a href="../upload/filedown?file_name=${fileNames.file_name }&ori_name=${fileNames.ori_name}">${fileNames.file_name }</a></span>
-						</c:forEach>
->>>>>>> master
 						
 							<input type="button" value="취소" id="community_cancle">
 							<input type="button" value="작성" id="community_insert">
