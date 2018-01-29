@@ -41,15 +41,6 @@
 				</div>
 			</div>
 			
-								<%-- <div class="major_choose">
-									<!--  -->
-									<table>
-										<td>${cview.contents}</td>
-										<td>${cview.date_start}</td>
-										<td>${cview.date_end}</td>
-									</table>
-									</div> --%>
-			
 				<div class="contents_header">
 					${menuTitle}			
 				</div>
@@ -68,17 +59,7 @@
 									</div>
 									
 									<div class="major_choose">
-									<!--  -->
-									<table>
-									<c:if test="${sview.sid eq view.id}">
-										<td>${sview.major}</td>
-										<td>${sview.type}</td>
-										<td>${sview.name}</td>
-										<td>${view.contents}</td>
-										<td>${view.date_start}</td>
-										<td>${view.date_end}</td>
-									</c:if>
-									</table>
+										
 									</div>
 									
 								</div>

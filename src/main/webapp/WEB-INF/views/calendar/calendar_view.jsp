@@ -20,6 +20,12 @@
 <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/calendar_view.css" rel="stylesheet">
+
+<!-- 삭제 버튼 -->
+<script type="text/javascript">
+
+</script>
+<!--  -->
 </head>
 <body>
 <!--  header start -->
@@ -83,8 +89,9 @@
 	
 	<div class="move">
 		<c:if test="${member.kind eq 'admin'}">
-			<a href="${pageContext.request.contextPath}/calendar/calendar_update?id=${view.id}">update</a>
-			<a href="${pageContext.request.contextPath}/calendar/calendarDelete?id=${view.id}">delete</a>
+			<%-- <a href="${pageContext.request.contextPath}/calendar/calendar_update?id=${view.id}">update</a> --%>
+			<%-- <a href="${pageContext.request.contextPath}/calendar/calendarDelete?id=${view.id}">delete</a> --%>
+			<button id="d_btn">삭제</button>
 		</c:if>
 		<c:if test="${member.kind eq 'normal'}">
 			<a href="${pageContext.request.contextPath}/sign/sign_apply">수강신청</a>
