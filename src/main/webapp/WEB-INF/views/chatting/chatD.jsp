@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>D반 메신져</title>
+<title>D Class Messenger</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -73,7 +73,7 @@
 		<div class="row">
 			<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
 				<div class="collapse navbar-collapse" id="navbar-collapse-01">
-					<h1>A반 메신져</h1>
+					<h1>D Class Messenger</h1>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a id="exitBtn" style="cursor: pointer;">대화방 나가기
 								(${member.name})</a></li>
@@ -84,23 +84,23 @@
 			<!-- /navbar -->
 		</div>
 		<div class="row">
-			<div class="col-xs-2">
-				<h4>
+			<div style="text-align: center;" class ="col-xs-2">
+				<h9>
 					접속자 [
 					<div id=usercount style="display: inline-block"></div>
-					]
-				</h4>
-				<div class="share">
-					<ul ng-repeat="participant in participants">
+					] 
+				</h9>
+				<div class="share" id="sharescroll">
+					<ul id="scrollul" ng-repeat="participant in participants">
 						<li>
-							<div id=guest style="margin-right: 56%"></div>
+							<div id=guest></div>
 
 						</li>
 					</ul>
 				</div>
 			</div>
 			<div style="text-align: center">
-				<h4>대화 내용</h4>
+				<h9>대화 내용</h9>
 			</div>
 			<div class="col-xs-8 chat-box" id="scroll">
 
@@ -163,50 +163,74 @@
 		function send() {
 			var nickname = $("#nickname").val();
 			var msg = $("#message").val();
-			wsocket.send("msg:" + $("#username").val() + ":" + msg);
+			wsocket.send("msg:"+'<span style="font-weight:bold">'+ $("#username").val() +'</span>' + ": " + msg);
 
 			$("#message").val("");
 		}
 
 		function join() {
-			wsocket.send("log:" + "▶" + $("#username").val() + "님 입장!");
+			wsocket.send("log:" + "▶" + '<span style="font-weight:bold">'+ $("#username").val() +"</span>" + "님이 들어왔습니다.");
 		}
 
 		function out() {
-			wsocket.send("log:" + "◀" + $("#username").val() + "님이 나갔습니다.");
+			wsocket.send("log:" + "◀" + '<span style="font-weight:bold">'+$("#username").val() +"</span>" + "님이 나갔습니다.");
 		}
 
 		function appendMessage(msg) {
+			var NT_date = new Date();
+
+			var nt_year = NT_date.getYear() + 1900; //단순히 year을 받아오면 2016년 기준으로 116이 리턴됨.
+
+			var nt_month = NT_date.getMonth() + 1; //month는 0부터 시작함. 1월 = 0, 10월 = 9
+
+			var nt_day = NT_date.getDate(); //day는 현재 일자의 요일을 나타냄. 0 = 일요일 1 = 월요일
+
+			var nt_hour = (NT_date.getHours()<10?'0':'') + NT_date.getHours();
+
+			var nt_min = (NT_date.getMinutes()<10?'0':'') + NT_date.getMinutes();
+
+			var nt_sec = (NT_date.getSeconds()<10?'0':'') +NT_date.getSeconds();
+
+			var time_str =nt_hour + ":" + nt_min + ":" +nt_sec;
 			var maxScroll = $("#chatMessageArea").height();
-			if ($("#username").val() == msg.substring(0, 3)) {
+			if ($("#username").val() == msg.substring(31, 34)) {
 				$("#chatMessageArea")
-						.append(
-								'<div id="fade-in" class="list-group-item list-group-item-warning" style="color : red;text-align: right;">'
-										+ "나" + msg.substring(3) + '</div>');
+						.append('<div style="font-size: 65%;text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+'<span style="font-weight:bold">'+ "나" +'</span>' + msg.substring(34) + '</div><span class="">'+time_str+'</span></div>');
 			} else {
 				$("#chatMessageArea")
 						.append(
-								'<div id="fade-in" class="list-group-item list-group-item-info" style="color : blue;text-align: left;">'
-										+ msg + '</div>');
+								'<div style="font-size: 65%;text-align: -webkit-left;"><div id="fade-in" class="list-group-item list-group-item-info" style=" margin-top:2%;width: fit-content;">' + msg + '</div>'+time_str+'</div>');
 			}
 			/* var chatAreaHeight = $("#chatArea").height(); */
 			$("#scroll").scrollTop(maxScroll);
+			
 
 		}
 
 		function appendMessage2(msg) {
-			$("#guest").html(msg + "<br>");
+			$("#guest").html(msg);
+			var Scrollmax = $("#scrollul").height();
+			$("#sharescroll").scrollTop(Scrollmax);
 		}
 
 		function appendMessage3(msg) {
+		
+		if(msg>10){
+			$(".share").css("height","300px");
 			$("#usercount").html(msg + "<br>");
+			}
+		else{
+			$(".share").css("height","");
+			$("#usercount").html(msg + "<br>");
+		}
+			
 		}
 
 		function appendMessage4(msg) {
 			var maxScroll = $("#chatMessageArea").height();
 			$("#chatMessageArea")
 					.append(
-							'<div id="fade-in" class="list-group-item list-group-item-danger" style="color : blue; text-align: center;">'
+							'<div id="fade-in" class="list-group-item list-group-item-danger" style="font-size: 60%;color : black; text-align: center; margin-top:2%;">'
 									+ msg + '</div>');
 			/* var chatAreaHeight = $("#chatArea").height(); */
 			$("#scroll").scrollTop(maxScroll);
@@ -230,6 +254,7 @@
 			});
 			$('#exitBtn').click(function() {
 				disconnect();
+				window.close();
 			});
 			window.onbeforeunload = function() {
 

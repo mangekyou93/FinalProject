@@ -185,17 +185,17 @@
 
 			var nt_day = NT_date.getDate(); //day는 현재 일자의 요일을 나타냄. 0 = 일요일 1 = 월요일
 
-			var nt_hour = NT_date.getHours();
+			var nt_hour = (NT_date.getHours()<10?'0':'') + NT_date.getHours();
 
-			var nt_min = NT_date.getMinutes();
+			var nt_min = (NT_date.getMinutes()<10?'0':'') + NT_date.getMinutes();
 
-			var nt_sec = NT_date.getSeconds();
+			var nt_sec = (NT_date.getSeconds()<10?'0':'') +NT_date.getSeconds();
 
 			var time_str =nt_hour + ":" + nt_min + ":" +nt_sec;
 			var maxScroll = $("#chatMessageArea").height();
 			if ($("#username").val() == msg.substring(31, 34)) {
 				$("#chatMessageArea")
-						.append('<div style="font-size: 65%;text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+'<span style="font-weight:bold">'+ "나" +'</span>' + msg.substring(34) + '</div>'+time_str+'</div>');
+						.append('<div style="font-size: 65%;text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+'<span style="font-weight:bold">'+ "나" +'</span>' + msg.substring(34) + '</div><span class="">'+time_str+'</span></div>');
 			} else {
 				$("#chatMessageArea")
 						.append(
@@ -210,7 +210,7 @@
 		function appendMessage2(msg) {
 			$("#guest").html(msg);
 			var Scrollmax = $("#scrollul").height();
-			$("#scroll").scrollTop(maxScroll);
+			$("#sharescroll").scrollTop(Scrollmax);
 		}
 
 		function appendMessage3(msg) {
@@ -233,7 +233,7 @@
 							'<div id="fade-in" class="list-group-item list-group-item-danger" style="font-size: 60%;color : black; text-align: center; margin-top:2%;">'
 									+ msg + '</div>');
 			/* var chatAreaHeight = $("#chatArea").height(); */
-			$("#sharescroll").scrollTop(Scrollmax);
+			$("#scroll").scrollTop(maxScroll);
 
 		}
 
