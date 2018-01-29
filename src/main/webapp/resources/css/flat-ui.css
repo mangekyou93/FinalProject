@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @font-face {
   font-family: 'Lato';
   src: url('../fonts/lato/lato-black.eot');
@@ -348,11 +350,11 @@
   content: "\e660";
 }
 body {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: 'Jeju Gothic', serif,"Lato", Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 1.72222;
   color: #34495e;
-  background-color: #ffffff;
+  background-color: #eff;
 }
 a {
   color: #16a085;
@@ -1287,7 +1289,7 @@ label {
 }
 .form-control,
 .select2-search input[type="text"] {
-  border: 2px solid #bdc3c7;
+  border: 2px solid #48c9b0;
   color: #34495e;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 15px;

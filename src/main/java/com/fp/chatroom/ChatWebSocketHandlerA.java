@@ -88,9 +88,9 @@ public class ChatWebSocketHandlerA extends TextWebSocketHandler {
 		for (WebSocketSession s : users.values()){
 			System.out.println(s.getId());
 		}
-		data = data +"<div>"+ "<div>"+ "<img src='resources/images/online.png'>" +guestlist.get(0)+"</div>";
+		data = data + "<div>"+ "<img src='resources/images/online.png'>" +guestlist.get(0)+"</div>";
 		for(int i=1; i< guestlist.size();i++){
-			data = data +"<div>"+  "<div>"+ "<img src='resources/images/online.png'>" + guestlist.get(i)+"</div>";
+			data = data +  "<div style='margin-top:3%;'>"+ "<img src='resources/images/online.png'>" + guestlist.get(i)+"</div>";
 			/*addguestlist(session);*/
 
 		}

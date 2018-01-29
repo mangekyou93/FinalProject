@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>A반 메신져</title>
+<title>A Class Messenger</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -73,7 +73,7 @@
 		<div class="row">
 			<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
 				<div class="collapse navbar-collapse" id="navbar-collapse-01">
-					<h1>A반 메신져</h1>
+					<h1>A Class Messenger</h1>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a id="exitBtn" style="cursor: pointer;">대화방 나가기
 								(${member.name})</a></li>
@@ -88,10 +88,10 @@
 				<h9>
 					접속자 [
 					<div id=usercount style="display: inline-block"></div>
-					]
+					] 
 				</h9>
-				<div class="share">
-					<ul ng-repeat="participant in participants">
+				<div class="share" id="sharescroll">
+					<ul id="scrollul" ng-repeat="participant in participants">
 						<li>
 							<div id=guest></div>
 
@@ -163,7 +163,7 @@
 		function send() {
 			var nickname = $("#nickname").val();
 			var msg = $("#message").val();
-			wsocket.send("msg:"+ $("#username").val() + ": " + msg);
+			wsocket.send("msg:"+'<span style="font-weight:bold">'+ $("#username").val() +'</span>' + ": " + msg);
 
 			$("#message").val("");
 		}
@@ -177,26 +177,53 @@
 		}
 
 		function appendMessage(msg) {
+			var NT_date = new Date();
+
+			var nt_year = NT_date.getYear() + 1900; //단순히 year을 받아오면 2016년 기준으로 116이 리턴됨.
+
+			var nt_month = NT_date.getMonth() + 1; //month는 0부터 시작함. 1월 = 0, 10월 = 9
+
+			var nt_day = NT_date.getDate(); //day는 현재 일자의 요일을 나타냄. 0 = 일요일 1 = 월요일
+
+			var nt_hour = NT_date.getHours();
+
+			var nt_min = NT_date.getMinutes();
+
+			var nt_sec = NT_date.getSeconds();
+
+			var time_str =nt_hour + ":" + nt_min + ":" +nt_sec;
 			var maxScroll = $("#chatMessageArea").height();
-			if ($("#username").val() == msg.substring(0, 3)) {
+			if ($("#username").val() == msg.substring(31, 34)) {
 				$("#chatMessageArea")
-						.append('<div style="font-size: 65%;text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+'<span style="font-weight:bold">'+ "나" +'</span>' + msg.substring(3) + '</div></div>');
+						.append('<div style="font-size: 65%;text-align: -webkit-right;"><div id="fade-in" class="list-group-item list-group-item-warning" style=" margin-top:2%;width: fit-content;">'+'<span style="font-weight:bold">'+ "나" +'</span>' + msg.substring(34) + '</div>'+time_str+'</div>');
 			} else {
 				$("#chatMessageArea")
 						.append(
-								'<div style="font-size: 65%;text-align: -webkit-left;"><div id="fade-in" class="list-group-item list-group-item-info" style=" margin-top:2%;width: fit-content;">' + msg + '</div></div>');
+								'<div style="font-size: 65%;text-align: -webkit-left;"><div id="fade-in" class="list-group-item list-group-item-info" style=" margin-top:2%;width: fit-content;">' + msg + '</div>'+time_str+'</div>');
 			}
 			/* var chatAreaHeight = $("#chatArea").height(); */
 			$("#scroll").scrollTop(maxScroll);
+			
 
 		}
 
 		function appendMessage2(msg) {
 			$("#guest").html(msg);
+			var Scrollmax = $("#scrollul").height();
+			$("#scroll").scrollTop(maxScroll);
 		}
 
 		function appendMessage3(msg) {
+		
+		if(msg>10){
+			$(".share").css("height","300px");
 			$("#usercount").html(msg + "<br>");
+			}
+		else{
+			$(".share").css("height","");
+			$("#usercount").html(msg + "<br>");
+		}
+			
 		}
 
 		function appendMessage4(msg) {
@@ -206,7 +233,7 @@
 							'<div id="fade-in" class="list-group-item list-group-item-danger" style="font-size: 60%;color : black; text-align: center; margin-top:2%;">'
 									+ msg + '</div>');
 			/* var chatAreaHeight = $("#chatArea").height(); */
-			$("#scroll").scrollTop(maxScroll);
+			$("#sharescroll").scrollTop(Scrollmax);
 
 		}
 
