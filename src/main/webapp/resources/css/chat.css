@@ -1,5 +1,6 @@
 .container {
-  width: 970px !important;
+  width: 72% !important;
+  height: 90% !important;
 }
 
 .navbar h1 {
@@ -13,3 +14,36 @@
 	height:400px;
 	overflow: auto;
 }
+
+#fade-in{
+	animation: fadeIn 1s;
+}
+
+@keyframes fadeIn{
+	from{
+		opacity: 0;
+	}
+	
+	to{
+		opacity: 1;
+	}
+	
+	
+}
+@keyframes fadeOut{
+	from{
+		opacity: 1;
+	}
+	
+	to{
+		opacity: 0;
+	}
+	
+	
+}
+
+::-webkit-scrollbar {width: 12px; animation: fadeOut 2s;}
+
+::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  border-radius: 10px;  animation: fadeOut 2s;}
+
+::-webkit-scrollbar-thumb {border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);  animation: fadeOut 2s; }
