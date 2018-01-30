@@ -172,6 +172,7 @@ section {
 	margin-left:10%;
 	display: inline-block;
 	
+	
 }
 #content_body .register_body #cs_info .visit_register .visit_register_form .cs_a2{
 	margin-left:5%;
@@ -285,6 +286,7 @@ section {
     margin: 4px 2px;
     margin-left:50%;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 #table {
@@ -292,6 +294,7 @@ section {
     border-collapse: collapse;
     /* width: 100%; */
     margin: 0 auto;
+    
 }
 
 #table td, th {
@@ -306,7 +309,7 @@ section {
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #12A5F4;
 }
 .fc-state-active {
 	display: none;

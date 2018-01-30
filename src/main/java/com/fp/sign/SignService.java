@@ -17,6 +17,8 @@ public class SignService {
 	@Inject
 	private SignDAO signDAO;
 	
+	@Inject
+	private CalendarDAO calendarDAO;
 	
 	@Transactional
 	public int insert(SignDTO signDTO, HttpSession session)throws Exception{
