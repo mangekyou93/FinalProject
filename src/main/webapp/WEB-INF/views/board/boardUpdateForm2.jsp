@@ -27,6 +27,7 @@
 		CKEDITOR.replace("contents");
 		
         $("#community_insert").click(function(){
+        	$("#frm").prop("action", "./update");
 			document.frm.submit();		
 		});
 		
@@ -186,19 +187,26 @@
         	})
         });
         
-        $("clickBtn").click(function(){
+        
+        $(".clickBtns").click(function(){
+        	
         	var index = $(this).prop("title");
-        	var title_value = $("#upload"+index).prop("title");
+        	var title_value = $("#uploadDel"+index).prop("title");
+        	var bon = $("#uploadDel"+index);
+        		
         	$.ajax({
         		url:"../upload/fileFakeDelete",
         		type:"post",
         		data:{
         			fileName:title_value
         		}, success:function(data){
-        			$("#uploadDel"+index).remove();
+        			$("#uploadDel"+index).parent().remove();
+        			$(bon).remove();
+        			$("#hidden"+index).prop("name", "delFile");
         		}
         	})
         });
+        
      });
 	
 </script>
@@ -207,6 +215,15 @@
 		height: 37px;
     	background: #EBEFF0;
     	padding: 10px 10px 0 10px;	
+	}
+	.clickBtns{
+	    cursor: pointer;
+    	-webkit-appearance: none;
+    	border: 0;
+    	background-color: transparent;
+    	font-weight: bold;
+    	color: #DD2222;
+    	font-size: 16px;
 	}
 </style>
 </head>
@@ -241,16 +258,17 @@
 					<div class="contents_input_warp">
 						<form id="frm" name="frm" method="post" action="./freeboardInsert" enctype="multipart/form-data">
 						<input type="hidden" name="writer" value="${list.writer}">
+						<input type="hidden" name="board_seq" value="${list.board_seq }">
 						<div>
 							<input type="text" placeholder="제목을 입력해주세요" name="title" value="${list.title }" class="coumunity_input_title"> 
 						</div>
 						<textarea rows="10" cols="100" name="contents" id="contents" style="height:500px;">${list.contents }</textarea>
 						<div class="community_file_warp">파일 업로드</div>
 						<div id="fileUpload" class="dragAndDropDiv">파일을 올려주세요</div>
-						
 						<c:forEach items="${files}" var="fileNames" varStatus="status">
-							<div class="fileUpdate"><div id="uploadDel${status.index }" title="${fileNames.file_name }" class="fileUpdateClick" style="margin-right: 5px;">${fileNames.file_name }<input type='button' id='clickBtn' style="padding-left: 10px;" title="${status.index }" value="X" class='clickBtn'></div></div>
-						</c:forEach>
+							<input type="hidden" id="hidden${status.index }" value="${fileNames.ori_name }" name="oriName">
+							<div class="fileUpdate"><div id="uploadDel${status.index }" title="${fileNames.ori_name }" class="fileUpdateClick" style="margin-right: 5px;">${fileNames.file_name }<input type='button' id='clickBtns' style="padding-left: 10px;" title="${status.index }" value="X" class='clickBtns'></div></div>
+	 					</c:forEach>
 						<div id="fileBox"></div>
 						
 							<input type="button" value="취소" id="community_cancle">

@@ -88,15 +88,13 @@ public class SignController {
 	}
 	
 	@RequestMapping(value="sign_view", method=RequestMethod.GET)
-	public ModelAndView selectOne(ModelAndView mv, int sid, int id, RedirectAttributes rd)throws Exception{
+	public ModelAndView selectOne(ModelAndView mv, int sid, RedirectAttributes rd)throws Exception{
 		SignDTO signDTO = signService.selectOne(sid);
-		CalendarDTO calendarDTO = calednarService.selectOne(id);
+		
 		if(signDTO != null)
 		{
-			mv.addObject("view", calendarDTO);
 			mv.addObject("sview", signDTO);
 			mv.setViewName("sign/sign_apply");
-			/*mv.setViewName("sign/sign_view");*/
 		}else{
 			mv.setViewName("redirect:../../calendar");
 		}

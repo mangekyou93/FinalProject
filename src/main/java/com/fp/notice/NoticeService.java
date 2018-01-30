@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fp.board.BoardDTO;
 import com.fp.board.BoardService;
 import com.fp.reply.ReplyDAO;
+import com.fp.reply.ReplyDTO;
 import com.fp.upload.UploadDAO;
 import com.fp.upload.UploadDTO;
 import com.fp.util.ListData;
@@ -59,6 +60,7 @@ public class NoticeService implements BoardService{
 
 	@Override
 	public BoardDTO selectOne(int board_seq) throws Exception {
+		noticeDAO.hitUpdate(board_seq);
 		return noticeDAO.selectOne(board_seq);
 	}
 
@@ -91,6 +93,27 @@ public class NoticeService implements BoardService{
 		replyDAO.replyDelete(board_seq);
 		uploadDAO.noticeDelete(board_seq);
 		return noticeDAO.delete(board_seq);
+	}
+	
+	public int update(BoardDTO boardDTO, HttpSession session, String[] oriName, String[] delFile) throws Exception {
+		UploadDTO uploadDTO = null;
+		if(delFile!=null){
+			for(int i=0; i<delFile.length; i++){
+				uploadDAO.noticeDeleteString(delFile[i]);
+			}
+		}
+		
+		for(int i=0; i<oriName.length; i++){
+			uploadDTO = new UploadDTO();
+			uploadDTO.setBoard_seq(boardDTO.getBoard_seq());
+			uploadDTO.setOri_name(oriName[i]);
+			oriName[i] = oriName[i].substring(oriName[i].lastIndexOf("#")+1);
+			uploadDTO.setFile_name(oriName[i]);
+			uploadDTO.setMember_seq(boardDTO.getMember_seq());
+			uploadDAO.noticeInsert(uploadDTO);
+		}
+		
+		return noticeDAO.noticeUpdate(boardDTO);
 	}
 
 }

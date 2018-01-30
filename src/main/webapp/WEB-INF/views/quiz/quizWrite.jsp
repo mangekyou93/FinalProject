@@ -1,36 +1,202 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
+
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/header.css"
+   rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/footer.css"
+   rel="stylesheet">
+
+
+
+<style type="text/css">
+section {
+   width: 100%;
+   height: auto;
+}
+
+.allContents {
+   width: 65%;
+   height: auto;
+   margin: 0 auto;
+}
+
+.leftContents {
+   width: 25%;
+   height: auto;
+   float: left;
+}
+
+.leftMenu {
+   width: 100%;
+   height: auto;
+}
+
+.leftMenu_header {
+   width: 100%;
+   height: 40px;
+   background-color: #3f4b5e;
+   color: white;
+   font-size: 20px;
+   font-weight: bolder;
+   line-height: 40px;
+   padding-left: 10px;
+}
+
+.leftMenu_wrapper {
+   width: 100%;
+   height: auto;
+   margin-top: 20px;
+}
+
+.leftMenu_wrapper ul {
+   list-style: none;
+}
+
+.leftMenu_wrapper ul li {
+   width: 100%;
+   height: 40px;
+   line-height: 40px;
+   border-bottom: 1px solid #E0E0E0;
+   padding-left: 10px;
+}
+
+.leftMenu_wrapper ul li a {
+   width: 100%;
+   height: 100%;
+   color: black;
+   font-size: 15px;
+   font-weight: bold;
+   display: block;
+}
+
+.leftMenu_wrapper ul li a:hover {
+   color: RGB(18, 165, 244);
+   text-decoration: none;
+}
+
+.containerMain {
+   width: 70%;
+   height: auto;
+   overflow: hidden;
+   padding-left: 16px;
+   padding-right: 16px;
+   max-width: 100%;
+   box-sizing: border-box;
+   margin: 0 auto;
+}
+</style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
+   <c:import
+      url="${pageScope.pageContext.request.ContextPath}/WEB-INF/views/temp/header.jsp" />
+   <div class="allContents">
+      <div class="leftContents">
+         <div class="leftMenu">
+            <div class="leftMenu_header">나의 메뉴</div>
+            <div class="leftMenu_wrapper">
+               <ul>
+                  <li><a href="#">반 게시판</a></li>
+                  <li><a href="#">반 메신져</a></li>
+                  <li style="background-color: RGB(18, 165, 244);"><a
+                     href="${pageContext.request.contextPath}/quiz/quizList"
+                     style="color: white;">과제 게시판</a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="containerMain">
+         <div class="container">
+            <div class="jumbotron">
+               <p>
+               <h2>문제 내기</h2>
+               </p>
+               <hr>
+               <form action="quizWrite" method="POST">
+                  <div class="form-group row">
+                     <div class="col-xs-4">
+                        <label for="title"><h4>title</h4></label> <input type="text"
+                           class="form-control" name="title">
+                     </div>
 
-	<form action="quizWrite"  method="POST"> 
-	<p>제목</p>
-	<input type="text" name="title" value="홀수 짝수 문제">
-	<p>내용</p>
-	<textarea name="contents"></textarea>
-	<p>레벨</p>
-	<input type="text" name="quizLevel">
-	<p>출력값</p>
-	<input type="text" value="OddEven" name="result">
-	<p>반</p>
-	<input type="text" value="R" name="classKind">
-	
-	<p>기본코드</p>
-	<textarea name="basiccode">
-	
-	</textarea>
-	<p>기본 클래스</p>
-	<input type="text" name="basicClass">
-	<br>
-	<input type="submit" value="제출하기">
-	</form>
-	
-	
+                  </div>
+
+                  <div class="form-group row">
+                     <div class="col-xs-4">
+                        <label for="quizLevel"><h4>quizLevel</h4></label> <select
+                           class="form-control" name="quizLevel"
+                           selected="${view.quizLevel}">
+                           <option>Level 1 (Easy)</option>
+                           <option>Level 1 (Hard)</option>
+                           <option>Level 2 (Easy)</option>
+                           <option>Level 2 (Hard)</option>
+                           <option>Level 3 (Easy)</option>
+                           <option>Level 3 (Hard)</option>
+                           <option>Level 4 (Easy)</option>
+                           <option>Level 4 (Hard)</option>
+
+                        </select>
+                     </div>
+                  </div>
+
+
+                  <div class="form-group row">
+
+                     <div class="col-xs-4">
+                        <label for="contents"><h4>contents</h4></label>
+                        <textarea class="form-control" rows="10" name="contents"></textarea>
+                     </div>
+
+
+                     <div class="col-xs-4">
+                        <label for="basiccode"><h4>basiccode</h4></label>
+                        <textarea class="form-control" rows="10" name="basiccode"></textarea>
+                     </div>
+
+                  </div>
+
+                  <div class="form-group row">
+
+                     <div class="col-xs-2">
+                        <label for="result"><h4>result</h4></label> <input type="text"
+                           class="form-control" name="result">
+                     </div>
+                     <div class="col-xs-2">
+                        <label for="classKind"><h4>classKind</h4></label> <input
+                           type="text" class="form-control" name="classKind">
+                     </div>
+
+                     <div class="col-xs-2">
+                        <label for="basicClass"><h4>basicClass</h4></label> <input
+                           type="text" class="form-control" name="basicClass">
+                     </div>
+                  </div>
+                  <input type="submit" id="saveButton"
+                     style="vertical-align: middle;" value="글쓰기"
+                     class="btn btn-default">
+               </form>
+            </div>
+         </div>
+
+      </div>
+   </div>
+   <c:import
+      url="${pageScope.pageContext.request.ContextPath}/WEB-INF/views/temp/footer.jsp" />
 </body>
 </html>

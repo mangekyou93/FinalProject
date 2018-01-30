@@ -48,4 +48,8 @@ public class UploadDAO {
 	public List<UploadDTO> noticeSelect(int board_seq) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"noticeSelect", board_seq);
 	}
+	
+	public int noticeDeleteString(String ori_name) throws Exception {
+		return sqlSession.delete(NAMESPACE+"noticeDeleteString", ori_name);
+	}
 }

@@ -27,6 +27,14 @@ public class ListData {
 		return rowNum;
 	}
 	
+	public int getPerPage() {
+		return perPage;
+	}
+
+	public void setPerPage(int perPage) {
+		this.perPage = perPage;
+	}
+
 	public Pager makePage(int totalCount) {
 		Pager pager = new Pager();
 		int perBlock = 5;

@@ -56,4 +56,11 @@ public class ReplyService implements BoardService{
 	public List<ReplyDTO> freeboardList(int board_seq) throws Exception {
 		return replyDAO.selectList(board_seq);
 	}
+	
+	public int update(ReplyDTO replyDTO) throws Exception {
+		int reply_seq = replyDAO.reply_seq();
+		replyDTO.setReply_seq(reply_seq);
+		replyDAO.stepUpdate(replyDTO);
+		return replyDAO.reply_reply(replyDTO);
+	}
 }

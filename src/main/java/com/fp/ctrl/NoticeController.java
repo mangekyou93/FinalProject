@@ -53,6 +53,7 @@ public class NoticeController {
 			}
 			try {
 				noticeService.selectList(listData, mv);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -160,5 +161,15 @@ public class NoticeController {
 			
 			mv.addObject("menuTitle", "게시글 수정");
 			return mv;
+		}
+		
+		@RequestMapping(value="update", method=RequestMethod.POST)
+		public String freeboardUpdate(BoardDTO boardDTO, HttpSession session,String[] delFile, String[] oriName) {
+			try {
+				int i = noticeService.update(boardDTO, session, oriName, delFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "redirect:./freeboard";
 		}
 }

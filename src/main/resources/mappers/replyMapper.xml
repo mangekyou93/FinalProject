@@ -20,4 +20,13 @@
  	<delete id="replyDelete" parameterType="int">
  		DELETE reply WHERE board_seq=#{board_seq}
  	</delete>
+ 	
+ 	
+ 	
+ 	<update id="stepUpdate" parameterType="com.fp.reply.ReplyDTO">
+ 		UPDATE reply SET step=step+1 WHERE ref=#{ref} and step>#{step}
+ 	</update>
+ 	<insert id="reply_reply" parameterType="com.fp.reply.ReplyDTO">
+ 		INSERT INTO reply VALUES(#{reply_seq},#{board_seq},#{contents},#{writer},#{ref},#{step}+1,#{depth}+1,sysdate )
+ 	</insert>
 </mapper>

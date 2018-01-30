@@ -61,7 +61,11 @@
 					</div>
 				</div>
 			</div>
+
+			
+
 			<div class="rightContents">
+
 				<div class="contents_header">
 					${menuTitle}			
 				</div>
@@ -74,7 +78,7 @@
 						    <th>과목</th>
 						    <th>개강일</th>
 						    <th>종강일</th>
-						    <c:if test="${!empty member}">
+						    <c:if test="${!empty member and member.kind eq 'normal'}">
 						   	 <th></th>
 						    </c:if>
 						  </tr>
@@ -98,6 +102,20 @@
 						<div id="content_body">
 							<h2>수강 등록 신청서</h2>
 							<div class="register_body">
+
+								<div class="hope_major">
+									<div class="hope_left">
+										<div class="hope_banner">희망전공선택</div>
+									</div>
+									
+									<div class="major_choose">
+										
+									</div>
+									
+								</div>
+								<!-- ====================================희망전공=========================================== -->
+									
+
 									<div id="cs_info">
 										<div class="cs_left">
 											<div class="cs_banner">신청자 정보</div>
@@ -162,8 +180,22 @@
 						</form>
 						<script type="text/javascript">
 						$(function(){
-						    $("#button").click(function(){
-						        $("#frm").submit();
+						    var check = ${empty member};
+						    var check2 = "${member.kind}";
+							
+							$("#button").click(function(){
+						    	if(check)
+						    	{
+						    		alert("로그인 후 이용 가능합니다.");
+						    	}
+						    	else if(check2 != 'normal' )
+						    	{
+						    		alert("일반회원만 가능한 서비스입니다.");
+						    	}
+						    	else
+						    	{
+							        $("#frm").submit();						    		
+						    	}
 						    })
 						});
 						</script>

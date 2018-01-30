@@ -20,6 +20,16 @@
 <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/calendar_view.css" rel="stylesheet">
+
+<!-- 삭제 버튼 -->
+<!-- <script type="text/javascript">
+$(document).ready(function(){
+    $("#d_btn").click(function(){
+        $("#delete").attr("href");
+    });
+});
+</script> -->
+<!--  -->
 </head>
 <body>
 <!--  header start -->
@@ -47,55 +57,60 @@
 			<div class="rightContents">
 				<div class="contents_header">
 					<div class="cal_view">
-						<img alt="" src="${pageContext.request.contextPath}/resources/images/cal_view.PNG">
+						<img alt="" src="${pageContext.request.contextPath}/resources/images/t_i1.jpg" style="width: 100%">
 					</div>
 				</div>
 	<div class="contents_wrapper">
 			<h1>${viewTitle}</h1>
 		<p>강의 내용과 일정을 확인하고 신청하세요</p>
-	<div class="table-responsive">
-	<table class="table">
-		<thead>
-      		<tr>
-        		<th>#</th>
-        		<th>제목</th>
-        		<th>글내용</th>
-        		<th>개강일</th>
-        		<th>종강일</th>
-     		 </tr>
-   		 </thead>
-		<tbody>
-		<tr>
-			<td></td>
-			<td>${view.title}</td>
-			<td>${view.contents}</td>
-			<td>${view.date_start}</td>
-			<td>${view.date_end}</td>
-		</tr>
-		</tbody>
-		<!-- class="content" colspan="3" -->
-		<%-- <tr>
-			<td>반이름 : ${view.classname}</td>
-		</tr> --%>
-	</table>
-	</div>
+			<div class="info_table">
+				<table class="l_table">
+					<tbody>
+						<tr>
+							<th class="tr_h">회차</th>
+							<td class="tr_h1">${view.num}회차</td>
+						</tr>
+						<tr>
+							<th class="tr_h">강의 제목</th>
+							<td class="tr_h1">${view.title}</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="r_table">
+					<tbody>
+						<tr>
+							<th class="tr_h">강의 내용</th>
+							<td class="tr_h1">${view.contents}</td>
+						</tr>
+						<tr>
+							<th class="tr_h">개강일</th>
+							<td class="tr_h1">${view.date_start}</td>
+						</tr>
+						<tr>
+							<th class="tr_h">종강일</th>
+							<td class="tr_h1">${view.date_end}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 	</div>
 	
 	<div class="move">
 		<c:if test="${member.kind eq 'admin'}">
-			<a href="${pageContext.request.contextPath}/calendar/calendar_update?id=${view.id}">update</a>
-			<a href="${pageContext.request.contextPath}/calendar/calendarDelete?id=${view.id}">delete</a>
+			<%-- <a href="${pageContext.request.contextPath}/calendar/calendar_update?id=${view.id}">update</a> --%>
+			<a href="${pageContext.request.contextPath}/calendar/calendarDelete?id=${view.id}" id="delete"></a>
+			<button class="d_btn"><a href="${pageContext.request.contextPath}/calendar/calendarDelete?id=${view.id}" class="func">삭제</a></button>
 		</c:if>
 		<c:if test="${member.kind eq 'normal'}">
-			<a href="${pageContext.request.contextPath}/sign/sign_apply">수강신청</a>
+			<button class="d_btn"><a href="${pageContext.request.contextPath}/sign/sign_apply" class="func">수강신청</a></button>
 		</c:if>
 		<c:if test="${member.kind eq 'student'}">
-			<a href="${pageContext.request.contextPath}/sign/sign_apply">수강신청</a>
+			<button class="d_btn"><a href="${pageContext.request.contextPath}/sign/sign_apply" class="func">수강신청</a></button>
 		</c:if>
-			<a href="${pageContext.request.contextPath}/calendar/test">커리큘럼</a>
+			<button class="d_btn"><a href="${pageContext.request.contextPath}/calendar/test" class="func">커리큘럼</a></button>
+	</div>
 	</div>
 	
-	</div>
 </div>
 </section>		
 	<!-- footer start -->		

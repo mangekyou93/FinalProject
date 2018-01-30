@@ -33,4 +33,11 @@ public class ReplyDAO {
 		return sqlSession.delete(NAMESPACE+"replyDelete", board_seq);
 	}
 	
+	public int reply_reply(ReplyDTO replyDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"reply_reply", replyDTO);
+	}
+	
+	public int stepUpdate(ReplyDTO replyDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"stepUpdate", replyDTO);
+	}
 }

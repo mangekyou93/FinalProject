@@ -50,9 +50,8 @@ public class NoticeDAO implements BoardDAO{
 	}
 
 	@Override
-	public int hitUpdate(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int hitUpdate(int board_seq) throws Exception {
+		return sqlSession.update(NAMESPACE+"hitUpdate", board_seq);
 	}
 
 	@Override
@@ -63,6 +62,10 @@ public class NoticeDAO implements BoardDAO{
 	
 	public int select_board_seq() throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"select_board_seq");
+	}
+	
+	public int noticeUpdate(BoardDTO boardDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"noticeUpdate", boardDTO);
 	}
 
 }

@@ -19,14 +19,14 @@ public class JavaFileCreate {
          
         try{
                          
-            // BufferedWriter 와 FileWriter를 조합하여 사용 (속도 향상)
+            // BufferedWriter �� FileWriter�� �����Ͽ� ��� (�ӵ� ���)
             BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, false));
              
-            // 파일안에 문자열 쓰기
+            // ���Ͼȿ� ���ڿ� ����
             fw.write(text);
             fw.flush();
  
-            // 객체 닫기
+            // ��ü �ݱ�
             fw.close();
              
              

@@ -27,9 +27,7 @@
 		<div class="header_menu_wrap">
 			<div class="logo_wrap">
 				<a href="${pageContext.request.contextPath }">
-				<%-- 
-					<img style="width:220px;height:90px;margin-bottom:20px;margin-left:70px;" alt="logo" src="${pageContext.request.contextPath }/resources/images/logo.png">
-				 --%>
+					<img style="width:220px;height:90px;margin-bottom:20px;margin-left:70px;" alt="logo" src="${pageContext.request.contextPath }/resources/images/logoresized.png">
 				</a>
 			</div>
 				<div class="header_nav_wrap">
@@ -120,12 +118,16 @@
 	                        <a href="#">나의 메뉴</a>
 	                        <ul class="header_nav_menu_ul_dropdown ul">
 	                           <li><a href="#">반 게시판</a></li>
-	                           <li>
-	                           		<c:if test="${member.kind eq 'student' or member.kind eq 'teacher'}">
+	                           	<c:if test="${member.kind eq 'student' or member.kind eq 'teacher'}">
+	                          		 <li>
 		                           		<a href="#" id="messanger" onclick="window.open('${pageContext.request.contextPath}/chat${member.classname}','toolbar=no,menubar=no,location=no,status=no');">반 메신저</a>                           	
-	                           		</c:if>
-	                           </li>
-	                           <li><a href="${pageContext.request.contextPath}/quiz/quizList">과제 게시판</a></li>
+	                           		</li>
+	                           	</c:if>
+	                           <li>
+	                            <c:if test="${member.kind eq 'student' or member.kind eq 'teacher'}">
+                                    <a href="${pageContext.request.contextPath}/quiz/quizList">과제 게시판</a>
+                                 </c:if>
+                                 </li>
 	                        </ul>   
 	                     </li>
 	                     <li>
