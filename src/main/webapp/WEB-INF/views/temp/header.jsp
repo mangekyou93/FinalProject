@@ -27,9 +27,7 @@
 		<div class="header_menu_wrap">
 			<div class="logo_wrap">
 				<a href="${pageContext.request.contextPath }">
-				<%-- 
 					<img style="width:220px;height:90px;margin-bottom:20px;margin-left:70px;" alt="logo" src="${pageContext.request.contextPath }/resources/images/logo.png">
-				 --%>
 				</a>
 			</div>
 				<div class="header_nav_wrap">
