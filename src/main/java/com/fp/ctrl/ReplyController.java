@@ -39,16 +39,26 @@ public class ReplyController {
 			message = "작성 성공";
 		}
 		
-		for(int i=0; i<ar.size(); i++){
-			System.out.println(ar.get(i).getContents());
-			System.out.println("writer"+ar.get(i).getWriter());
-		}
-		
 		mv.addObject("replyList", ar);
 		mv.setViewName("common/replyResult");
 		
 		return mv;
 	}
 	
+	@RequestMapping(value="freeboardReply", method=RequestMethod.POST)
+	public ModelAndView freeboardReply(ReplyDTO replyDTO, ModelAndView mv) {
+		
+		List<ReplyDTO> ar = new ArrayList<ReplyDTO>();
+		try {
+			replyService.update(replyDTO);
+			 ar = replyService.freeboardList(replyDTO.getBoard_seq());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.addObject("replyList", ar);
+		mv.setViewName("common/replyResult");
+		return mv;
+	}
 	
 }

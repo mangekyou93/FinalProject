@@ -52,4 +52,12 @@
  		DELETE notice WHERE board_seq=#{board_seq}
  	</delete>
  	
+ 	<update id="noticeUpdate" parameterType="NoticeDTO">
+ 		UPDATE notice SET title=#{title}, contents=#{contents} WHERE board_seq=#{board_seq}
+ 	</update>
+ 	
+ 	<update id="hitUpdate" parameterType="int">
+ 		UPDATE notice SET hit=hit+1 WHERE board_seq=#{board_seq}
+ 	</update>
+ 	
 </mapper>

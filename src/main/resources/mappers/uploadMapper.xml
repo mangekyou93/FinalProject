@@ -32,6 +32,11 @@
 		DELETE upload WHERE board_seq=#{board_seq}
 	</delete>
 	
+	<!-- 파일 삭제 -->
+	<delete id="noticeDeleteString" parameterType="String">
+		DELETE upload WHERE ori_name=#{ori_name}
+	</delete>
+	
 	<select id="noticeSelect" parameterType="int" resultType="UploadDTO">
 		SELECT * FROM upload WHERE board_seq=#{board_seq}
 	</select>
