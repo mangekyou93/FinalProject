@@ -355,7 +355,9 @@ body {
                <div class="leftMenu_wrapper">
                   <ul>
                      <li><a href="#">반 게시판</a></li>
-                     <li><a href="#">반 메신져</a></li>
+                     <li>
+                     	<a href="#" id="messanger" onclick="window.open('${pageContext.request.contextPath}/chat${member.classname}','toolbar=no,menubar=no,location=no,status=no');">반 메신저</a>
+                     </li>
                      <li style="background-color: RGB(18, 165, 244);"><a
                         href="${pageContext.request.contextPath}/quiz/quizList"
                         style="color: white;">과제 게시판</a></li>
@@ -373,7 +375,7 @@ body {
 
                   </form>
                   <p style="margin-top: 40px;">
-                  <h3 style="font-weight: 600">${list[0].classKind}문제</h3>
+                  <h3 style="font-weight: 600">문제</h3>
                   </p>
                </div>
                <div class="level">

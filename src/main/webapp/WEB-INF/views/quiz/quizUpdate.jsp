@@ -88,6 +88,13 @@ section {
    text-decoration: none;
 }
 
+.logo_wrap a img {
+	width: 220px;
+	height: 90px;
+	margin-left: 70px;
+	margin-top: 17px;
+}
+
 .containerMain {
    width: 70%;
    height: auto;
@@ -114,7 +121,9 @@ section {
             <div class="leftMenu_wrapper">
                <ul>
                   <li><a href="#">반 게시판</a></li>
-                  <li><a href="#">반 메신져</a></li>
+                  <li><a href="#" id="messanger"
+							onclick="window.open('${pageContext.request.contextPath}/chat${member.classname}','toolbar=no,menubar=no,location=no,status=no');">반
+								메신저</a></li>
                   <li style="background-color: RGB(18, 165, 244);"><a
                      href="${pageContext.request.contextPath}/quiz/quizList"
                      style="color: white;">과제 게시판</a></li>
@@ -123,24 +132,24 @@ section {
          </div>
       </div>
       <div class="containerMain">
-         <div class="container">
-            <div class="jumbotron">
+         <div class="container" style="width: 720px;">
+            <div class="jumbotron" style="padding-left: 50px; padding-right: 80px;">
                <h2>문제 수정하기</h2>
                <hr>
                <form action="quizUpdate" method="POST" id="frm">
 
                   <input type="hidden" name="num" value="${view.num}">
                   <div class="form-group row">
-                     <div class="col-xs-4">
-                        <label for="title"><h4>title</h4></label> <input type="text"
+                     <div>
+                        <label for="title"><h4>제목</h4></label> <input type="text"
                            class="form-control" name="title" value="${view.title}">
                      </div>
 
                   </div>
 
                   <div class="form-group row">
-                     <div class="col-xs-4">
-                        <label for="quizLevel"><h4>quizLevel</h4></label> <select
+                     <div>
+                        <label for="quizLevel"><h4>난이도</h4></label> <select
                            class="form-control" name="quizLevel"
                            selected="${view.quizLevel}">
                            <option>Level 1 (Easy)</option>
@@ -159,14 +168,14 @@ section {
 
                   <div class="form-group row">
 
-                     <div class="col-xs-4">
-                        <label for="contents"><h4>contents</h4></label>
+                     <div>
+                        <label for="contents"><h4>문제 내용</h4></label>
                         <textarea class="form-control" rows="10" name="contents">${view.contents}</textarea>
                      </div>
 
 
-                     <div class="col-xs-4">
-                        <label for="basiccode"><h4>basiccode</h4></label>
+                     <div>
+                        <label for="basiccode"><h4>기본 코드</h4></label>
                         <textarea class="form-control" rows="10" name="basiccode">${view.basiccode}</textarea>
                      </div>
 
@@ -174,23 +183,23 @@ section {
 
                   <div class="form-group row">
 
-                     <div class="col-xs-2">
-                        <label for="result"><h4>result</h4></label> <input type="text"
+                     <div>
+                        <label for="result"><h4>결과</h4></label> <input type="text"
                            class="form-control" name="result" value="${view.result}">
                      </div>
-                     <div class="col-xs-2">
-                        <label for="classKind"><h4>classKind</h4></label> <input type="text"
+                     <div>
+                        <label for="classKind"><h4>반 이름</h4></label> <input type="text"
                            class="form-control" name="classKind" value="${view.classKind}">
                      </div>
 
-                     <div class="col-xs-2">
-                        <label for="basicClass"><h4>basicClass</h4></label> <input type="text"
+                     <div>
+                        <label for="basicClass"><h4>기본 클래스</h4></label> <input type="text"
                            class="form-control" name="basicClass"
                            value="${view.basicClass}">
                      </div>
                   </div>
                   <input type="submit" id="saveButton"
-                     style="vertical-align: middle;" value="수정"
+                     style="margin-left: 520px;" value="수정"
                      class="btn btn-default">
                </form>
             </div>

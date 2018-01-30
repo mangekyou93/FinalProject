@@ -147,12 +147,14 @@ $(document).ready(function(){
 					        		<td><input type="text" name="classname" placeholder="클래스 입력해주세요."></td>
 					      		</tr>
 							</table>
-							<input type="button" id="write" value="write">
-						</form>
-					        </div>
-					        <div class="modal-footer">
+							<input type="button" id="write" class="btn btn-primary" value="write" style="border-color: transparent!important; margin-left: 443px;"">
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</form>
+					        </div>	
+					        <!-- 
+					        <div class="modal-footer">
 					        </div>
+					         -->
 					      </div>
 					    </div>
 					  </div>

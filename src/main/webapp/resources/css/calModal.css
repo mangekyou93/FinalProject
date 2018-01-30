@@ -12,6 +12,7 @@
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 #calender_s td, #calender_s th {
@@ -24,7 +25,6 @@
 #calender_s tr:hover {background-color: #ddd;}
 
 #write{
-	background-color: #12A5F4;
 	color: white;
 	text-align: center;
 	font-size: 13px;

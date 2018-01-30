@@ -194,7 +194,7 @@ public class execController {
       System.out.println("text : "+text);
 
       model.addObject("error", list2);
-      model.setViewName("test");
+      model.setViewName("quiz/test");
       return model;
    }
 }

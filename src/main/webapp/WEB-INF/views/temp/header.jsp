@@ -131,10 +131,8 @@
 	                        </ul>   
 	                     </li>
 	                     <li>
-	                        <a href="#">상담 센터</a>
+	                        <a href="https://jaeha-park.github.io/">상담 센터</a>
 	                        <ul class="header_nav_menu_ul_dropdown ul">
-	                           <li><a href="${pageContext.request.contextPath}/board/qna/qnaWrite">Q&A</a></li>
-	                           <li><a href="#">상담하기</a></li>
 	                        </ul>
 	                     </li>
 	               </ul>
