@@ -97,6 +97,12 @@ section {
    box-sizing: border-box;
    margin: 0 auto;
 }
+.rightContents {
+	width: 720px;
+	height: auto;
+	margin: 0 auto;
+	float: right;
+}
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -121,6 +127,7 @@ section {
             </div>
          </div>
       </div>
+      <div class="rightContents">
       <div class="containerMain">
          <div class="container">
             <div class="jumbotron">
@@ -194,6 +201,7 @@ section {
             </div>
          </div>
 
+      </div>
       </div>
    </div>
    <c:import

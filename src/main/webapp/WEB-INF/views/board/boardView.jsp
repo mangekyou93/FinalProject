@@ -335,8 +335,10 @@ section {
 					</div>
 					<div class="view_listBack">
 						<a href="./freeboard"><input style="margin-left: 5px;" class="btn btn-default" type="button" value="목록"></a>
-						<a href="./delete?board_seq=${view.board_seq}"><input class="del btn btn-default" type="button" value="삭제"></a>
-						<a href="./update?board_seq=${view.board_seq}"><input class="up btn btn-default" type="button" value="수정"></a>
+						<c:if test="${view.writer eq member.name }">
+							<a href="./delete?board_seq=${view.board_seq}"><input class="del btn btn-default" type="button" value="삭제"></a>
+							<a href="./update?board_seq=${view.board_seq}"><input class="up btn btn-default" type="button" value="수정"></a>
+						</c:if>
 					</div>
 					<div class="view_reply_wrap">
 						<div class="view_reply_contents_wrap">
