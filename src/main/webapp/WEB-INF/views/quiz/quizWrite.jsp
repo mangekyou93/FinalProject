@@ -104,13 +104,18 @@ section {
 	box-sizing: border-box;
 	margin: 0 auto;
 }
+.rightContents {
+	width: 720px;
+	height: auto;
+	margin: 0 auto;
+	float: right;
+}
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
 	<c:import
 		url="${pageScope.pageContext.request.ContextPath}/WEB-INF/views/temp/header.jsp" />
 	<div class="allContents">
