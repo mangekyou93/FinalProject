@@ -103,13 +103,15 @@ section {
     font-size: 20px;
 }
 .view_hit {
-	border-bottom: 1px solid #ddd;
-    margin-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
+	    /* border-bottom: 1px solid #ddd; */
+    /* margin-top: 10px; */
+    /* padding-right: 10px; */
+    /* padding-bottom: 10px; */
     text-align: right;
     color: gray;
+    display: inline-block;
     font-size: 15px;
+    float: right;
 }
 .view_date {
 	padding-left: 10px;
@@ -216,6 +218,15 @@ section {
     padding-top: 35px;
     padding-left: 41px;
 }
+.view_writer {
+    width: 100%;
+    display: inline-block;
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
 </style>
 <script>
 	$(function(){
@@ -256,8 +267,26 @@ section {
 	   	});
 	   	$(".clickReply").click(function(){
 	   		var thisDiv = $(this).prop("title");
-	   		$(".checkReply"+thisDiv).append("<div class='view_reply_wraps'><div class='view_reply_contents_wrap'><textarea class='view_reply_contents' name='contents'></textarea><input type='button' class='view_reply_buttons' value='댓글 등록'><p class='check_wirte'></p></div></div>");
+	   		var writer = '${member.name}';
+	   		$(".checkReply"+thisDiv).append("<div class='view_reply_wraps'><div class='view_reply_contents_wrap'><textarea class='view_reply_contents view_reply_contents"+thisDiv+"' name='contents'></textarea><input type='button' class='view_reply_buttons' value='댓글 등록'><p class='check_wirte'></p></div></div>");
+	   		$(".checkReply"+thisDiv).on("click",".view_reply_buttons",function(){
+	   			$.ajax({
+	   				url : "../reply/freeboardReply",
+	   				type : "POST",
+	   				data : {
+	   					writer:writer,
+	   					contents:$(".view_reply_contents"+thisDiv).val(),
+	   					ref:$("#ref"+thisDiv).val(),
+	   					step:$("#step"+thisDiv).val(),
+	   					depth:$("#depth"+thisDiv).val(),
+	   					board_seq:${view.board_seq}
+	   				}, success:function(data){
+	   					alert(data);
+	   				}
+	   			});
+	   		});
 	   	});
+	   	
 	  });
 </script>
 </head>
@@ -275,7 +304,7 @@ section {
 					<div class="leftMenu_wrapper">
 						<ul>
 							<li style="background-color: RGB(18, 165, 244);">
-								<a style="color: white;" href="${pageContext.request.contextPath}/community/freeboard">자유게시판</a>
+								<a style="color: white;" href="${pageContext.request.contextPath}/notice/freeboard">자유게시판</a>
 							</li>
 							<li>
 								<a href="${pageContext.request.contextPath}/member/memberAgree">수강 후기</a>
@@ -291,10 +320,14 @@ section {
 				<div class="contents_wrapper">
 					<div class="freeboard_view_wrap">
 						<div class="freeboard_view_title">${view.title}</div>
+						<div class="view_writer">작성자 : ${view.writer }
 						<div class="view_hit"><img style="padding-right: 5px;" src="${pageContext.request.contextPath }/resources/images/icon_view.png">${view.hit } <span class="view_date">${view.reg_date }</span></div>
+						</div>
 						<div class="view_contents">${view.contents}</div>
 					</div>
-					<button type="button" id="file_output">파일첨부 <img src="${pageContext.request.contextPath }/resources/images/icon_reply01.png"></button>
+					<c:if test="${files ne null }">
+						<button type="button" id="file_output">파일첨부 <img src="${pageContext.request.contextPath }/resources/images/icon_reply01.png"></button>
+					</c:if>
 					<div class="fileDownload">
 					<c:forEach items="${files}" var="fileNames">
 						<span style="margin-right: 5px;"><a href="../upload/filedown?file_name=${fileNames.file_name }&ori_name=${fileNames.ori_name}">${fileNames.file_name }</a></span>
@@ -323,7 +356,11 @@ section {
                         </div>
                      <br>
                      </div>
-                     <div class="checkReply${status.index }"></div>
+                     <div class="checkReply${status.index }">
+                     	<input type="hidden" id="ref${status.index }" name="ref" value="${dto2.ref }">
+                     	<input type="hidden" id="step${status.index }" name="step" value="${dto2.step}">
+                     	<input type="hidden" id="depth${status.index }" name="depth" value="${dto2.depth}">
+                     </div>
                   </c:forEach>
                </div> 
 				</div>

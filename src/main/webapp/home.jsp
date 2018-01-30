@@ -77,7 +77,7 @@
 			<div class="slide_bottom_nav">
 				<div class="slide_bottom_nav_wrap">
 					<div class="slide_bottom_nav_span">
-						<p>코딩이 습관이 되는곳! - OO IT학원</p>
+						<p>코딩이 습관이 되는곳! - IT GATEWAY</p>
 					</div>
 					<div class="slide_bottom_nav_img">
 						<a href="${pageContext.request.contextPath}/intro/roadIntro"><img alt="nav1" src="resources/images/nav1_off.png"
@@ -112,22 +112,21 @@
 					</div>
 					<div class="contents_menu_top">
 						<div class="contents_top_right">
-							 <p class="contents_right_p">공지사항</p>
+							 <p class="contents_right_p">자유게시판</p>
 							 <ul class="contents_right_ul">
-							 	<li><a href="#">임시 입니다1</a><span>2017-01-01</span></li>
-							 	<li><a href="#">임시 입니다2</a><span>2017-01-01</span></li>
-							 	<li><a href="#">임시 입니다3</a><span>2017-01-01</span></li>
-							 	<li><a href="#">임시 입니다4</a><span>2017-01-01</span></li>
-							 	<li><a href="#">임시 입니다5</a><span>2017-01-01</span></li>
+							 	<li><a href="#">전괜찮아요</a><span>2017-12-30</span></li>
+								<li><a href="#">꿀렁입니다</a><span>2017-11-01</span></li>
+								<li><a href="#">전문적인놈</a><span>2017-11-01</span></li>
+								<li><a href="#">배그좀하자</a><span>2017-11-01</span></li>
 							 </ul>
 						</div>
 						<div class="contents_botton_right">
 							<p class="contents_right_p">수강후기</p>
 							<ul class="contents_right_ul">
-								<li><a href="#">수강 후기 1</a><span>2017-01-01</span></li>
-								<li><a href="#">수강 후기 2</a><span>2017-01-01</span></li>
-								<li><a href="#">수강 후기 3</a><span>2017-01-01</span></li>
-								<li><a href="#">수강 후기 4</a><span>2017-01-01</span></li>
+								<li><a href="#">사기먹었다</a><span>2018-01-30</span></li>
+								<li><a href="#">후기입니다</a><span>2018-01-01</span></li>
+								<li><a href="#">강사님좋음</a><span>2018-01-01</span></li>
+								<li><a href="#">질문받는다</a><span>2017-07-20</span></li>
 							</ul>
 						</div>
 					</div>

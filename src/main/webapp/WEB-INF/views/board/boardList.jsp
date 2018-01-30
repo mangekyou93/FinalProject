@@ -70,7 +70,7 @@
 								<a style="color: white;" href="${pageContext.request.contextPath}/notice/freeboard">자유게시판</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/member/memberAgree">수강 후기</a>
+								<a href="#">수강 후기</a>
 							</li>
 						</ul>
 					</div>
@@ -92,7 +92,8 @@
 						<c:forEach items="${list}" var="dto">
 						<tr>
 							<td>${dto.board_seq}</td>
-							<td><a id="community_boardOne" href="./boardOne?board_seq=${dto.board_seq}">${dto.title }</a></td>
+							<td><a id="community_boardOne" href="./boardOne?board_seq=${dto.board_seq}">${dto.title }</a>
+							</td>
 							<td>${dto.writer }</td>
 							<td>${dto.reg_date }</td>
 							<td>${dto.hit}</td>
