@@ -78,7 +78,7 @@
 						    <th>과목</th>
 						    <th>개강일</th>
 						    <th>종강일</th>
-						    <c:if test="${!empty member}">
+						    <c:if test="${!empty member and member.kind eq 'normal'}">
 						   	 <th></th>
 						    </c:if>
 						  </tr>
