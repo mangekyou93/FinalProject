@@ -118,8 +118,8 @@ $(document).ready(function(){
 					          <form action="${pageContext.request.contextPath}/calendar/calendar_write" id="frm" method="post">
 							<table id="calender_s">
 								<tr>
-					       			<td>num:</td>
-					        		<td><input type="text" name="num" placeholder="num을 입력해 주세요"></td>
+					       			<td>회차:</td>
+					        		<td><input type="text" name="num" placeholder="회차를 입력해 주세요"></td>
 					      		</tr>
 							
 					      		<tr>

@@ -180,8 +180,22 @@
 						</form>
 						<script type="text/javascript">
 						$(function(){
-						    $("#button").click(function(){
-						        $("#frm").submit();
+						    var check = ${empty member};
+						    var check2 = "${member.kind}";
+							
+							$("#button").click(function(){
+						    	if(check)
+						    	{
+						    		alert("로그인 후 이용 가능합니다.");
+						    	}
+						    	else if(check2 != 'normal' )
+						    	{
+						    		alert("일반회원만 가능한 서비스입니다.");
+						    	}
+						    	else
+						    	{
+							        $("#frm").submit();						    		
+						    	}
 						    })
 						});
 						</script>
