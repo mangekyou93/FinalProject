@@ -34,7 +34,10 @@ p {
 <body>
 	<!-- contents start -->
 	<div class="body">
-	<div style="text-align:-webkit-center; "><img src="${pageContext.request.contextPath}/resources/images/404error.png" width="400" style="margin: 30px 50px 30px 50px;"><h1  style="font-size: 6.5rem; color: #83b14e">404 ERROR PAGE</h1></div>
+	<div style="text-align:-webkit-center; ">
+		<img src="${pageContext.request.contextPath}/resources/images/404error.png" width="400" style="margin: 30px 50px 30px 50px;">
+		<h1  style="font-size: 6.5rem; color: #83b14e">404 ERROR PAGE</h1>
+	</div>
 	<div style="text-align:-webkit-center">
 		<p>Sorry dude vary bad news,</p>
 		<p>we cant find your Page :(</p>

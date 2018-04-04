@@ -16,6 +16,7 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "memberMapper.";
 	
+	
 //일반회원 selectOne
 	public MemberDTO selectOne(int member_seq) throws Exception {
 		

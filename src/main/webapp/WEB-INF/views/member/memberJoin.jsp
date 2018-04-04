@@ -460,14 +460,14 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="joinTitles"><h4>패스워드<span class="required_mark">*</span></h4></td>
+								<td class="joinTitles"><h4>비밀번호<span class="required_mark">*</span></h4></td>
 								<td colspan="4">
 									<input type="password" class="form-control" placeholder="8~15자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용" name="pw" id="pw" maxlength="15">
 									<span id="pwCheckResult1" class="checkResult"></span>
 								</td>
 							</tr>
 							<tr>
-								<td class="joinTitles"><h4>패스워드 확인<span class="required_mark">*</span></h4></td>
+								<td class="joinTitles"><h4>비밀번호 확인<span class="required_mark">*</span></h4></td>
 								<td colspan="4">
 									<input type="password" class="form-control" placeholder="8~15자리의 영문/숫자/특수문자 각 1개 이상 혼용 사용" id="pwCheck" maxlength="15">
 									<span id="pwCheckResult2" class="checkResult"></span>
